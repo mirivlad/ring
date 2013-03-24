@@ -38,8 +38,8 @@
 			    <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Действия <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				    <li><a href="#">Вход на сайт</a></li>
-				    <li><a href="#">Регистрация</a></li>
+				    <li><a href="/auth">Вход на сайт</a></li>
+				    <li><a href="/auth/register_account">Регистрация</a></li>
 				    <li class="divider"></li>
 				    <li class="nav-header">Nav header</li>
 				    <li><a href="#">Separated link</a></li>

@@ -439,7 +439,7 @@
 	 *	Do NOT change this salt once users have started registering accounts as their passwords will not work without the original salt.
 	 *	CHANGE THE DEFAULT STATIC SALT SET BELOW TO YOUR OWN RANDOM SET OF CHARACTERS.
 	*/
-	$config['security']['static_salt'] = 'Rh78-0.#dvCC1!';
+	$config['security']['static_salt'] = 'change-me!';
 	
 	/**
 	 * Set whether a salt is stored in the database and then used for password and hash token generation.
@@ -462,7 +462,7 @@
 	 *
 	 * Example: Time set in minutes, 0 = unlimited, 60*24 = 24 hours, 1440 = 24 hours.
 	*/
-	$config['security']['expire_forgotten_password'] = 10080;
+	$config['security']['expire_forgotten_password'] = 15;
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 	// FAILED LOGIN ATTEMPT SETTINGS
@@ -491,7 +491,7 @@
 	 * 
 	 * Example: Time in seconds, 0 = no time ban, 10 = 10 seconds, 60*3 = 3 minutes.
 	*/
-	$config['security']['login_attempt_time_ban'] = 60;
+	$config['security']['login_attempt_time_ban'] = 10;
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
@@ -526,7 +526,7 @@
 	 * Set the language of the reCAPTCHA.
 	 * Supported languages: English 'en',  Dutch 'nl',  French 'fr',  German 'de', Portuguese 'pt', Russian 'ru', Spanish 'es', Turkish 'tr'.
 	*/
-	$config['security']['recaptcha_language'] = 'ru';
+	$config['security']['recaptcha_language'] = 'en';
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
@@ -565,7 +565,7 @@
 	 *
  	 * Example: Time in minutes, 0 = unlimited, 60*24 = 24 hours, 1440 = 24 hours
 	*/
-	$config['settings']['account_activation_time_limit'] = 60*48;
+	$config['settings']['account_activation_time_limit'] = 0;
 
 	/**
 	 * Set the id of the default group that new users will be added to unless otherwise specified.
@@ -614,7 +614,7 @@
 	 * Directory where email templates are stored.
 	 * Default: 'includes/email/'
 	*/
-	$config['email']['email_template_directory'] = 'templates/email/';
+	$config['email']['email_template_directory'] = 'includes/email/';
 	
 	/**
 	 * 'Activate Account' email template.

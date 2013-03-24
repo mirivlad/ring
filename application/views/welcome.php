@@ -1,16 +1,10 @@
 <?php
-include "header.php";
+include "templates/header.php";
 ?>
 
 <div class="container-fluid">
     <div class="row-fluid">
-	<div class="span2">
-	    <ul class="nav nav-list">
-		<li class="nav-header">List header</li>
-		<li class="active"><a href="#">Home</a></li>
-		<li><a href="#">Library</a></li>
-	    </ul>
-	</div>
+        <?php $this->load->view('templates/sidebar'); ?>
 
 	<div class="span10">
 	    <h1>Welcome to CodeIgniter!</h1>
@@ -29,5 +23,5 @@ include "header.php";
 </div>
 
 <?php
-include "footer.php";
+include "templates/footer.php";
 ?>
