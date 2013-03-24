@@ -1,5 +1,5 @@
 <?php
-include "templates/header.php";
+$this->load->view('templates/header');
 ?>
 
 <div class="container-fluid">
@@ -28,5 +28,5 @@ include "templates/header.php";
 </div>
 
 <?php
-include "templates/footer.php";
+$this->load->view('templates/footer');
 ?>

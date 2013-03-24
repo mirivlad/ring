@@ -49,9 +49,9 @@ class Auth extends CI_Controller {
 		}
 		
 		// Note: This is only included to create base urls for purposes of this demo only and are not necessarily considered as 'Best practice'.
-		$this->load->vars('base_url', 'http://localhost/flexi_auth/');
-		$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
-		$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
+		//$this->load->vars('base_url', 'http://localhost/flexi_auth/');
+		//$this->load->vars('includes_dir', 'http://localhost/flexi_auth/includes/');
+		//$this->load->vars('current_url', $this->uri->uri_to_assoc(1));
 		
 		// Define a global variable to store data that is then used by the end view page.
 		$this->data = null;
@@ -132,7 +132,7 @@ class Auth extends CI_Controller {
 				
 		// Get any status message that may have been set.
 		$this->data['message'] = (! isset($this->data['message'])) ? $this->session->flashdata('message') : $this->data['message'];		
-
+                
 		$this->load->view('login_view', $this->data);
     }
 

@@ -653,13 +653,13 @@
 	*/
 
 	// Message Start Delimiter
-	$config['messages']['delimiters']['status_prefix'] = '<p class="status_msg">';
+	$config['messages']['delimiters']['status_prefix'] = '<p class="text-info">';
 	
 	// Message End Delimiter
 	$config['messages']['delimiters']['status_suffix'] = '</p>';
 	
 	// Error Start Delimiter
-	$config['messages']['delimiters']['error_prefix'] = '<p class="error_msg">';
+	$config['messages']['delimiters']['error_prefix'] = '<p class="text-error">';
 	
 	// Error End Delimiter
 	$config['messages']['delimiters']['error_suffix'] = '</p>';
