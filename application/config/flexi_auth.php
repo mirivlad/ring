@@ -439,7 +439,7 @@
 	 *	Do NOT change this salt once users have started registering accounts as their passwords will not work without the original salt.
 	 *	CHANGE THE DEFAULT STATIC SALT SET BELOW TO YOUR OWN RANDOM SET OF CHARACTERS.
 	*/
-	$config['security']['static_salt'] = 'change-me!';
+	$config['security']['static_salt'] = 'Rh78-0.#dvCC1!';
 	
 	/**
 	 * Set whether a salt is stored in the database and then used for password and hash token generation.
@@ -462,7 +462,7 @@
 	 *
 	 * Example: Time set in minutes, 0 = unlimited, 60*24 = 24 hours, 1440 = 24 hours.
 	*/
-	$config['security']['expire_forgotten_password'] = 15;
+	$config['security']['expire_forgotten_password'] = 10080;
 
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
 	// FAILED LOGIN ATTEMPT SETTINGS
@@ -491,7 +491,7 @@
 	 * 
 	 * Example: Time in seconds, 0 = no time ban, 10 = 10 seconds, 60*3 = 3 minutes.
 	*/
-	$config['security']['login_attempt_time_ban'] = 10;
+	$config['security']['login_attempt_time_ban'] = 60;
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###
@@ -526,7 +526,7 @@
 	 * Set the language of the reCAPTCHA.
 	 * Supported languages: English 'en',  Dutch 'nl',  French 'fr',  German 'de', Portuguese 'pt', Russian 'ru', Spanish 'es', Turkish 'tr'.
 	*/
-	$config['security']['recaptcha_language'] = 'en';
+	$config['security']['recaptcha_language'] = 'ru';
 
 	
 	###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++###	
