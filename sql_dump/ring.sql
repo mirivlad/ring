@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- phpMyAdmin SQL Dump
 -- version 3.4.11.1deb1
 -- http://www.phpmyadmin.net

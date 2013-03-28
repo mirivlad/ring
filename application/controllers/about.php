@@ -21,7 +21,7 @@ class About extends CI_Controller {
 	{
 		$this->load->library('parser');
 		$data = array(
-		    'title' => 'О проекте',
+		    //'title' => 'О проекте',
 		    'about' => 'active'
 		);
 
