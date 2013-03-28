@@ -43,7 +43,9 @@ class MY_Parser extends CI_Parser {
 	    if (is_array($val)) {
 		$template = $this->_parse_pair($key, $val, $template);
 	    } else {
-		$template = $this->_parse_single($key, (string) $val, $template);
+                if (!is_object($val)){
+                    $template = $this->_parse_single($key, (string) $val, $template);
+                }
 	    }
 	}
 

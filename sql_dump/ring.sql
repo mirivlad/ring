@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb1
+-- version 3.5.7
 -- http://www.phpmyadmin.net
 --
--- Хост: localhost
--- Время создания: Мар 24 2013 г., 23:23
--- Версия сервера: 5.5.28
--- Версия PHP: 5.4.4-14
+-- Хост: 127.0.0.1:3306
+-- Время создания: Мар 28 2013 г., 20:49
+-- Версия сервера: 5.5.30-log
+-- Версия PHP: 5.4.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,128 +23,106 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `ci_sessions`
+-- Структура таблицы `groups`
 --
 
-CREATE TABLE IF NOT EXISTS `ci_sessions` (
-  `session_id` varchar(40) NOT NULL DEFAULT '0',
-  `ip_address` varchar(16) NOT NULL DEFAULT '0',
-  `user_agent` varchar(120) DEFAULT NULL,
-  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
-  `user_data` text NOT NULL,
-  PRIMARY KEY (`session_id`),
-  KEY `last_activity` (`last_activity`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES
+(1, 'Admin', 'Администраторы системы'),
+(2, 'Members', 'General User');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_accounts`
+-- Структура таблицы `login_attempts`
 --
 
-CREATE TABLE IF NOT EXISTS `user_accounts` (
-  `uacc_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uacc_group_fk` smallint(5) unsigned NOT NULL,
-  `uacc_email` varchar(100) NOT NULL,
-  `uacc_username` varchar(15) NOT NULL,
-  `uacc_password` varchar(60) NOT NULL,
-  `uacc_ip_address` varchar(40) NOT NULL,
-  `uacc_salt` varchar(40) NOT NULL,
-  `uacc_activation_token` varchar(40) NOT NULL,
-  `uacc_forgotten_password_token` varchar(40) NOT NULL,
-  `uacc_forgotten_password_expire` datetime NOT NULL,
-  `uacc_update_email_token` varchar(40) NOT NULL,
-  `uacc_update_email` varchar(100) NOT NULL,
-  `uacc_active` tinyint(1) unsigned NOT NULL,
-  `uacc_suspend` tinyint(1) unsigned NOT NULL,
-  `uacc_fail_login_attempts` smallint(5) NOT NULL,
-  `uacc_fail_login_ip_address` varchar(40) NOT NULL,
-  `uacc_date_fail_login_ban` datetime NOT NULL COMMENT 'Time user is banned until due to repeated failed logins',
-  `uacc_date_last_login` datetime NOT NULL,
-  `uacc_date_added` datetime NOT NULL,
-  PRIMARY KEY (`uacc_id`),
-  UNIQUE KEY `uacc_id` (`uacc_id`),
-  KEY `uacc_group_fk` (`uacc_group_fk`),
-  KEY `uacc_email` (`uacc_email`),
-  KEY `uacc_username` (`uacc_username`),
-  KEY `uacc_fail_login_ip_address` (`uacc_fail_login_ip_address`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `login_attempts` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varbinary(16) NOT NULL,
+  `login` varchar(100) NOT NULL,
+  `time` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Дамп данных таблицы `login_attempts`
+--
+
+INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
+(1, '\0\0', 'admin', 1364484894),
+(2, '\0\0', 'admin', 1364484902),
+(3, '\0\0', 'admin', 1364485505),
+(4, '\0\0', 'admin@admin.com', 1364485783),
+(5, '\0\0', 'admin@admin.com', 1364485793),
+(6, '\0\0', 'admin', 1364488379),
+(7, '\0\0', 'Admin', 1364488386),
+(8, '\0\0', 'admin@admin.com', 1364488446);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_groups`
+-- Структура таблицы `users`
 --
 
-CREATE TABLE IF NOT EXISTS `user_groups` (
-  `ugrp_id` smallint(5) NOT NULL AUTO_INCREMENT,
-  `ugrp_name` varchar(20) NOT NULL,
-  `ugrp_desc` varchar(100) NOT NULL,
-  `ugrp_admin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`ugrp_id`),
-  UNIQUE KEY `ugrp_id` (`ugrp_id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `ip_address` varbinary(16) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(80) NOT NULL,
+  `salt` varchar(40) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `activation_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_code` varchar(40) DEFAULT NULL,
+  `forgotten_password_time` int(11) unsigned DEFAULT NULL,
+  `remember_code` varchar(40) DEFAULT NULL,
+  `created_on` int(11) unsigned NOT NULL,
+  `last_login` int(11) unsigned DEFAULT NULL,
+  `active` tinyint(1) unsigned DEFAULT NULL,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
+(1, '\0\0', 'administrator', 'bb85c8f915be94bd44513119a42554c4065403a4', '9462e8eee0', 'mirivlad@gmail.com', '', NULL, NULL, NULL, 1268889823, 1364489195, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_login_sessions`
+-- Структура таблицы `users_groups`
 --
 
-CREATE TABLE IF NOT EXISTS `user_login_sessions` (
-  `usess_uacc_fk` int(11) NOT NULL,
-  `usess_series` varchar(40) NOT NULL,
-  `usess_token` varchar(40) NOT NULL,
-  `usess_login_date` datetime NOT NULL,
-  PRIMARY KEY (`usess_token`),
-  UNIQUE KEY `usess_token` (`usess_token`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `users_groups` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` mediumint(8) unsigned NOT NULL,
+  `group_id` mediumint(8) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Структура таблицы `user_privileges`
+-- Дамп данных таблицы `users_groups`
 --
 
-CREATE TABLE IF NOT EXISTS `user_privileges` (
-  `upriv_id` smallint(5) NOT NULL AUTO_INCREMENT,
-  `upriv_name` varchar(20) NOT NULL,
-  `upriv_desc` varchar(100) NOT NULL,
-  PRIMARY KEY (`upriv_id`),
-  UNIQUE KEY `upriv_id` (`upriv_id`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `user_privilege_groups`
---
-
-CREATE TABLE IF NOT EXISTS `user_privilege_groups` (
-  `upriv_groups_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `upriv_groups_ugrp_fk` smallint(5) unsigned NOT NULL,
-  `upriv_groups_upriv_fk` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`upriv_groups_id`),
-  UNIQUE KEY `upriv_groups_id` (`upriv_groups_id`) USING BTREE,
-  KEY `upriv_groups_ugrp_fk` (`upriv_groups_ugrp_fk`),
-  KEY `upriv_groups_upriv_fk` (`upriv_groups_upriv_fk`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `user_privilege_users`
---
-
-CREATE TABLE IF NOT EXISTS `user_privilege_users` (
-  `upriv_users_id` smallint(5) NOT NULL AUTO_INCREMENT,
-  `upriv_users_uacc_fk` int(11) NOT NULL,
-  `upriv_users_upriv_fk` smallint(5) NOT NULL,
-  PRIMARY KEY (`upriv_users_id`),
-  UNIQUE KEY `upriv_users_id` (`upriv_users_id`) USING BTREE,
-  KEY `upriv_users_uacc_fk` (`upriv_users_uacc_fk`),
-  KEY `upriv_users_upriv_fk` (`upriv_users_upriv_fk`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
+(1, 1, 1),
+(2, 1, 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
