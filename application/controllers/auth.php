@@ -55,7 +55,7 @@ class Auth extends CI_Controller {
 	//log the user in
 	function login()
 	{
-		$this->data['title'] = "Login";
+		$this->data['title'] = "Вход в систему";
 
 		//validate form input
 		$this->form_validation->set_rules('identity', 'Identity', 'required');
@@ -579,7 +579,7 @@ class Auth extends CI_Controller {
 		$this->data['user'] = $user;
 		$this->data['groups'] = $groups;
 		$this->data['currentGroups'] = $currentGroups;
-
+//TODO: Сделать валидацию данных
 		$this->data['first_name'] = array(
 			'name'  => 'first_name',
 			'id'    => 'first_name',

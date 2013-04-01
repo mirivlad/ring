@@ -22,8 +22,8 @@ $lang['error_csrf'] = 'Отправленные вами данные не со�
 
 // Login
 $lang['login_heading']         = 'Вход на сайт';
-$lang['login_subheading']      = 'Введите имя пользователя или email и пароль.';
-$lang['login_identity_label']  = 'Email/Имя пользователя:';
+$lang['login_subheading']      = 'Введите логин/email и пароль.';
+$lang['login_identity_label']  = 'Логин:';
 $lang['login_password_label']  = 'Пароль:';
 $lang['login_remember_label']  = 'Запомнить:';
 $lang['login_submit_btn']      = 'Вход';
@@ -44,8 +44,8 @@ $lang['index_create_user_link']  = 'Создать пользователя';
 $lang['index_create_group_link'] = 'Создать группу';
 
 // Deactivate User
-$lang['deactivate_heading']                  = 'Деактивировать пользователя';
-$lang['deactivate_subheading']               = 'Деактивировать пользователя \'%s\'';
+$lang['deactivate_heading']                  = 'Деактивация пользователя';
+$lang['deactivate_subheading']               = 'Деактивация пользователя \'%s\'';
 $lang['deactivate_confirm_y_label']          = 'Да:';
 $lang['deactivate_confirm_n_label']          = 'Нет:';
 $lang['deactivate_submit_btn']               = 'Готово';
@@ -74,7 +74,7 @@ $lang['create_user_validation_password_label']         = 'Пароль';
 $lang['create_user_validation_password_confirm_label'] = 'Подтверждение пароля';
 
 // Edit User
-$lang['edit_user_heading']                           = 'Правка пользователя';
+$lang['edit_user_heading']                           = 'Изменение пользователя';
 $lang['edit_user_subheading']                        = 'Введите информацию о пользователе.';
 $lang['edit_user_fname_label']                       = 'Имя:';
 $lang['edit_user_lname_label']                       = 'Фамилия:';
@@ -98,7 +98,7 @@ $lang['edit_user_validation_password_confirm_label'] = 'Подтверждени
 
 // Create Group
 $lang['create_group_title']                  = 'Создание группы';
-$lang['create_group_heading']                = 'Создать группу';
+$lang['create_group_heading']                = 'Создание группы';
 $lang['create_group_subheading']             = 'Введите информацию о группе.';
 $lang['create_group_name_label']             = 'Название группы:';
 $lang['create_group_desc_label']             = 'Описание:';
@@ -107,7 +107,7 @@ $lang['create_group_validation_name_label']  = 'Название группы';
 $lang['create_group_validation_desc_label']  = 'Описание';
 
 // Edit Group
-$lang['edit_group_title']                  = 'Правка группы';
+$lang['edit_group_title']                  = 'Изменение группы';
 $lang['edit_group_saved']                  = 'Группа сохранена';
 $lang['edit_group_heading']                = 'Изменение группы';
 $lang['edit_group_subheading']             = 'Введите информацию о группе.';
@@ -138,7 +138,7 @@ $lang['forgot_password_email_identity_label']    = 'Email';
 
 
 // Reset Password
-$lang['reset_password_heading']                               = 'Изменение пароля';
+$lang['reset_password_heading']                               = 'Сброс пароля';
 $lang['reset_password_new_password_label']                    = 'Новый пароль (не короче %s символов):';
 $lang['reset_password_new_password_confirm_label']            = 'Подтвержите новый пароль:';
 $lang['reset_password_submit_btn']                            = 'Изменить';
@@ -157,5 +157,5 @@ $lang['email_forgot_password_link']       = 'Сбросить ваш парол�
 
 // New Password Email
 $lang['email_new_password_heading']    = 'Новый пароль для %s';
-$lang['email_new_password_subheading'] = 'Ваш пароль был сброшен на: %s';
+$lang['email_new_password_subheading'] = 'Ваш пароль был изменен на: %s';
 

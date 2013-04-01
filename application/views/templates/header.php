@@ -1,3 +1,11 @@
+<?php
+$this->load->library('ion_auth');
+$this->load->library('session');
+$this->load->library('form_validation');
+$this->load->helper('url');
+$this->lang->load('auth');
+$this->load->helper('language');
+?>
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -12,6 +20,7 @@
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" media="all" href="/assets/css/whhg.css" />
     </head>
     <body>
         <div class="navbar navbar-fixed-top" style="margin-bottom: 2em;">
@@ -41,39 +50,39 @@
                                 if (!$this->ion_auth->logged_in()) {
                                     ?>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/auth">Вход на сайт</a></li>
+                                        <li class="nav-header">Вход на сайт</li>
+                                        <li>
+                                            <form class="form-inline" action="/auth/login" method="post" accept-charset="utf-8" style="margin: 0em 1em 0em 1em;">
+                                                <div class="input-prepend">
+                                                    <span class="add-on"><i class="icon-user"></i></span>
+                                                    <input type="text" name="identity" id="identity" class="span2" placeholder="Логин">
+                                                </div>
+                                                <div class="input-prepend">
+                                                    <span class="add-on"><i class="icon-key"></i></span>
+                                                    <input type="password" name="password" id="password" class="span2" placeholder="Пароль">
+                                                </div>
+                                                <input type="hidden" name="remember" value="1" />
+                                                <input name="submit" value="Вход" type="submit" class="btn">
+
+                                            </form>
+                                        </li>
+                                        <li class="divider"></li>
                                         <li><a href="/auth/register_account">Регистрация</a></li>
-                                        <li class="divider"></li>
-                                        <li class="nav-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
+                                        <li><a href="/auth/forgot_password">Забыли пароль?</a></li>
                                     </ul>
-                                    <?php
-                                } elseif ($this->ion_auth->logged_in() AND !$this->ion_auth->is_admin()) {
-                                    ?>
+                                    <?php } else { ?>
                                     <ul class="dropdown-menu">
+                                        <li><a href="/auth/edit_profile">Изменить профиль</a></li>
                                         <li><a href="/auth/change_password">Сменить пароль</a></li>
                                         <li><a href="/auth/logout">Выход</a></li>
+                                        <?php if ($this->ion_auth->is_admin()){ ?>
                                         <li class="divider"></li>
-                                        <li class="nav-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                    </ul>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <ul class="dropdown-menu">
+                                        <li class="nav-header">Администрирование</li>
                                         <li><a href="/auth">Список пользователей</a></li>
-                                        <li><a href="/auth/change_password">Сменить пароль</a></li>
-                                        <li><a href="/auth/logout">Выход</a></li>
-                                        <li class="divider"></li>
-                                        <li class="nav-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
+                                        <li><a href="#">Панель администратора</a></li>
+                                        <?php } ?>
                                     </ul>
-                                    <?php
-                                }
-                                ?>
+                                    <?php } ?>
                             </li>
                         </ul>
                     </div><!-- /.nav-collapse -->
