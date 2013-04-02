@@ -6,7 +6,7 @@ $this->load->view('templates/header');
 
     <div id="infoMessage"><?php echo $message; ?></div>
 
-    <table cellpadding="0" cellspacing="10" width="100%">
+    <table class="table table-striped table-bordered" width="100%">
         <tr>
             <th><?php echo lang('index_fname_th'); ?></th>
             <th><?php echo lang('index_lname_th'); ?></th>

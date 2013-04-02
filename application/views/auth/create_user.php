@@ -4,7 +4,7 @@ $this->load->view('templates/header');
 <h1><?php echo lang('create_user_heading');?></h1>
 <p><?php echo lang('create_user_subheading');?></p>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<?php echo $message;?>
 
 <?php echo form_open("auth/create_user");?>
       <div class="input-prepend">
@@ -24,8 +24,8 @@ $this->load->view('templates/header');
             <?php echo form_input($email, '', '  class="span10" placeholder="Email"');?>
       </div><br>
       <div class="input-prepend">
-          <span class="add-on"><i class="icon-phonealt"></i></span>
-            <?php echo form_input($phone1, '', '  class="span1" placeholder="+7"');?> -
+          <span class="add-on"><i class="icon-phonealt"></i> +</span>
+            <?php echo form_input($phone1, '', '  class="span1" placeholder="7"');?> -
             <?php echo form_input($phone2, '', '  class="span2" placeholder="999"');?> -
             <?php echo form_input($phone3, '', '  class="span5" placeholder="999999"');?>
       </div><br>
@@ -35,7 +35,7 @@ $this->load->view('templates/header');
       </div><br>
       <div class="input-prepend">
           <span class="add-on"><i class="icon-key" style="color: #a22;"></i></span>
-            <?php echo form_input($email, '', '  class="span10" placeholder="Подтвердите пароль"');?>
+            <?php echo form_input($password_confirm, '', '  class="span10" placeholder="Подтвердите пароль"');?>
       </div>
       <p><?php echo form_submit('submit', lang('create_user_submit_btn'), ' class="btn btn-primary"');?></p>
 

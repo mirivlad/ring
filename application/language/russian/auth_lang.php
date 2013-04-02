@@ -120,7 +120,7 @@ $lang['edit_group_validation_desc_label']  = 'Описание';
 // Change Password
 $lang['change_password_heading']                               = 'Изменение пароля';
 $lang['change_password_old_password_label']                    = 'Старый пароль:';
-$lang['change_password_new_password_label']                    = 'Новый пароль (не короче %s символов):';
+$lang['change_password_new_password_label']                    = '(не короче %s символов)';
 $lang['change_password_new_password_confirm_label']            = 'Подтвердите новый пароль:';
 $lang['change_password_submit_btn']                            = 'Изменить';
 $lang['change_password_validation_old_password_label']         = 'Старый пароль';

@@ -25,7 +25,7 @@ $this->load->view('templates/header');
     </p>
 
 
-    <p><?php echo form_submit('submit', lang('login_submit_btn')); ?></p>
+    <p><?php echo form_submit('submit', lang('login_submit_btn'), ' class="btn btn-primary"');?></p>
 
     <?php echo form_close(); ?>
 

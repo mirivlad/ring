@@ -11,7 +11,7 @@ $this->load->helper('language');
     <head>
         <meta charset="utf-8">
         <title>Проект CI - {title}</title>
-        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="/assets/css/themes/<?php echo $this->config->item('theme'); ?>/bootstrap.min.css" rel="stylesheet" media="screen">
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -21,6 +21,7 @@ $this->load->helper('language');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" media="all" href="/assets/css/whhg.css" />
+	{adding}
     </head>
     <body>
         <div class="navbar navbar-fixed-top" style="margin-bottom: 2em;">
@@ -72,6 +73,7 @@ $this->load->helper('language');
                                     </ul>
                                     <?php } else { ?>
                                     <ul class="dropdown-menu">
+					<li class="nav-header">Аккаунт</li>
                                         <li><a href="/auth/edit_profile">Изменить профиль</a></li>
                                         <li><a href="/auth/change_password">Сменить пароль</a></li>
                                         <li><a href="/auth/logout">Выход</a></li>

@@ -164,10 +164,14 @@ $config['store_salt']  = FALSE;
  | Message Delimiters.
  | -------------------------------------------------------------------------
  */
-$config['message_start_delimiter'] = '<p class="text-info" style="text-width:bold;">'; 	// Message start delimiter
-$config['message_end_delimiter']   = '</p>'; 	// Message end delimiter
-$config['error_start_delimiter']   = '<p class="text-error" style="text-width:bold;">';		// Error mesage start delimiter
-$config['error_end_delimiter']     = '</p>';	// Error mesage end delimiter
+$config['message_start_delimiter'] = '<div class="row">
+					<div class="span5">
+					    <div class="alert alert-message"><button type="button" class="close" data-dismiss="alert">&times;</button>'; 	// Message start delimiter
+$config['message_end_delimiter']   = '</div></div></div>'; 	// Message end delimiter
+$config['error_start_delimiter']   = '<div class="row">
+					<div class="span5">
+					    <div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>';		// Error mesage start delimiter
+$config['error_end_delimiter']     = '</div></div></div>';	// Error mesage end delimiter
 
 /* End of file ion_auth.php */
 /* Location: ./application/config/ion_auth.php */

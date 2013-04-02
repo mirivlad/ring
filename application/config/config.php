@@ -357,6 +357,15 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+/*
+|--------------------------------------------------------------------------
+| Bootstrap theme change
+|--------------------------------------------------------------------------
+|
+| Select Bootstrap theme for all site. Themes in /assets/css/themes/
+| Default theme = default
+*/
+$config['theme'] = 'united';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
