@@ -292,48 +292,20 @@ class Auth extends CI_Controller {
 
     //deactivate the user
     function deactivate($id = NULL) {
-	$this->data['add_js'] = "
-	<script>
-	$('div.btn-group button').click(function(){
-	    $(\"#confirm\").attr('value', $(this).attr('id'));
-	})
-	</script>";
-	$id = $this->config->item('use_mongodb', 'ion_auth') ? (string) $id : (int) $id;
-
-	$this->load->library('form_validation');
-	$this->form_validation->set_rules('confirm', $this->lang->line('deactivate_validation_confirm_label'), 'required|alpha_numeric');
-	$this->form_validation->set_rules('id', $this->lang->line('deactivate_validation_user_id_label'), 'required|alpha_numeric');
-
-	if ($this->form_validation->run() == FALSE) {
-	    // insert csrf check
-	    $this->data['csrf'] = $this->_get_csrf_nonce();
-	    $this->data['user'] = $this->ion_auth->user($id)->row();
-
-	    $this->_render_page('auth/deactivate_user', $this->data);
-	} else {
-	    // do we really want to deactivate?
-	    if ($this->input->post('confirm') == '0') {
-		// do we have a valid request?
-		if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id')) {
-		    show_error($this->lang->line('error_csrf'));
-		}
-
-		// do we have the right userlevel?
-		if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
-		    $this->ion_auth->deactivate($id);
-		}
-	    }elseif ($this->input->post('confirm') == '1') {
-		if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id')) {
-		    show_error($this->lang->line('error_csrf'));
-		}
-		if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
-		    $this->activate($id);
-		}
-	    }
-
-	    //redirect them back to the auth page
-	    redirect('auth', 'refresh');
+	if ($this->ion_auth->logged_in() AND $this->ion_auth->is_admin() ) {
+	    $deactivation = $this->ion_auth->deactivate($id);
 	}
+
+	if ($deactivation) {
+	    //redirect them to the auth page
+	    $this->session->set_flashdata('message', $this->ion_auth->messages());
+	    redirect("auth", 'refresh');
+	} else {
+	    //redirect them to the forgot password page
+	    $this->session->set_flashdata('message', $this->ion_auth->errors());
+	    redirect("auth/forgot_password", 'refresh');
+	}
+
     }
 
     //create a new user
