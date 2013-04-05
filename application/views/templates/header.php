@@ -81,7 +81,7 @@ $this->load->helper('language');
                                         <li class="divider"></li>
                                         <li class="nav-header">Администрирование</li>
                                         <li><a href="/auth">Список пользователей</a></li>
-                                        <li><a href="#">Панель администратора</a></li>
+                                        <li><a href="/admin_panel">Панель администратора</a></li>
                                         <?php } ?>
                                     </ul>
                                     <?php } ?>

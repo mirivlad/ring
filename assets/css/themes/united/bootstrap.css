@@ -4961,6 +4961,7 @@ a.badge:hover {
   border-radius: 4px;
 }
 .accordion-heading {
+  background-color: #eee;
   border-bottom: 0;
 }
 .accordion-heading .accordion-toggle {
@@ -4973,6 +4974,9 @@ a.badge:hover {
 .accordion-inner {
   padding: 9px 15px;
   border-top: 1px solid #e5e5e5;
+}
+.accordion-toggle {
+  cursor: pointer;
 }
 .carousel {
   position: relative;

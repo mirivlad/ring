@@ -10,11 +10,7 @@ class Auth extends CI_Controller {
 	$this->load->library('session');
 	$this->load->library('form_validation');
 	$this->load->helper('url');
-
-	// Load MongoDB library instead of native db driver if required
-	$this->config->item('use_mongodb', 'ion_auth') ?
-			$this->load->library('mongo_db') :
-			$this->load->database();
+	$this->load->database();
 
 	$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
@@ -32,16 +28,7 @@ class Auth extends CI_Controller {
 	    //redirect them to the home page because they must be an administrator to view this
 	    redirect('/', 'refresh');
 	} else {
-	    //set the flash data error message if there is one
-	    $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-	    //list the users
-	    $this->data['users'] = $this->ion_auth->users()->result();
-	    foreach ($this->data['users'] as $k => $user) {
-		$this->data['users'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-	    }
-	    $this->data['title'] = "Управление пользователями";
-	    $this->_render_page('auth/index', $this->data);
+	    redirect('/admin_panel', 'refresh');
 	}
     }
 
@@ -272,41 +259,41 @@ class Auth extends CI_Controller {
     }
 
     //activate the user
-    function activate($id, $code = false) {
-	if ($code !== false) {
-	    $activation = $this->ion_auth->activate($id, $code);
-	} else if ($this->ion_auth->is_admin()) {
-	    $activation = $this->ion_auth->activate($id);
-	}
-
-	if ($activation) {
-	    //redirect them to the auth page
-	    $this->session->set_flashdata('message', $this->ion_auth->messages());
-	    redirect("auth", 'refresh');
-	} else {
-	    //redirect them to the forgot password page
-	    $this->session->set_flashdata('message', $this->ion_auth->errors());
-	    redirect("auth/forgot_password", 'refresh');
-	}
-    }
+//    function activate($id, $code = false) {
+//	if ($code !== false) {
+//	    $activation = $this->ion_auth->activate($id, $code);
+//	} else if ($this->ion_auth->is_admin()) {
+//	    $activation = $this->ion_auth->activate($id);
+//	}
+//
+//	if ($activation) {
+//	    //redirect them to the auth page
+//	    $this->session->set_flashdata('message', $this->ion_auth->messages());
+//	    redirect("auth", 'refresh');
+//	} else {
+//	    //redirect them to the forgot password page
+//	    $this->session->set_flashdata('message', $this->ion_auth->errors());
+//	    redirect("auth/forgot_password", 'refresh');
+//	}
+//    }
 
     //deactivate the user
-    function deactivate($id = NULL) {
-	if ($this->ion_auth->logged_in() AND $this->ion_auth->is_admin() ) {
-	    $deactivation = $this->ion_auth->deactivate($id);
-	}
-
-	if ($deactivation) {
-	    //redirect them to the auth page
-	    $this->session->set_flashdata('message', $this->ion_auth->messages());
-	    redirect("auth", 'refresh');
-	} else {
-	    //redirect them to the forgot password page
-	    $this->session->set_flashdata('message', $this->ion_auth->errors());
-	    redirect("auth/forgot_password", 'refresh');
-	}
-
-    }
+//    function deactivate($id = NULL) {
+//	if ($this->ion_auth->logged_in() AND $this->ion_auth->is_admin() ) {
+//	    $deactivation = $this->ion_auth->deactivate($id);
+//	}
+//
+//	if ($deactivation) {
+//	    //redirect them to the auth page
+//	    $this->session->set_flashdata('message', $this->ion_auth->messages());
+//	    redirect("auth", 'refresh');
+//	} else {
+//	    //redirect them to the forgot password page
+//	    $this->session->set_flashdata('message', $this->ion_auth->errors());
+//	    redirect("auth/forgot_password", 'refresh');
+//	}
+//
+//    }
 
     //create a new user
     function create_user() {
