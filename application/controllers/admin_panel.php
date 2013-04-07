@@ -133,7 +133,7 @@ class Admin_panel extends CI_Controller {
             //check to see if we are creating the user
             //redirect them back to the admin page
             $this->session->set_flashdata('message', $this->ion_auth->messages());
-            redirect("admin_panel", 'refresh');
+            redirect("admin_panel/list_users", 'refresh');
         } else {
             //display the create user form
             //set the flash data error message if there is one
@@ -244,7 +244,7 @@ class Admin_panel extends CI_Controller {
                 //check to see if we are creating the user
                 //redirect them back to the admin page
                 $this->session->set_flashdata('message', "User Saved");
-                redirect("admin_panel", 'refresh');
+                redirect("admin_panel/list_users", 'refresh');
             }
         }
 
@@ -315,7 +315,7 @@ class Admin_panel extends CI_Controller {
                 // check to see if we are creating the group
                 // redirect them back to the admin page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect("admin_panel", 'refresh');
+                redirect("admin_panel/list_users", 'refresh');
             }
         } else {
             //display the create group form
@@ -367,7 +367,7 @@ class Admin_panel extends CI_Controller {
                 } else {
                     $this->session->set_flashdata('message', $this->ion_auth->errors());
                 }
-                redirect("admin_panel", 'refresh');
+                redirect("admin_panel/list_users", 'refresh');
             }
         }
 
@@ -392,7 +392,25 @@ class Admin_panel extends CI_Controller {
         $this->parser->parse('admin/edit_group', $this->data);
         //$this->_render_page('auth/edit_group', $this->data);
     }
+    
+    function _get_csrf_nonce() {
+	$this->load->helper('string');
+	$key = random_string('alnum', 8);
+	$value = random_string('alnum', 20);
+	$this->session->set_flashdata('csrfkey', $key);
+	$this->session->set_flashdata('csrfvalue', $value);
 
+	return array($key => $value);
+    }
+
+    function _valid_csrf_nonce() {
+	if ($this->input->post($this->session->flashdata('csrfkey')) !== FALSE &&
+		$this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue')) {
+	    return TRUE;
+	} else {
+	    return FALSE;
+	}
+    }
 }
 
 /* End of file welcome.php */
