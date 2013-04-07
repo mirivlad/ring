@@ -6,7 +6,7 @@ $this->load->view('templates/header');
 
 <?php echo $message;?>
 
-<?php echo form_open("auth/create_group");?>
+<?php echo form_open("admin_panel/create_group");?>
 
       <p>
             <?php echo lang('create_group_name_label', 'group_name');?>

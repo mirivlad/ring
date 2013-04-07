@@ -25,7 +25,7 @@ $this->load->view('templates/header');
 
       <p>
             <?php echo lang('edit_user_phone_label', 'phone');?> <br />
-            <?php echo form_input($phone1);?>-<?php echo form_input($phone2);?>-<?php echo form_input($phone3);?>
+            <?php echo form_input($phone);?>
       </p>
 
       <p>

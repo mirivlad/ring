@@ -10250,3 +10250,47 @@ DEBUG - 2013-04-05 20:30:40 --> File loaded: application/views/templates/footer.
 DEBUG - 2013-04-05 20:30:40 --> File loaded: application/views/admin/admin_panel.php
 DEBUG - 2013-04-05 20:30:40 --> Final output sent to browser
 DEBUG - 2013-04-05 20:30:40 --> Total execution time: 0.0800
+DEBUG - 2013-04-05 20:35:51 --> Config Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Hooks Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Utf8 Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> UTF-8 Support Enabled
+DEBUG - 2013-04-05 20:35:51 --> URI Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Router Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Output Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Security Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Input Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-05 20:35:51 --> Language Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Loader Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-05 20:35:51 --> Database Driver Class Initialized
+ERROR - 2013-04-05 20:35:51 --> Severity: Notice  --> mysql_pconnect():  D:\server\OpenServer\domains\ci.local\system\database\drivers\mysql\mysql_driver.php 91
+DEBUG - 2013-04-05 20:35:51 --> Config file loaded: application/config/ion_auth.php
+DEBUG - 2013-04-05 20:35:51 --> Email Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Language file loaded: language/russian/ion_auth_lang.php
+DEBUG - 2013-04-05 20:35:51 --> Helper loaded: cookie_helper
+DEBUG - 2013-04-05 20:35:51 --> Session Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Helper loaded: string_helper
+DEBUG - 2013-04-05 20:35:51 --> Session routines successfully run
+DEBUG - 2013-04-05 20:35:51 --> Model Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Model Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Helper loaded: date_helper
+DEBUG - 2013-04-05 20:35:51 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-05 20:35:51 --> Controller Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Ion_auth class already loaded. Second attempt ignored.
+DEBUG - 2013-04-05 20:35:51 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-05 20:35:51 --> Helper loaded: form_helper
+DEBUG - 2013-04-05 20:35:51 --> Form Validation Class Initialized
+DEBUG - 2013-04-05 20:35:51 --> Helper loaded: url_helper
+DEBUG - 2013-04-05 20:35:51 --> Language file loaded: language/russian/auth_lang.php
+DEBUG - 2013-04-05 20:35:51 --> Helper loaded: language_helper
+DEBUG - 2013-04-05 20:35:51 --> Pagination Class Initialized
+DEBUG - 2013-04-05 20:35:52 --> Ion_auth class already loaded. Second attempt ignored.
+DEBUG - 2013-04-05 20:35:52 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-05 20:35:52 --> Form_validation class already loaded. Second attempt ignored.
+DEBUG - 2013-04-05 20:35:52 --> File loaded: application/views/templates/sidebar.php
+DEBUG - 2013-04-05 20:35:52 --> File loaded: application/views/templates/header.php
+DEBUG - 2013-04-05 20:35:52 --> File loaded: application/views/templates/footer.php
+DEBUG - 2013-04-05 20:35:52 --> File loaded: application/views/admin/list_users.php
+DEBUG - 2013-04-05 20:35:52 --> Final output sent to browser
+DEBUG - 2013-04-05 20:35:52 --> Total execution time: 0.1103

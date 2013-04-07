@@ -1,6 +1,7 @@
 <?php
 $this->load->view('templates/header');
 ?>
+
 <div class="span10">
     <h1>{title}</h1>
     <div class="accordion" id="accordion2">

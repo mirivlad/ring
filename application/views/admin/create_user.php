@@ -6,7 +6,7 @@ $this->load->view('templates/header');
 
 <?php echo $message;?>
 
-<?php echo form_open("auth/create_user");?>
+<?php echo form_open("admin_panel/create_user");?>
       <div class="input-prepend">
           <span class="add-on"><i class="icon-user" style="color: #2a2;"></i></span>
             <?php echo form_input($first_name, '', '  class="span10" placeholder="Имя"');?>
@@ -25,9 +25,7 @@ $this->load->view('templates/header');
       </div><br>
       <div class="input-prepend">
           <span class="add-on"><i class="icon-phonealt"></i> +</span>
-            <?php echo form_input($phone1, '', '  class="span1" placeholder="7"');?> -
-            <?php echo form_input($phone2, '', '  class="span2" placeholder="999"');?> -
-            <?php echo form_input($phone3, '', '  class="span5" placeholder="999999"');?>
+            <?php echo form_input($phone, '', '  class="span8" placeholder="75555555555"');?>
       </div><br>
       <div class="input-prepend">
           <span class="add-on"><i class="icon-key" style="color: #2a2;"></i></span>
