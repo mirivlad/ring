@@ -26,12 +26,12 @@ $this->load->view('templates/header');
                     <?php endforeach ?>
                 </td>
                 <td><?php echo ($user->active) ? anchor("admin_panel/deactivate/" . $user->id, '<i style="color:green;" class="icon-lightbulb-idea""></i> '.lang('index_active_link')) : anchor("admin_panel/activate/" . $user->id, '<i style="color:red;" class="icon-lightbulb-idea""></i> '.lang('index_inactive_link')); ?></td>
-                <td><?php echo anchor("admin/edit_user/" . $user->id, '<i class="icon-editalt"></i>'); ?></td>
+                <td><?php echo anchor("admin_panel/edit_user/" . $user->id, '<i class="icon-editalt"></i>'); ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
     <div class="text-center">{pagination}</div>
-    <p><?php echo anchor('auth/create_user', lang('index_create_user_link')) ?> | <?php echo anchor('auth/create_group', lang('index_create_group_link')) ?></p>
+    <p><?php echo anchor('admin_panel/create_user', lang('index_create_user_link')) ?> | <?php echo anchor('admin_panel/create_group', lang('index_create_group_link')) ?></p>
 <?php
 $this->load->view('templates/footer');
 ?>
