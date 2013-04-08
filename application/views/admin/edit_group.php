@@ -4,7 +4,7 @@ $this->load->view('templates/header');
 <h1><?php echo lang('edit_group_heading');?></h1>
 <p><?php echo lang('edit_group_subheading');?></p>
 
-<div id="infoMessage"><?php echo $message;?></div>
+<?php echo $message;?>
 
 <?php echo form_open(current_url());?>
 

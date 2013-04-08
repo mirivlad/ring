@@ -8,6 +8,9 @@
 |	http://codeigniter.com/user_guide/libraries/pagination.html
 |
 */
+$config['per_page'] = 1;
+$config['uri_segment'] = 3;
+$config['use_page_numbers'] = TRUE;
 
 $config['full_tag_open'] = '<div class="pagination pagination-large">
 <ul>';

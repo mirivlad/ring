@@ -32,24 +32,21 @@ class Admin_panel extends CI_Controller {
     }
 
     function list_users($page = 1) {
-        // if (!isset($page) OR $page <= 0 OR !is_numeric($page)) {
-        //    $page = 1;
-        //}        
+   
         $this->load->library('pagination');
 
         $this->data['title'] = "Список пользователей";
         //set the flash data error message if there is one
-        $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+        $this->data['message'] = $this->ion_auth->messages();
 
-        $config['per_page'] = 2;
-        $config['uri_segment'] = 3;
-        $config['use_page_numbers'] = TRUE;
         $config['base_url'] = '/admin_panel/list_users/';
-        $config['total_rows'] = $this->ion_auth->users()->num_rows();
+	$config['total_rows'] = $this->ion_auth->users()->num_rows();
+
 
         //list the users
-        $this->ion_auth->limit($config['per_page']);
-        $this->ion_auth->offset(($page - 1) * $config['per_page']);
+
+	$this->ion_auth->limit($this->config->item('per_page'));
+        $this->ion_auth->offset(($page - 1) * $this->config->item('per_page'));
         $this->data['users'] = $this->ion_auth->users()->result();
 
         foreach ($this->data['users'] as $k => $user) {
@@ -60,7 +57,7 @@ class Admin_panel extends CI_Controller {
 
         $this->pagination->initialize($config);
         $this->data['pagination'] = $this->pagination->create_links();
-
+	//$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
         $this->parser->parse('admin/list_users', $this->data);
     }
 
