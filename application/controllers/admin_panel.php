@@ -7,12 +7,8 @@ class Admin_panel extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        $this->load->library('ion_auth');
-        $this->load->library('session');
         $this->load->library('form_validation');
         $this->load->helper('url');
-        $this->load->database();
-
         $this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
         $this->lang->load('auth');
@@ -32,21 +28,19 @@ class Admin_panel extends CI_Controller {
     }
 
     function list_users($page = 1) {
-   
-        $this->load->library('pagination');
 
+	$this->load->library('form_validation');
         $this->data['title'] = "Список пользователей";
-        //set the flash data error message if there is one
-        $this->data['message'] = $this->ion_auth->messages();
-
-        $config['base_url'] = '/admin_panel/list_users/';
-	$config['total_rows'] = $this->ion_auth->users()->num_rows();
-
-
+	
+        $cpag['base_url'] = '/admin_panel/list_users/';
+	$cpag['total_rows'] = $this->ion_auth->users()->num_rows();
+	$cpag['per_page'] = $this->config->item('per_page');
+	//$this->config->set_item('base_url','/admin_panel/list_users/');
+	//$this->config->set_item('total_rows','total_rows');
         //list the users
-
-	$this->ion_auth->limit($this->config->item('per_page'));
-        $this->ion_auth->offset(($page - 1) * $this->config->item('per_page'));
+	
+	$this->ion_auth->limit($cpag['per_page']);
+        $this->ion_auth->offset(($page - 1) * $cpag['per_page']);
         $this->data['users'] = $this->ion_auth->users()->result();
 
         foreach ($this->data['users'] as $k => $user) {
@@ -54,10 +48,11 @@ class Admin_panel extends CI_Controller {
         }
 
 
+	$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-        $this->pagination->initialize($config);
+        $this->pagination->initialize($cpag);
         $this->data['pagination'] = $this->pagination->create_links();
-	//$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+	//$this->data['notify'] = $this->notify->getMessages();
         $this->parser->parse('admin/list_users', $this->data);
     }
 
@@ -240,7 +235,7 @@ class Admin_panel extends CI_Controller {
 
                 //check to see if we are creating the user
                 //redirect them back to the admin page
-                $this->session->set_flashdata('message', "User Saved");
+                $this->session->set_flashdata('message', $this->lang->line('update_successful'));
                 redirect("admin_panel/list_users", 'refresh');
             }
         }
@@ -360,8 +355,11 @@ class Admin_panel extends CI_Controller {
                 $group_update = $this->ion_auth->update_group($id, $_POST['group_name'], $_POST['group_description']);
 
                 if ($group_update) {
-                    $this->session->set_flashdata('message', $this->lang->line('edit_group_saved'));
+                   $this->session->set_flashdata('message', $this->ion_auth->messages());
+		   // $this->notify->success("Группа сохранена");
+		    redirect('admin_panel/list_users');
                 } else {
+		    //$this->notify->error($this->ion_auth->errors());
                     $this->session->set_flashdata('message', $this->ion_auth->errors());
                 }
                 redirect("admin_panel/list_users", 'refresh');

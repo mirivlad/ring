@@ -1,10 +1,8 @@
 <?php
 $this->load->view('templates/header');
 ?>
-    <h1><?php echo lang('index_heading'); ?></h1>
-    <p><?php echo lang('index_subheading'); ?></p>
-
-{message}
+    <h1>Список пользователей</h1>
+    {message}
     <div class="text-center">{pagination}</div>
     <table class="table table-striped table-bordered" width="100%">
         <tr>
