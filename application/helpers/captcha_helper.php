@@ -253,7 +253,7 @@ function create_captcha($data = '', $img_path = '', $img_url = '', $font_path = 
 		{
 			$name = str_replace(".png", "", $filename);
 
-			if (($name + $expiration) < $now)
+			if (($name + $expiration) < $now AND !is_dir($img_path.$filename))
 			{
 				@unlink($img_path.$filename);
 			}

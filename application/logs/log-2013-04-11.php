@@ -2732,3 +2732,66 @@ ERROR - 2013-04-11 19:34:13 --> Severity: Warning  --> unlink(./captcha/fonts): 
 DEBUG - 2013-04-11 19:34:13 --> File loaded: application/views/auth/register_form.php
 DEBUG - 2013-04-11 19:34:13 --> Final output sent to browser
 DEBUG - 2013-04-11 19:34:13 --> Total execution time: 0.4966
+DEBUG - 2013-04-11 19:45:41 --> Config Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Hooks Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Utf8 Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> UTF-8 Support Enabled
+DEBUG - 2013-04-11 19:45:41 --> URI Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Router Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Output Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Security Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Input Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-11 19:45:41 --> Language Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Loader Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-11 19:45:41 --> Database Driver Class Initialized
+ERROR - 2013-04-11 19:45:41 --> Severity: Notice  --> mysql_pconnect():  D:\server\OpenServer\domains\ci.local\system\database\drivers\mysql\mysql_driver.php 91
+DEBUG - 2013-04-11 19:45:41 --> DX Auth Initialized
+DEBUG - 2013-04-11 19:45:41 --> Session Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Helper loaded: string_helper
+DEBUG - 2013-04-11 19:45:41 --> Session routines successfully run
+DEBUG - 2013-04-11 19:45:41 --> Config file loaded: application/config/dx_auth.php
+DEBUG - 2013-04-11 19:45:41 --> Language file loaded: language/russian/dx_auth_lang.php
+DEBUG - 2013-04-11 19:45:41 --> Pagination Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-11 19:45:41 --> Controller Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Helper loaded: form_helper
+DEBUG - 2013-04-11 19:45:41 --> Form Validation Class Initialized
+DEBUG - 2013-04-11 19:45:41 --> Helper loaded: url_helper
+DEBUG - 2013-04-11 19:45:41 --> Helper loaded: captcha_helper
+ERROR - 2013-04-11 19:45:41 --> Severity: Warning  --> unlink(./captcha/fonts): Permission denied D:\server\OpenServer\domains\ci.local\application\helpers\captcha_helper.php 258
+DEBUG - 2013-04-11 19:45:41 --> File loaded: application/views/auth/register_form.php
+DEBUG - 2013-04-11 19:45:41 --> Final output sent to browser
+DEBUG - 2013-04-11 19:45:41 --> Total execution time: 0.1730
+DEBUG - 2013-04-11 19:53:02 --> Config Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Hooks Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Utf8 Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> UTF-8 Support Enabled
+DEBUG - 2013-04-11 19:53:02 --> URI Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Router Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Output Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Security Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Input Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-11 19:53:02 --> Language Class Initialized
+DEBUG - 2013-04-11 19:53:02 --> Loader Class Initialized
+DEBUG - 2013-04-11 19:53:03 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-11 19:53:03 --> Database Driver Class Initialized
+ERROR - 2013-04-11 19:53:03 --> Severity: Notice  --> mysql_pconnect():  D:\server\OpenServer\domains\ci.local\system\database\drivers\mysql\mysql_driver.php 91
+DEBUG - 2013-04-11 19:53:03 --> DX Auth Initialized
+DEBUG - 2013-04-11 19:53:03 --> Session Class Initialized
+DEBUG - 2013-04-11 19:53:03 --> Helper loaded: string_helper
+DEBUG - 2013-04-11 19:53:03 --> Session routines successfully run
+DEBUG - 2013-04-11 19:53:03 --> Config file loaded: application/config/dx_auth.php
+DEBUG - 2013-04-11 19:53:03 --> Language file loaded: language/russian/dx_auth_lang.php
+DEBUG - 2013-04-11 19:53:03 --> Pagination Class Initialized
+DEBUG - 2013-04-11 19:53:03 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-11 19:53:03 --> Controller Class Initialized
+DEBUG - 2013-04-11 19:53:04 --> Helper loaded: form_helper
+DEBUG - 2013-04-11 19:53:04 --> Form Validation Class Initialized
+DEBUG - 2013-04-11 19:53:04 --> Helper loaded: url_helper
+DEBUG - 2013-04-11 19:53:04 --> Helper loaded: captcha_helper
+DEBUG - 2013-04-11 19:53:04 --> File loaded: application/views/auth/register_form.php
+DEBUG - 2013-04-11 19:53:04 --> Final output sent to browser
+DEBUG - 2013-04-11 19:53:04 --> Total execution time: 1.9968

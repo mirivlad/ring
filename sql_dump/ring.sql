@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 28 2013 г., 20:49
+-- Время создания: Апр 11 2013 г., 20:20
 -- Версия сервера: 5.5.30-log
 -- Версия PHP: 5.4.13
 
@@ -23,23 +23,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `groups`
+-- Структура таблицы `ci_sessions`
 --
 
-CREATE TABLE IF NOT EXISTS `groups` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
-
---
--- Дамп данных таблицы `groups`
---
-
-INSERT INTO `groups` (`id`, `name`, `description`) VALUES
-(1, 'Admin', 'Администраторы системы'),
-(2, 'Members', 'General User');
+CREATE TABLE IF NOT EXISTS `ci_sessions` (
+  `session_id` varchar(40) COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  `ip_address` varchar(16) COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  `user_agent` varchar(150) COLLATE utf8_general_ci NOT NULL,
+  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
+  `user_data` text COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`session_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48,26 +42,52 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `login_attempts` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `ip_address` varbinary(16) NOT NULL,
-  `login` varchar(100) NOT NULL,
-  `time` int(11) unsigned DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(40) COLLATE utf8_general_ci NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
 
 --
--- Дамп данных таблицы `login_attempts`
+-- Структура таблицы `permissions`
 --
 
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(1, '\0\0', 'admin', 1364484894),
-(2, '\0\0', 'admin', 1364484902),
-(3, '\0\0', 'admin', 1364485505),
-(4, '\0\0', 'admin@admin.com', 1364485783),
-(5, '\0\0', 'admin@admin.com', 1364485793),
-(6, '\0\0', 'admin', 1364488379),
-(7, '\0\0', 'Admin', 1364488386),
-(8, '\0\0', 'admin@admin.com', 1364488446);
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL,
+  `data` text COLLATE utf8_general_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
+(1, 2, 'a:2:{s:4:"edit";s:1:"1";s:6:"delete";s:1:"1";}');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `roles`
+--
+
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(30) COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `roles`
+--
+
+INSERT INTO `roles` (`id`, `parent_id`, `name`) VALUES
+(1, 0, 'User'),
+(2, 0, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -76,53 +96,83 @@ INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `ip_address` varbinary(16) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(80) NOT NULL,
-  `salt` varchar(40) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `activation_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_time` int(11) unsigned DEFAULT NULL,
-  `remember_code` varchar(40) DEFAULT NULL,
-  `created_on` int(11) unsigned NOT NULL,
-  `last_login` int(11) unsigned DEFAULT NULL,
-  `active` tinyint(1) unsigned DEFAULT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL,
-  `company` varchar(100) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_id` int(11) NOT NULL DEFAULT '1',
+  `username` varchar(25) COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(34) COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_general_ci NOT NULL,
+  `banned` tinyint(1) NOT NULL DEFAULT '0',
+  `ban_reason` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
+  `newpass` varchar(34) COLLATE utf8_general_ci DEFAULT NULL,
+  `newpass_key` varchar(32) COLLATE utf8_general_ci DEFAULT NULL,
+  `newpass_time` datetime DEFAULT NULL,
+  `last_ip` varchar(40) COLLATE utf8_general_ci NOT NULL,
+  `last_login` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `created` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=3 ;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '\0\0', 'administrator', 'bb85c8f915be94bd44513119a42554c4065403a4', '9462e8eee0', 'mirivlad@gmail.com', '', NULL, NULL, NULL, 1268889823, 1364489195, 1, 'Admin', 'istrator', 'ADMIN', '0');
+INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`) VALUES
+(1, 2, 'admin', '$1$bO..IR4.$CxjJBjKJ5QW2/BaYKDS7f.', 'admin@localhost.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '2013-04-11 19:23:17', '2008-11-30 04:56:32', '2013-04-11 15:23:17'),
+(2, 1, 'user', '$1$bO..IR4.$CxjJBjKJ5QW2/BaYKDS7f.', 'user@localhost.com', 0, NULL, NULL, NULL, NULL, '127.0.0.1', '2013-04-11 19:22:15', '2008-12-01 14:01:53', '2013-04-11 15:22:15');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users_groups`
+-- Структура таблицы `user_autologin`
 --
 
-CREATE TABLE IF NOT EXISTS `users_groups` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` mediumint(8) unsigned NOT NULL,
-  `group_id` mediumint(8) unsigned NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_autologin` (
+  `key_id` char(32) COLLATE utf8_general_ci NOT NULL,
+  `user_id` mediumint(8) NOT NULL DEFAULT '0',
+  `user_agent` varchar(150) COLLATE utf8_general_ci NOT NULL,
+  `last_ip` varchar(40) COLLATE utf8_general_ci NOT NULL,
+  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key_id`,`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_profile`
+--
+
+CREATE TABLE IF NOT EXISTS `user_profile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `country` varchar(20) COLLATE utf8_general_ci DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=2 ;
 
 --
--- Дамп данных таблицы `users_groups`
+-- Дамп данных таблицы `user_profile`
 --
 
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(1, 1, 1),
-(2, 1, 2);
+INSERT INTO `user_profile` (`id`, `user_id`, `country`, `website`) VALUES
+(1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_temp`
+--
+
+CREATE TABLE IF NOT EXISTS `user_temp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(34) COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_general_ci NOT NULL,
+  `activation_key` varchar(50) COLLATE utf8_general_ci NOT NULL,
+  `last_ip` varchar(40) COLLATE utf8_general_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
