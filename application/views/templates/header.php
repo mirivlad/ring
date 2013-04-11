@@ -40,7 +40,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Действия <b class="caret"></b></a>
                                 <?php
-                                if (!$this->ion_auth->logged_in()) {
+                                if (!$this->dx_auth->is_logged_in()) {
                                     ?>
                                     <ul class="dropdown-menu">
                                         <li class="nav-header">Вход на сайт</li>
@@ -48,19 +48,22 @@
                                             <form class="form-inline" action="/auth/login" method="post" accept-charset="utf-8" style="margin: 0em 1em 0em 1em;">
                                                 <div class="input-prepend">
                                                     <span class="add-on"><i class="icon-user"></i></span>
-                                                    <input type="text" name="identity" id="identity" class="span2" placeholder="Логин">
+                                                    <input type="text" name="username" id="username" class="span2" placeholder="Логин">
                                                 </div>
                                                 <div class="input-prepend">
                                                     <span class="add-on"><i class="icon-key"></i></span>
                                                     <input type="password" name="password" id="password" class="span2" placeholder="Пароль">
                                                 </div>
                                                 <input type="hidden" name="remember" value="1" />
-                                                <input name="submit" value="Вход" type="submit" class="btn">
+                                                <input name="login" value="Вход" type="submit" class="btn">
 
                                             </form>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="/auth/register_account">Регистрация</a></li>
+                                        <?php
+					    if($this->dx_auth->allow_registration){ ?>
+						<li><a href="/auth/register_account">Регистрация</a></li>
+					<?php } ?>
                                         <li><a href="/auth/forgot_password">Забыли пароль?</a></li>
                                     </ul>
                                     <?php } else { ?>
@@ -69,11 +72,11 @@
                                         <li><a href="/auth/edit_profile">Изменить профиль</a></li>
                                         <li><a href="/auth/change_password">Сменить пароль</a></li>
                                         <li><a href="/auth/logout">Выход</a></li>
-                                        <?php if ($this->ion_auth->is_admin()){ ?>
+                                        <?php if ($this->dx_auth->is_admin()){ ?>
                                         <li class="divider"></li>
                                         <li class="nav-header">Администрирование</li>
-                                        <li><a href="/auth">Список пользователей</a></li>
-                                        <li><a href="/admin_panel">Панель администратора</a></li>
+                                        <li><a href="/admin/users/">Список пользователей</a></li>
+                                        <li><a href="/admin">Панель администратора</a></li>
                                         <?php } ?>
                                     </ul>
                                     <?php } ?>

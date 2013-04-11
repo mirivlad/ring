@@ -1,289 +1,322 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Auth extends CI_Controller {
 
-    function __construct() {
+    // Used for registering and changing password form validation
+    var $min_username = 4;
+    var $max_username = 20;
+    var $min_password = 4;
+    var $max_password = 20;
+
+    public function __construct() {
 	parent::__construct();
-	$this->load->library('ion_auth');
-	$this->load->library('session');
+
 	$this->load->library('form_validation');
+	//$this->load->library('dx_auth');			
+
 	$this->load->helper('url');
-	$this->load->database();
-
-	$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
-	$this->lang->load('auth');
-	$this->load->helper('language');
+	$this->load->helper('form');
+	//log_message('debug', "Auth Class Initialized");
     }
 
-    //redirect if needed, otherwise display the user list
     function index() {
-
-	if (!$this->ion_auth->logged_in()) {
-	    //redirect them to the login page
-	    redirect('auth/login', 'refresh');
-	} elseif (!$this->ion_auth->is_admin()) {
-	    //redirect them to the home page because they must be an administrator to view this
-	    redirect('/', 'refresh');
-	} else {
-	    redirect('/admin_panel', 'refresh');
-	}
+	$this->login();
     }
 
-    //log the user in
+    /* Callback function */
+
+    function username_check($username) {
+	$result = $this->dx_auth->is_username_available($username);
+	if (!$result) {
+	    $this->form_validation->set_message('username_check', 'Username already exist. Please choose another username.');
+	}
+
+	return $result;
+    }
+
+    function email_check($email) {
+	$result = $this->dx_auth->is_email_available($email);
+	if (!$result) {
+	    $this->form_validation->set_message('email_check', 'Email is already used by another user. Please choose another email address.');
+	}
+
+	return $result;
+    }
+
+    function captcha_check($code) {
+	$result = TRUE;
+
+	if ($this->dx_auth->is_captcha_expired()) {
+	    // Will replace this error msg with $lang
+	    $this->form_validation->set_message('captcha_check', 'Your confirmation code has expired. Please try again.');
+	    $result = FALSE;
+	} elseif (!$this->dx_auth->is_captcha_match($code)) {
+	    $this->form_validation->set_message('captcha_check', 'Your confirmation code does not match the one in the image. Try again.');
+	    $result = FALSE;
+	}
+
+	return $result;
+    }
+
+    function recaptcha_check() {
+	$result = $this->dx_auth->is_recaptcha_match();
+	if (!$result) {
+	    $this->form_validation->set_message('recaptcha_check', 'Your confirmation code does not match the one in the image. Try again.');
+	}
+
+	return $result;
+    }
+
+    /* End of Callback function */
+
     function login() {
-	$this->data['title'] = "Вход в систему";
+	if (!$this->dx_auth->is_logged_in()) {
+	    $val = $this->form_validation;
 
-	//validate form input
-	$this->form_validation->set_rules('identity', 'Identity', 'required');
-	$this->form_validation->set_rules('password', 'Password', 'required');
+	    // Set form validation rules
+	    $val->set_rules('username', 'Username', 'trim|required|xss_clean');
+	    $val->set_rules('password', 'Password', 'trim|required|xss_clean');
+	    $val->set_rules('remember', 'Remember me', 'integer');
 
-	if ($this->form_validation->run() == true) {
-	    //check to see if the user is logging in
-	    //check for "remember me"
-	    $remember = (bool) $this->input->post('remember');
-
-	    if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
-		//if the login is successful
-		//redirect them back to the home page
-		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect('/', 'refresh');
-	    } else {
-		//if the login was un-successful
-		//redirect them back to the login page
-		$this->session->set_flashdata('message', $this->ion_auth->errors());
-		redirect('auth/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
-	    }
-	} else {
-	    //the user is not logging in so display the login page
-	    //set the flash data error message if there is one
-	    $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-	    $this->data['identity'] = array('name' => 'identity',
-		'id' => 'identity',
-		'type' => 'text',
-		'value' => $this->form_validation->set_value('identity'),
-	    );
-	    $this->data['password'] = array('name' => 'password',
-		'id' => 'password',
-		'type' => 'password',
-	    );
-
-	    $this->_render_page('auth/login', $this->data);
-	}
-    }
-
-    //log the user out
-    function logout() {
-	$this->data['title'] = "Выход";
-
-	//log the user out
-	$logout = $this->ion_auth->logout();
-
-	//redirect them to the login page
-	$this->session->set_flashdata('message', $this->ion_auth->messages());
-	redirect('auth/login', 'refresh');
-    }
-
-    //change password
-    function change_password() {
-	$this->form_validation->set_rules('old', $this->lang->line('change_password_validation_old_password_label'), 'required');
-	$this->form_validation->set_rules('new', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_confirm]');
-	$this->form_validation->set_rules('new_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
-
-	if (!$this->ion_auth->logged_in()) {
-	    redirect('auth/login', 'refresh');
-	}
-
-	$user = $this->ion_auth->user()->row();
-
-	if ($this->form_validation->run() == false) {
-	    //display the form
-	    //set the flash data error message if there is one
-	    $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-	    $this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
-	    $this->data['old_password'] = array(
-		'name' => 'old',
-		'id' => 'old',
-		'type' => 'password',
-	    );
-	    $this->data['new_password'] = array(
-		'name' => 'new',
-		'id' => 'new',
-		'type' => 'password',
-		'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
-	    );
-	    $this->data['new_password_confirm'] = array(
-		'name' => 'new_confirm',
-		'id' => 'new_confirm',
-		'type' => 'password',
-		'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
-	    );
-	    $this->data['user_id'] = array(
-		'name' => 'user_id',
-		'id' => 'user_id',
-		'type' => 'hidden',
-		'value' => $user->id,
-	    );
-
-	    //render
-	    $this->_render_page('auth/change_password', $this->data);
-	} else {
-	    $identity = $this->session->userdata($this->config->item('identity', 'ion_auth'));
-
-	    $change = $this->ion_auth->change_password($identity, $this->input->post('old'), $this->input->post('new'));
-
-	    if ($change) {
-		//if the password was successfully changed
-		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		$this->logout();
-	    } else {
-		$this->session->set_flashdata('message', $this->ion_auth->errors());
-		redirect('auth/change_password', 'refresh');
-	    }
-	}
-    }
-
-    //forgot password
-    function forgot_password() {
-	$this->form_validation->set_rules('email', $this->lang->line('forgot_password_validation_email_label'), 'required');
-	if ($this->form_validation->run() == false) {
-	    //setup the input
-	    $this->data['email'] = array('name' => 'email',
-		'id' => 'email',
-	    );
-
-	    if ($this->config->item('identity', 'ion_auth') == 'username') {
-		$this->data['identity_label'] = $this->lang->line('forgot_password_username_identity_label');
-	    } else {
-		$this->data['identity_label'] = $this->lang->line('forgot_password_email_identity_label');
+	    // Set captcha rules if login attempts exceed max attempts in config
+	    if ($this->dx_auth->is_max_login_attempts_exceeded()) {
+		$val->set_rules('captcha', 'Confirmation Code', 'trim|required|xss_clean|callback_captcha_check');
 	    }
 
-	    //set any errors and display the form
-	    $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-	    $this->_render_page('auth/forgot_password', $this->data);
-	} else {
-	    // get identity for that email
-	    $config_tables = $this->config->item('tables', 'ion_auth');
-	    $identity = $this->db->where('email', $this->input->post('email'))->limit('1')->get($config_tables['users'])->row();
-
-	    //run the forgotten password method to email an activation code to the user
-	    $forgotten = $this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')});
-
-	    if ($forgotten) {
-		//if there were no errors
-		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
+	    if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember'))) {
+		// Redirect to homepage
+		redirect('', 'location');
 	    } else {
-		$this->session->set_flashdata('message', $this->ion_auth->errors());
-		redirect("auth/forgot_password", 'refresh');
-	    }
-	}
-    }
-
-    //reset password - final step for forgotten password
-    public function reset_password($code = NULL) {
-	if (!$code) {
-	    show_404();
-	}
-
-	$user = $this->ion_auth->forgotten_password_check($code);
-
-	if ($user) {
-	    //if the code is valid then display the password reset form
-
-	    $this->form_validation->set_rules('new', $this->lang->line('reset_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_confirm]');
-	    $this->form_validation->set_rules('new_confirm', $this->lang->line('reset_password_validation_new_password_confirm_label'), 'required');
-
-	    if ($this->form_validation->run() == false) {
-		//display the form
-		//set the flash data error message if there is one
-		$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-		$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
-		$this->data['new_password'] = array(
-		    'name' => 'new',
-		    'id' => 'new',
-		    'type' => 'password',
-		    'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
-		);
-		$this->data['new_password_confirm'] = array(
-		    'name' => 'new_confirm',
-		    'id' => 'new_confirm',
-		    'type' => 'password',
-		    'pattern' => '^.{' . $this->data['min_password_length'] . '}.*$',
-		);
-		$this->data['user_id'] = array(
-		    'name' => 'user_id',
-		    'id' => 'user_id',
-		    'type' => 'hidden',
-		    'value' => $user->id,
-		);
-		$this->data['csrf'] = $this->_get_csrf_nonce();
-		$this->data['code'] = $code;
-
-		//render
-		$this->_render_page('auth/reset_password', $this->data);
-	    } else {
-		// do we have a valid request?
-		if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id')) {
-
-		    //something fishy might be up
-		    $this->ion_auth->clear_forgotten_password_code($code);
-
-		    show_error($this->lang->line('error_csrf'));
+		// Check if the user is failed logged in because user is banned user or not
+		if ($this->dx_auth->is_banned()) {
+		    // Redirect to banned uri
+		    $this->dx_auth->deny_access('banned');
 		} else {
-		    // finally change the password
-		    $identity = $user->{$this->config->item('identity', 'ion_auth')};
+		    // Default is we don't show captcha until max login attempts eceeded
+		    $data['show_captcha'] = FALSE;
 
-		    $change = $this->ion_auth->reset_password($identity, $this->input->post('new'));
+		    // Show captcha if login attempts exceed max attempts in config
+		    if ($this->dx_auth->is_max_login_attempts_exceeded()) {
+			// Create catpcha						
+			$this->dx_auth->captcha();
 
-		    if ($change) {
-			//if the password was successfully changed
-			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			$this->logout();
-		    } else {
-			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect('auth/reset_password/' . $code, 'refresh');
+			// Set view data to show captcha on view file
+			$data['show_captcha'] = TRUE;
 		    }
+
+		    // Load login page view
+		    $this->load->view($this->dx_auth->login_view, $data);
 		}
 	    }
 	} else {
-	    //if the code is invalid then send them back to the forgot password page
-	    $this->session->set_flashdata('message', $this->ion_auth->errors());
-	    redirect("auth/forgot_password", 'refresh');
+	    $data['auth_message'] = 'You are already logged in.';
+	    $this->load->view($this->dx_auth->logged_in_view, $data);
 	}
     }
 
-    function _get_csrf_nonce() {
-	$this->load->helper('string');
-	$key = random_string('alnum', 8);
-	$value = random_string('alnum', 20);
-	$this->session->set_flashdata('csrfkey', $key);
-	$this->session->set_flashdata('csrfvalue', $value);
+    function logout() {
+	$this->dx_auth->logout();
 
-	return array($key => $value);
+	$data['auth_message'] = 'You have been logged out.';
+	$this->load->view($this->dx_auth->logout_view, $data);
     }
 
-    function _valid_csrf_nonce() {
-	if ($this->input->post($this->session->flashdata('csrfkey')) !== FALSE &&
-		$this->input->post($this->session->flashdata('csrfkey')) == $this->session->flashdata('csrfvalue')) {
-	    return TRUE;
+    function register() {
+	if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
+	    $val = $this->form_validation;
+
+	    // Set form validation rules			
+	    $val->set_rules('username', 'Username', 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|alpha_dash');
+	    $val->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
+	    $val->set_rules('confirm_password', 'Confirm Password', 'trim|required|xss_clean');
+	    $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+
+	    if ($this->dx_auth->captcha_registration) {
+		$val->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback_captcha_check');
+	    }
+
+	    // Run form validation and register user if it's pass the validation
+	    if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+		// Set success message accordingly
+		if ($this->dx_auth->email_activation) {
+		    $data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
+		} else {
+		    $data['auth_message'] = 'You have successfully registered. ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
+		}
+
+		// Load registration success page
+		$this->load->view($this->dx_auth->register_success_view, $data);
+	    } else {
+		// Is registration using captcha
+		if ($this->dx_auth->captcha_registration) {
+		    $this->dx_auth->captcha();
+		}
+
+		// Load registration page
+		$this->load->view($this->dx_auth->register_view);
+	    }
+	} elseif (!$this->dx_auth->allow_registration) {
+	    $data['auth_message'] = 'Registration has been disabled.';
+	    $this->load->view($this->dx_auth->register_disabled_view, $data);
 	} else {
-	    return FALSE;
+	    $data['auth_message'] = 'You have to logout first, before registering.';
+	    $this->load->view($this->dx_auth->logged_in_view, $data);
 	}
     }
 
-    function _render_page($view, $data = null, $render = false) {
+    function register_recaptcha() {
+	if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
+	    $val = $this->form_validation;
 
-	$this->viewdata = (empty($data)) ? $this->data : $data;
+	    // Set form validation rules
+	    $val->set_rules('username', 'Username', 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|alpha_dash');
+	    $val->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
+	    $val->set_rules('confirm_password', 'Confirm Password', 'trim|required|xss_clean');
+	    $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
 
-	//$view_html = $this->load->view($view, $this->viewdata, $render);
-	$view_html = $this->parser->parse($view, $data);
-	//if (!$render) return $view_html;
+	    // Is registration using captcha
+	    if ($this->dx_auth->captcha_registration) {
+		// Set recaptcha rules.
+		// IMPORTANT: Do not change 'recaptcha_response_field' because it's used by reCAPTCHA API,
+		// This is because the limitation of reCAPTCHA, not DX Auth library
+		$val->set_rules('recaptcha_response_field', 'Confirmation Code', 'trim|xss_clean|required|callback_recaptcha_check');
+	    }
+
+	    // Run form validation and register user if it's pass the validation
+	    if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+		// Set success message accordingly
+		if ($this->dx_auth->email_activation) {
+		    $data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
+		} else {
+		    $data['auth_message'] = 'You have successfully registered. ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
+		}
+
+		// Load registration success page
+		$this->load->view($this->dx_auth->register_success_view, $data);
+	    } else {
+		// Load registration page
+		$this->load->view('auth/register_recaptcha_form');
+	    }
+	} elseif (!$this->dx_auth->allow_registration) {
+	    $data['auth_message'] = 'Registration has been disabled.';
+	    $this->load->view($this->dx_auth->register_disabled_view, $data);
+	} else {
+	    $data['auth_message'] = 'You have to logout first, before registering.';
+	    $this->load->view($this->dx_auth->logged_in_view, $data);
+	}
+    }
+
+    function activate() {
+	// Get username and key
+	$username = $this->uri->segment(3);
+	$key = $this->uri->segment(4);
+
+	// Activate user
+	if ($this->dx_auth->activate($username, $key)) {
+	    $data['auth_message'] = 'Your account have been successfully activated. ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
+	    $this->load->view($this->dx_auth->activate_success_view, $data);
+	} else {
+	    $data['auth_message'] = 'The activation code you entered was incorrect. Please check your email again.';
+	    $this->load->view($this->dx_auth->activate_failed_view, $data);
+	}
+    }
+
+    function forgot_password() {
+	$val = $this->form_validation;
+
+	// Set form validation rules
+	$val->set_rules('login', 'Username or Email address', 'trim|required|xss_clean');
+
+	// Validate rules and call forgot password function
+	if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
+	    $data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
+	    $this->load->view($this->dx_auth->forgot_password_success_view, $data);
+	} else {
+	    $this->load->view($this->dx_auth->forgot_password_view);
+	}
+    }
+
+    function reset_password() {
+	// Get username and key
+	$username = $this->uri->segment(3);
+	$key = $this->uri->segment(4);
+
+	// Reset password
+	if ($this->dx_auth->reset_password($username, $key)) {
+	    $data['auth_message'] = 'You have successfully reset you password, ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
+	    $this->load->view($this->dx_auth->reset_password_success_view, $data);
+	} else {
+	    $data['auth_message'] = 'Reset failed. Your username and key are incorrect. Please check your email again and follow the instructions.';
+	    $this->load->view($this->dx_auth->reset_password_failed_view, $data);
+	}
+    }
+
+    function change_password() {
+	// Check if user logged in or not
+	if ($this->dx_auth->is_logged_in()) {
+	    $val = $this->form_validation;
+
+	    // Set form validation
+	    $val->set_rules('old_password', 'Old Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
+	    $val->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
+	    $val->set_rules('confirm_new_password', 'Confirm new Password', 'trim|required|xss_clean');
+
+	    // Validate rules and change password
+	    if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
+		$data['auth_message'] = 'Your password has successfully been changed.';
+		$this->load->view($this->dx_auth->change_password_success_view, $data);
+	    } else {
+		$this->load->view($this->dx_auth->change_password_view);
+	    }
+	} else {
+	    // Redirect to login page
+	    $this->dx_auth->deny_access('login');
+	}
+    }
+
+    function cancel_account() {
+	// Check if user logged in or not
+	if ($this->dx_auth->is_logged_in()) {
+	    $val = $this->form_validation;
+
+	    // Set form validation rules
+	    $val->set_rules('password', 'Password', "trim|required|xss_clean");
+
+	    // Validate rules and change password
+	    if ($val->run() AND $this->dx_auth->cancel_account($val->set_value('password'))) {
+		// Redirect to homepage
+		redirect('', 'location');
+	    } else {
+		$this->load->view($this->dx_auth->cancel_account_view);
+	    }
+	} else {
+	    // Redirect to login page
+	    $this->dx_auth->deny_access('login');
+	}
+    }
+
+    // Example how to get permissions you set permission in /backend/custom_permissions/
+    function custom_permissions() {
+	if ($this->dx_auth->is_logged_in()) {
+	    echo 'My role: ' . $this->dx_auth->get_role_name() . '<br/>';
+	    echo 'My permission: <br/>';
+
+	    if ($this->dx_auth->get_permission_value('edit') != NULL AND $this->dx_auth->get_permission_value('edit')) {
+		echo 'Edit is allowed';
+	    } else {
+		echo 'Edit is not allowed';
+	    }
+
+	    echo '<br/>';
+
+	    if ($this->dx_auth->get_permission_value('delete') != NULL AND $this->dx_auth->get_permission_value('delete')) {
+		echo 'Delete is allowed';
+	    } else {
+		echo 'Delete is not allowed';
+	    }
+	}
     }
 
 }
+
+?>

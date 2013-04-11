@@ -14,10 +14,11 @@ $this->load->view('templates/header');
             <div id="collapseOne" class="accordion-body collapse">
                 <div class="accordion-inner">
                     <ul class="unstyled">
-                        <li><i class="icon-list"></i>&nbsp;&nbsp;<a href="/admin_panel/list_users">Список пользователей</a></li>
-                        <li><i class="icon-list-alt"></i>&nbsp;&nbsp;<a href="/admin_panel/list_groups">Список групп</a></li>
-                        <li><i class="icon-plus"></i>&nbsp;&nbsp;<a href="/admin_panel/create_user">Создание пользователя</a></li>
-                        <li><i class="icon-plus-sign"></i>&nbsp;&nbsp;<a href="/admin_panel/create_group">Создание группы</a></li>
+                        <li><i class="icon-list"></i>&nbsp;&nbsp;<a href="/admin/users">Список пользователей</a></li>
+                        <li><i class="icon-list-alt"></i>&nbsp;&nbsp;<a href="/admin/unactivated_users">Не активированные пользователи</a></li>
+                        <li><i class="icon-star"></i>&nbsp;&nbsp;<a href="/admin/roles">Роли</a></li>
+                        <li><i class="icon-certificate"></i>&nbsp;&nbsp;<a href="/admin/uri_permissions">Права доступа к URI</a></li>
+                        <li><i class="icon-tags"></i>&nbsp;&nbsp;<a href="/admin/custom_permissions">Настройка прав доступа</a></li>
                     </ul>
                 </div>
             </div>
@@ -31,7 +32,7 @@ $this->load->view('templates/header');
             <div id="collapseTwo" class="accordion-body collapse">
                 <div class="accordion-inner">
                     <ul class="unstyled">
-                        <li><i class="icon-list"></i>&nbsp;&nbsp;<a href="/admin_panel/list_users">Список пользователей</a></li>
+                        <li><i class="icon-list"></i>&nbsp;&nbsp;<a href="/admin/users">Список пользователей</a></li>
                         <li><i class="icon-list-alt"></i>&nbsp;&nbsp;<a href="/admin_panel/list_groups">Список групп</a></li>
                         <li><i class="icon-plus"></i>&nbsp;&nbsp;<a href="/admin_panel/create_user">Создание пользователя</a></li>
                         <li><i class="icon-plus-sign"></i>&nbsp;&nbsp;<a href="/admin_panel/create_group">Создание группы</a></li>

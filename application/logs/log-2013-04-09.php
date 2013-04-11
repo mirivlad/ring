@@ -12020,3 +12020,64 @@ DEBUG - 2013-04-09 15:05:36 --> File loaded: application/views/templates/footer.
 DEBUG - 2013-04-09 15:05:36 --> File loaded: application/views/admin/list_users.php
 DEBUG - 2013-04-09 15:05:36 --> Final output sent to browser
 DEBUG - 2013-04-09 15:05:36 --> Total execution time: 0.0314
+DEBUG - 2013-04-09 15:34:45 --> Config Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Hooks Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Utf8 Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> UTF-8 Support Enabled
+DEBUG - 2013-04-09 15:34:45 --> URI Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Router Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> No URI present. Default controller set.
+DEBUG - 2013-04-09 15:34:45 --> Output Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Security Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Input Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-09 15:34:45 --> Language Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Loader Class Initialized
+DEBUG - 2013-04-09 15:34:45 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-09 15:34:46 --> Database Driver Class Initialized
+ERROR - 2013-04-09 15:34:46 --> Unable to load the requested class: dx_auth
+DEBUG - 2013-04-09 15:34:56 --> Config Class Initialized
+DEBUG - 2013-04-09 15:34:56 --> Hooks Class Initialized
+DEBUG - 2013-04-09 15:34:56 --> Utf8 Class Initialized
+DEBUG - 2013-04-09 15:34:56 --> UTF-8 Support Enabled
+DEBUG - 2013-04-09 15:34:56 --> URI Class Initialized
+DEBUG - 2013-04-09 15:34:56 --> Router Class Initialized
+ERROR - 2013-04-09 15:34:56 --> 404 Page Not Found --> phpmyadmin
+DEBUG - 2013-04-09 15:35:01 --> Config Class Initialized
+DEBUG - 2013-04-09 15:35:01 --> Hooks Class Initialized
+DEBUG - 2013-04-09 15:35:01 --> Utf8 Class Initialized
+DEBUG - 2013-04-09 15:35:01 --> UTF-8 Support Enabled
+DEBUG - 2013-04-09 15:35:01 --> URI Class Initialized
+DEBUG - 2013-04-09 15:35:01 --> Router Class Initialized
+ERROR - 2013-04-09 15:35:01 --> 404 Page Not Found --> myadmin
+DEBUG - 2013-04-09 15:36:25 --> Config Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Hooks Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Utf8 Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> UTF-8 Support Enabled
+DEBUG - 2013-04-09 15:36:25 --> URI Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Router Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Output Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Security Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Input Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-09 15:36:25 --> Language Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Loader Class Initialized
+DEBUG - 2013-04-09 15:36:25 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-09 15:36:25 --> Database Driver Class Initialized
+ERROR - 2013-04-09 15:36:25 --> Unable to load the requested class: dx_auth
+DEBUG - 2013-04-09 15:36:28 --> Config Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Hooks Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Utf8 Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> UTF-8 Support Enabled
+DEBUG - 2013-04-09 15:36:28 --> URI Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Router Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> No URI present. Default controller set.
+DEBUG - 2013-04-09 15:36:28 --> Output Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Security Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Input Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-09 15:36:28 --> Language Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Loader Class Initialized
+DEBUG - 2013-04-09 15:36:28 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-09 15:36:28 --> Database Driver Class Initialized
+ERROR - 2013-04-09 15:36:28 --> Unable to load the requested class: dx_auth

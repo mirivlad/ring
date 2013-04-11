@@ -19,7 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->library('parser');
+		//$this->load->library('parser');
 		$data = array(
 		    'title' => 'Главная',
 		    'main' => 'active'
