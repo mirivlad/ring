@@ -2562,3 +2562,88 @@ DEBUG - 2013-04-08 17:30:50 --> File loaded: application/views/templates/footer.
 DEBUG - 2013-04-08 17:30:50 --> File loaded: application/views/admin/list_users.php
 DEBUG - 2013-04-08 17:30:50 --> Final output sent to browser
 DEBUG - 2013-04-08 17:30:50 --> Total execution time: 0.0425
+DEBUG - 2013-04-08 16:40:26 --> Config Class Initialized
+DEBUG - 2013-04-08 16:40:26 --> Hooks Class Initialized
+DEBUG - 2013-04-08 16:40:26 --> Utf8 Class Initialized
+DEBUG - 2013-04-08 16:40:26 --> UTF-8 Support Enabled
+DEBUG - 2013-04-08 16:40:27 --> URI Class Initialized
+DEBUG - 2013-04-08 16:40:27 --> Router Class Initialized
+DEBUG - 2013-04-08 16:40:27 --> No URI present. Default controller set.
+DEBUG - 2013-04-08 16:40:27 --> Output Class Initialized
+DEBUG - 2013-04-08 16:40:27 --> Security Class Initialized
+DEBUG - 2013-04-08 16:40:27 --> Input Class Initialized
+DEBUG - 2013-04-08 16:40:27 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-08 16:40:27 --> Language Class Initialized
+DEBUG - 2013-04-08 16:40:28 --> Loader Class Initialized
+DEBUG - 2013-04-08 16:40:28 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-08 16:40:28 --> Database Driver Class Initialized
+ERROR - 2013-04-08 16:40:28 --> Severity: Notice  --> mysql_pconnect():  D:\server\OpenServer\domains\ci.local\system\database\drivers\mysql\mysql_driver.php 91
+DEBUG - 2013-04-08 16:40:29 --> Config file loaded: application/config/ion_auth.php
+DEBUG - 2013-04-08 16:40:29 --> Email Class Initialized
+DEBUG - 2013-04-08 16:40:29 --> Language file loaded: language/russian/ion_auth_lang.php
+DEBUG - 2013-04-08 16:40:29 --> Helper loaded: cookie_helper
+DEBUG - 2013-04-08 16:40:29 --> Session Class Initialized
+DEBUG - 2013-04-08 16:40:29 --> Helper loaded: string_helper
+DEBUG - 2013-04-08 16:40:29 --> A session cookie was not found.
+DEBUG - 2013-04-08 16:40:29 --> Session routines successfully run
+DEBUG - 2013-04-08 16:40:29 --> Model Class Initialized
+DEBUG - 2013-04-08 16:40:29 --> Model Class Initialized
+DEBUG - 2013-04-08 16:40:29 --> Helper loaded: date_helper
+DEBUG - 2013-04-08 16:40:29 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:29 --> Controller Class Initialized
+DEBUG - 2013-04-08 16:40:29 --> Parser class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Ion_auth class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: form_helper
+DEBUG - 2013-04-08 16:40:30 --> Form Validation Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: url_helper
+DEBUG - 2013-04-08 16:40:30 --> Language file loaded: language/russian/auth_lang.php
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: language_helper
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/templates/sidebar.php
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/templates/header.php
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/templates/footer.php
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/welcome.php
+DEBUG - 2013-04-08 16:40:30 --> Final output sent to browser
+DEBUG - 2013-04-08 16:40:30 --> Total execution time: 4.3312
+DEBUG - 2013-04-08 16:40:30 --> Config Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Hooks Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Utf8 Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> UTF-8 Support Enabled
+DEBUG - 2013-04-08 16:40:30 --> URI Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Router Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> No URI present. Default controller set.
+DEBUG - 2013-04-08 16:40:30 --> Output Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Security Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Input Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-04-08 16:40:30 --> Language Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Loader Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Config file loaded: application/config/pagination.php
+DEBUG - 2013-04-08 16:40:30 --> Database Driver Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Config file loaded: application/config/ion_auth.php
+DEBUG - 2013-04-08 16:40:30 --> Email Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Language file loaded: language/russian/ion_auth_lang.php
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: cookie_helper
+DEBUG - 2013-04-08 16:40:30 --> Session Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: string_helper
+DEBUG - 2013-04-08 16:40:30 --> A session cookie was not found.
+DEBUG - 2013-04-08 16:40:30 --> Session routines successfully run
+DEBUG - 2013-04-08 16:40:30 --> Model Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Model Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: date_helper
+DEBUG - 2013-04-08 16:40:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Controller Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Parser class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Ion_auth class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Session class already loaded. Second attempt ignored.
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: form_helper
+DEBUG - 2013-04-08 16:40:30 --> Form Validation Class Initialized
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: url_helper
+DEBUG - 2013-04-08 16:40:30 --> Language file loaded: language/russian/auth_lang.php
+DEBUG - 2013-04-08 16:40:30 --> Helper loaded: language_helper
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/templates/sidebar.php
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/templates/header.php
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/templates/footer.php
+DEBUG - 2013-04-08 16:40:30 --> File loaded: application/views/welcome.php
+DEBUG - 2013-04-08 16:40:30 --> Final output sent to browser
+DEBUG - 2013-04-08 16:40:30 --> Total execution time: 0.0937
