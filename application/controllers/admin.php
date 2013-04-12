@@ -96,7 +96,7 @@ class Admin extends CI_Controller {
     }
 
     function unactivated_users() {
-        $this->data['title'] = "Неактивированные пользователи";
+        $data['title'] = "Неактивированные пользователи";
         $this->load->model('dx_auth/user_temp', 'user_temp');
 
         /* Database related */
@@ -143,7 +143,7 @@ class Admin extends CI_Controller {
     }
 
     function roles() {
-        $this->data['title'] = "Роли";
+        $data['title'] = "Роли";
         $this->load->model('dx_auth/roles', 'roles');
 
         /* Database related */
@@ -173,7 +173,7 @@ class Admin extends CI_Controller {
     }
 
     function uri_permissions() {
-        $this->data['title'] = "Права доступа к URI";
+        $data['title'] = "Права доступа к URI";
         function trim_value(&$value) {
             $value = trim($value);
         }
@@ -209,7 +209,7 @@ class Admin extends CI_Controller {
     }
 
     function custom_permissions() {
-        $this->data['title'] = "Настройка доступа";
+        $data['title'] = "Настройка доступа";
         // Load models
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('dx_auth/permissions', 'permissions');
