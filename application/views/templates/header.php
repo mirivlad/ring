@@ -62,7 +62,7 @@
                                         <li class="divider"></li>
                                         <?php
 					    if($this->dx_auth->allow_registration){ ?>
-						<li><a href="/auth/register_account">Регистрация</a></li>
+						<li><a href="/auth/register">Регистрация</a></li>
 					<?php } ?>
                                         <li><a href="/auth/forgot_password">Забыли пароль?</a></li>
                                     </ul>

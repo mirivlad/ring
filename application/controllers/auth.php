@@ -70,17 +70,18 @@ class Auth extends CI_Controller {
     /* End of Callback function */
 
     function login() {
+        $data['title'] = 'Вход в систему';
 	if (!$this->dx_auth->is_logged_in()) {
 	    $val = $this->form_validation;
 
 	    // Set form validation rules
-	    $val->set_rules('username', 'Username', 'trim|required|xss_clean');
-	    $val->set_rules('password', 'Password', 'trim|required|xss_clean');
-	    $val->set_rules('remember', 'Remember me', 'integer');
+	    $val->set_rules('username', 'Имя', 'trim|required|xss_clean');
+	    $val->set_rules('password', 'Пароль', 'trim|required|xss_clean');
+	    $val->set_rules('remember', 'Запомнить меня', 'integer');
 
 	    // Set captcha rules if login attempts exceed max attempts in config
 	    if ($this->dx_auth->is_max_login_attempts_exceeded()) {
-		$val->set_rules('captcha', 'Confirmation Code', 'trim|required|xss_clean|callback_captcha_check');
+		$val->set_rules('captcha', 'Символы с картинки', 'trim|required|xss_clean|callback_captcha_check');
 	    }
 
 	    if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember'))) {
@@ -103,22 +104,23 @@ class Auth extends CI_Controller {
 			// Set view data to show captcha on view file
 			$data['show_captcha'] = TRUE;
 		    }
-
+                    //$data['ip']=  $this->input->ip_address();
 		    // Load login page view
-		    $this->load->view($this->dx_auth->login_view, $data);
+		    $this->parser->parse('auth/login', $data);
 		}
 	    }
 	} else {
-	    $data['auth_message'] = 'You are already logged in.';
-	    $this->load->view($this->dx_auth->logged_in_view, $data);
+            redirect('', 'location');
+            //$data['auth_message'] = 'You are already logged in.';
+            //$this->load->view($this->dx_auth->logged_in_view, $data);
 	}
     }
 
     function logout() {
 	$this->dx_auth->logout();
-
-	$data['auth_message'] = 'You have been logged out.';
-	$this->load->view($this->dx_auth->logout_view, $data);
+        redirect('', 'location');
+	//$data['auth_message'] = 'You have been logged out.';
+	//$this->load->view($this->dx_auth->logout_view, $data);
     }
 
     function register() {
@@ -278,7 +280,7 @@ class Auth extends CI_Controller {
 	// Check if user logged in or not
 	if ($this->dx_auth->is_logged_in()) {
 	    $val = $this->form_validation;
-
+            $data['title'] = "Деактивация аккаунта";
 	    // Set form validation rules
 	    $val->set_rules('password', 'Password', "trim|required|xss_clean");
 
@@ -287,7 +289,13 @@ class Auth extends CI_Controller {
 		// Redirect to homepage
 		redirect('', 'location');
 	    } else {
-		$this->load->view($this->dx_auth->cancel_account_view);
+                $data['password'] = array(
+                        'name'	=> 'password',
+                        'id'	=> 'password',
+                        'size' 	=> 30
+                );
+		//$this->load->view($this->dx_auth->cancel_account_view);
+                $this->parser->parse('auth/cancel_account', $data);
 	    }
 	} else {
 	    // Redirect to login page

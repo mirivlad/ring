@@ -117,7 +117,7 @@ $config['DX_autologin_cookie_life'] = 60*60*24*31*2;
 */
 
 $config['DX_count_login_attempts'] = TRUE;
-$config['DX_max_login_attempts'] = 100; 
+$config['DX_max_login_attempts'] = 3; 
 
 /*
 |--------------------------------------------------------------------------
