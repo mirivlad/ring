@@ -21,8 +21,8 @@ $confirm_new_password = array(
 ?>
 
 <fieldset>
-<legend>Change Password</legend>
-<?php echo form_open($this->uri->uri_string()); ?>
+<legend>{title}</legend>
+<?php echo form_open($this->uri->uri_string(),' class="form-inline"'); ?>
 
 <?php echo $this->dx_auth->get_auth_error(); ?>
 

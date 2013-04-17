@@ -225,16 +225,16 @@ class Auth extends CI_Controller {
 
     function forgot_password() {
 	$val = $this->form_validation;
-
+	$data['title'] = 'Восстановление пароля';
 	// Set form validation rules
-	$val->set_rules('login', 'Username or Email address', 'trim|required|xss_clean');
+	$val->set_rules('login', 'Логин или адрес email', 'trim|required|xss_clean');
 
 	// Validate rules and call forgot password function
 	if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
-	    $data['auth_message'] = 'An email has been sent to your email with instructions with how to activate your new password.';
-	    $this->load->view($this->dx_auth->forgot_password_success_view, $data);
+	    $data['auth_message'] = 'На ваш адрес email было отправлено письмо с инструкциями по активации вашего нового пароля.';
+	    $this->parser->parse($this->dx_auth->forgot_password_success_view, $data);
 	} else {
-	    $this->load->view($this->dx_auth->forgot_password_view);
+	    $this->parser->parse($this->dx_auth->forgot_password_view, $data);
 	}
     }
 
@@ -242,14 +242,14 @@ class Auth extends CI_Controller {
 	// Get username and key
 	$username = $this->uri->segment(3);
 	$key = $this->uri->segment(4);
-
+	$data['title'] = 'Сброс пароля';
 	// Reset password
 	if ($this->dx_auth->reset_password($username, $key)) {
-	    $data['auth_message'] = 'You have successfully reset you password, ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
-	    $this->load->view($this->dx_auth->reset_password_success_view, $data);
+	    $data['auth_message'] = 'Ваш пароль успешно изменен, ' . anchor(site_url($this->dx_auth->login_uri), 'Вход');
+	    $this->parser->parse($this->dx_auth->reset_password_success_view, $data);
 	} else {
-	    $data['auth_message'] = 'Reset failed. Your username and key are incorrect. Please check your email again and follow the instructions.';
-	    $this->load->view($this->dx_auth->reset_password_failed_view, $data);
+	    $data['auth_message'] = 'Сброс пароля не выполнен. Имя или ключ не правильные. Проверьте письмо которое мы вам отправили и следуйте инструкции.';
+	    $this->parser->parse($this->dx_auth->reset_password_failed_view, $data);
 	}
     }
 
@@ -259,13 +259,13 @@ class Auth extends CI_Controller {
 	    $val = $this->form_validation;
 
 	    // Set form validation
-	    $val->set_rules('old_password', 'Old Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
-	    $val->set_rules('new_password', 'New Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
-	    $val->set_rules('confirm_new_password', 'Confirm new Password', 'trim|required|xss_clean');
+	    $val->set_rules('old_password', 'Старый пароль', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
+	    $val->set_rules('new_password', 'Новый пароль', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
+	    $val->set_rules('confirm_new_password', 'Подтверждение нового пароля', 'trim|required|xss_clean');
 
 	    // Validate rules and change password
 	    if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
-		$data['auth_message'] = 'Your password has successfully been changed.';
+		$data['auth_message'] = 'Ваш пароль успешно изменен.';
 		$this->load->view($this->dx_auth->change_password_success_view, $data);
 	    } else {
 		$this->load->view($this->dx_auth->change_password_view);
@@ -282,7 +282,7 @@ class Auth extends CI_Controller {
 	    $val = $this->form_validation;
             $data['title'] = "Деактивация аккаунта";
 	    // Set form validation rules
-	    $val->set_rules('password', 'Password', "trim|required|xss_clean");
+	    $val->set_rules('password', 'Пароль', "trim|required|xss_clean");
 
 	    // Validate rules and change password
 	    if ($val->run() AND $this->dx_auth->cancel_account($val->set_value('password'))) {
@@ -306,21 +306,21 @@ class Auth extends CI_Controller {
     // Example how to get permissions you set permission in /backend/custom_permissions/
     function custom_permissions() {
 	if ($this->dx_auth->is_logged_in()) {
-	    echo 'My role: ' . $this->dx_auth->get_role_name() . '<br/>';
-	    echo 'My permission: <br/>';
+	    echo 'Моя роль: ' . $this->dx_auth->get_role_name() . '<br/>';
+	    echo 'Мои права: <br/>';
 
 	    if ($this->dx_auth->get_permission_value('edit') != NULL AND $this->dx_auth->get_permission_value('edit')) {
-		echo 'Edit is allowed';
+		echo 'Правка разрешена';
 	    } else {
-		echo 'Edit is not allowed';
+		echo 'Правка не разрешена';
 	    }
 
 	    echo '<br/>';
 
 	    if ($this->dx_auth->get_permission_value('delete') != NULL AND $this->dx_auth->get_permission_value('delete')) {
-		echo 'Delete is allowed';
+		echo 'Удаление разрешено';
 	    } else {
-		echo 'Delete is not allowed';
+		echo 'Удаление не разрешено';
 	    }
 	}
     }
