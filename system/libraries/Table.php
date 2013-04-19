@@ -496,7 +496,7 @@ class CI_Table {
 	function _default_template()
 	{
 		return  array (
-						'table_open'			=> '<table border="0" cellpadding="4" cellspacing="0">',
+						'table_open'			=> '<table border="0" class="table table-striped table-bordered" style="width:100%;">',
 
 						'thead_open'			=> '<thead>',
 						'thead_close'			=> '</thead>',

@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
     /* End of Callback function */
 
     function login() {
-        $data['title'] = 'Вход в систему';
+	$data['title'] = 'Вход в систему';
 	if (!$this->dx_auth->is_logged_in()) {
 	    $val = $this->form_validation;
 
@@ -104,21 +104,21 @@ class Auth extends CI_Controller {
 			// Set view data to show captcha on view file
 			$data['show_captcha'] = TRUE;
 		    }
-                    //$data['ip']=  $this->input->ip_address();
+		    //$data['ip']=  $this->input->ip_address();
 		    // Load login page view
 		    $this->parser->parse('auth/login', $data);
 		}
 	    }
 	} else {
-            redirect('', 'location');
-            //$data['auth_message'] = 'You are already logged in.';
-            //$this->load->view($this->dx_auth->logged_in_view, $data);
+	    redirect('', 'location');
+	    //$data['auth_message'] = 'You are already logged in.';
+	    //$this->load->view($this->dx_auth->logged_in_view, $data);
 	}
     }
 
     function logout() {
 	$this->dx_auth->logout();
-        redirect('', 'location');
+	redirect('', 'location');
 	//$data['auth_message'] = 'You have been logged out.';
 	//$this->load->view($this->dx_auth->logout_view, $data);
     }
@@ -280,7 +280,7 @@ class Auth extends CI_Controller {
 	// Check if user logged in or not
 	if ($this->dx_auth->is_logged_in()) {
 	    $val = $this->form_validation;
-            $data['title'] = "Деактивация аккаунта";
+	    $data['title'] = "Деактивация аккаунта";
 	    // Set form validation rules
 	    $val->set_rules('password', 'Пароль', "trim|required|xss_clean");
 
@@ -289,13 +289,13 @@ class Auth extends CI_Controller {
 		// Redirect to homepage
 		redirect('', 'location');
 	    } else {
-                $data['password'] = array(
-                        'name'	=> 'password',
-                        'id'	=> 'password',
-                        'size' 	=> 30
-                );
+		$data['password'] = array(
+		    'name' => 'password',
+		    'id' => 'password',
+		    'size' => 30
+		);
 		//$this->load->view($this->dx_auth->cancel_account_view);
-                $this->parser->parse('auth/cancel_account', $data);
+		$this->parser->parse('auth/cancel_account', $data);
 	    }
 	} else {
 	    // Redirect to login page
