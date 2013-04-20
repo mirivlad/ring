@@ -23,7 +23,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend accesskey="D" tabindex="1">{title}</legend>
+    <fieldset><legend>{title}</legend>
 	<?php echo form_open($this->uri->uri_string(), ' class="form-inline"'); ?>
 
 	<?php echo $this->dx_auth->get_auth_error(); ?>
@@ -48,7 +48,7 @@ $this->load->view('templates/header');
 	    </dd>
 
 	    <dt></dt>
-	    <dd><?php echo form_submit('change', 'Сменить пароль'); ?></dd>
+	    <dd><?php echo form_submit('change', 'Сменить пароль', ' class="btn btn-primary"'); ?></dd>
 	</dl>
 
 	<?php echo form_close() ?>

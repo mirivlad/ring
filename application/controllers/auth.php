@@ -126,24 +126,24 @@ class Auth extends CI_Controller {
     function register() {
 	if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
 	    $val = $this->form_validation;
-
+            $data['title'] = "Регистрация";
 	    // Set form validation rules			
-	    $val->set_rules('username', 'Username', 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|alpha_dash');
-	    $val->set_rules('password', 'Password', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
-	    $val->set_rules('confirm_password', 'Confirm Password', 'trim|required|xss_clean');
+	    $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|alpha_dash');
+	    $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
+	    $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
 	    $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
 
 	    if ($this->dx_auth->captcha_registration) {
-		$val->set_rules('captcha', 'Confirmation Code', 'trim|xss_clean|required|callback_captcha_check');
+		$val->set_rules('captcha', 'Код с картинки', 'trim|xss_clean|required|callback_captcha_check');
 	    }
 
 	    // Run form validation and register user if it's pass the validation
 	    if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
 		// Set success message accordingly
 		if ($this->dx_auth->email_activation) {
-		    $data['auth_message'] = 'You have successfully registered. Check your email address to activate your account.';
+		    $data['auth_message'] = 'Вы зарегистрированны. Проверьте свой email для дальнейшей активации аккаунта.';
 		} else {
-		    $data['auth_message'] = 'You have successfully registered. ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
+		    $data['auth_message'] = 'Регистрация завершена. ' . anchor(site_url($this->dx_auth->login_uri), 'Войти на сайт.');
 		}
 
 		// Load registration success page
@@ -155,14 +155,14 @@ class Auth extends CI_Controller {
 		}
 
 		// Load registration page
-		$this->load->view($this->dx_auth->register_view);
+		$this->parser->parse($this->dx_auth->register_view, $data);
 	    }
 	} elseif (!$this->dx_auth->allow_registration) {
-	    $data['auth_message'] = 'Registration has been disabled.';
-	    $this->load->view($this->dx_auth->register_disabled_view, $data);
+	    $data['auth_message'] = 'Регистрация отключена.';
+	    $this->parser->parse($this->dx_auth->register_disabled_view, $data);
 	} else {
-	    $data['auth_message'] = 'You have to logout first, before registering.';
-	    $this->load->view($this->dx_auth->logged_in_view, $data);
+	    $data['auth_message'] = 'Сначало нужно выполнить выход с сайта, чтобы можно было зарегистрироваться.';
+	    $this->parser->parse($this->dx_auth->logged_in_view, $data);
 	}
     }
 
@@ -212,14 +212,14 @@ class Auth extends CI_Controller {
 	// Get username and key
 	$username = $this->uri->segment(3);
 	$key = $this->uri->segment(4);
-
+        $data['title'] = "Активация аккаунта";
 	// Activate user
 	if ($this->dx_auth->activate($username, $key)) {
-	    $data['auth_message'] = 'Your account have been successfully activated. ' . anchor(site_url($this->dx_auth->login_uri), 'Login');
-	    $this->load->view($this->dx_auth->activate_success_view, $data);
+	    $data['auth_message'] = 'Ваш аккаунт активирован. ' . anchor(site_url($this->dx_auth->login_uri), 'Войти');
+	    $this->parser->parse($this->dx_auth->activate_success_view, $data);
 	} else {
-	    $data['auth_message'] = 'The activation code you entered was incorrect. Please check your email again.';
-	    $this->load->view($this->dx_auth->activate_failed_view, $data);
+	    $data['auth_message'] = 'Код активации неверен. Проверьте свой email и попробуйте снова.';
+	    $this->parser->parse($this->dx_auth->activate_failed_view, $data);
 	}
     }
 
@@ -257,7 +257,7 @@ class Auth extends CI_Controller {
 	// Check if user logged in or not
 	if ($this->dx_auth->is_logged_in()) {
 	    $val = $this->form_validation;
-
+            $data['title'] = "Смена пароля";    
 	    // Set form validation
 	    $val->set_rules('old_password', 'Старый пароль', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
 	    $val->set_rules('new_password', 'Новый пароль', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
@@ -266,9 +266,9 @@ class Auth extends CI_Controller {
 	    // Validate rules and change password
 	    if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
 		$data['auth_message'] = 'Ваш пароль успешно изменен.';
-		$this->load->view($this->dx_auth->change_password_success_view, $data);
+		$this->parser->parse($this->dx_auth->change_password_success_view, $data);
 	    } else {
-		$this->load->view($this->dx_auth->change_password_view);
+		$this->parser->parse($this->dx_auth->change_password_view, $data);
 	    }
 	} else {
 	    // Redirect to login page

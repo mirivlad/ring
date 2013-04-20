@@ -1,87 +1,102 @@
 <?php
 $username = array(
-	'name'	=> 'username',
-	'id'	=> 'username',
-	'size'	=> 30,
-	'value' =>  set_value('username')
+    'name' => 'username',
+    'id' => 'username',
+    'size' => 30,
+    'value' => set_value('username')
 );
 
 $password = array(
-	'name'	=> 'password',
-	'id'	=> 'password',
-	'size'	=> 30,
-	'value' => set_value('password')
+    'name' => 'password',
+    'id' => 'password',
+    'size' => 30,
+    'value' => set_value('password')
 );
 
 $confirm_password = array(
-	'name'	=> 'confirm_password',
-	'id'	=> 'confirm_password',
-	'size'	=> 30,
-	'value' => set_value('confirm_password')
+    'name' => 'confirm_password',
+    'id' => 'confirm_password',
+    'size' => 30,
+    'value' => set_value('confirm_password'),
+    'type' => 'password'
 );
 
 $email = array(
-	'name'	=> 'email',
-	'id'	=> 'email',
-	'maxlength'	=> 80,
-	'size'	=> 30,
-	'value'	=> set_value('email')
+    'name' => 'email',
+    'id' => 'email',
+    'maxlength' => 80,
+    'size' => 30,
+    'value' => set_value('email')
 );
 
 $captcha = array(
-	'name'	=> 'captcha',
-	'id'	=> 'captcha'
+    'name' => 'captcha',
+    'id' => 'captcha'
 );
 ?>
 
-<html>
-<body>
-<fieldset><legend>Register</legend>
-<?php echo form_open($this->uri->uri_string())?>
+<?php
+$this->load->view('templates/header');
+?>
 
-<dl>
-	<dt><?php echo form_label('Username', $username['id']);?></dt>
-	<dd>
-		<?php echo form_input($username)?>
-    <?php echo form_error($username['name']); ?>
-	</dd>
+<div class="span10">
 
-	<dt><?php echo form_label('Password', $password['id']);?></dt>
-	<dd>
-		<?php echo form_password($password)?>
-    <?php echo form_error($password['name']); ?>
-	</dd>
+    <fieldset>
+        <legend>{title}</legend>
+        <?php echo form_open($this->uri->uri_string(), ' class="form-horizontal"') ?>
+        <div class="control-group">
+            <label class="control-label" for="username"><i class="icon-user"></i> Логин</label>
+            <div class="controls">
+                <?php echo form_input($username) ?>
+            </div>
+            <?php echo form_error($username['name'], "<div class='controls text-error'>", "</div>"); ?>    
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password"><i class="icon-key"  style="color:#5f5;"></i> Пароль</label>
+            <div class="controls">
+                <?php echo form_password($password) ?>
+            </div>
+            <?php echo form_error($password['name'], "<div class='controls text-error'>", "</div>"); ?>    
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="confirm_password"><i class="icon-key" style="color:#55f;"></i> Повторите пароль</label>
+            <div class="controls">
+                <?php echo form_input($confirm_password) ?>
+            </div>
+            <?php echo form_error($confirm_password['name'], "<div class='controls text-error'>", "</div>"); ?>    
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="email"><i class="icon-inbox"></i> Адрес email</label>
+            <div class="controls">
+                <?php echo form_input($email) ?>
+            </div>
+            <?php echo form_error($email['name'], "<div class='controls text-error'>", "</div>"); ?>    
+        </div>
 
-	<dt><?php echo form_label('Confirm Password', $confirm_password['id']);?></dt>
-	<dd>
-		<?php echo form_password($confirm_password);?>
-		<?php echo form_error($confirm_password['name']); ?>
-	</dd>
+        <?php if ($this->dx_auth->captcha_registration): ?>
 
-	<dt><?php echo form_label('Email Address', $email['id']);?></dt>
-	<dd>
-		<?php echo form_input($email);?>
-		<?php echo form_error($email['name']); ?>
-	</dd>
-		
-<?php if ($this->dx_auth->captcha_registration): ?>
+            <div class="control-group">
+                <label class="control-label" for="captcha"><i class="icon-barcode"></i> Код с картинки</label>
+                <div class="controls">
+                    <?php echo form_input($captcha) ?>
+                </div>
+                <div class="controls text-info">Введите код с картинки. Ноля на ней не бывает.</div>
+                <div class="controls"><?php echo $this->dx_auth->get_captcha_image(); ?></div>
+                <?php echo form_error($captcha['name'], "<div class='controls text-error'>", "</div>"); ?>    
+            </div>
 
-	<dt>Enter the code exactly as it appears. There is no zero.</dt>
-	<dd><?php echo $this->dx_auth->get_captcha_image(); ?></dd>
+        <?php endif; ?>
+        <div class="control-group">
+            <div class="controls">
+                <?php echo form_submit('register', 'Регистрация', ' class="btn btn-primary"'); ?>
+            </div>
+        </div>
+        
 
-	<dt><?php echo form_label('Confirmation Code', $captcha['id']);?></dt>
-	<dd>
-		<?php echo form_input($captcha);?>
-		<?php echo form_error($captcha['name']); ?>
-	</dd>
-	
-<?php endif; ?>
 
-	<dt></dt>
-	<dd><?php echo form_submit('register','Register');?></dd>
-</dl>
-
-<?php echo form_close()?>
-</fieldset>
-</body>
-</html>
+        <?php echo form_close() ?>
+    </fieldset>
+</div>
+<?php
+$this->load->view('templates/footer');
+?>
