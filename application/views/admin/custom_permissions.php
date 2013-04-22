@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <h1>{title}</h1>
+    <fieldset><legend>{title}</legend>
     <?php
     echo '<b>Выберите роль для настройки её разрешений.</b><br/><br/>';
 
@@ -32,14 +32,14 @@ $this->load->view('templates/header');
 	<label class="control-label" for="role">Роль</label>
 	<div class="controls">
 	    <?php 
-		echo form_dropdown('role', $options, ' id="role"'); 
+		echo form_dropdown('role', $options, $selected_role,' id="role"');
 		echo form_submit('show', 'Показать разрешения', ' class="btn btn-primary"');
 	    ?>
 	</div>
     </div>
 <?php
     echo form_label('', 'uri_label');
-
+    print_r ($options);
     echo '<hr/>';
 
     echo form_checkbox('edit', '1', $edit);
@@ -61,6 +61,7 @@ $this->load->view('templates/header');
 
     echo form_close();
     ?>
+    </fieldset>
 </div>
 <?php
 $this->load->view('templates/footer');

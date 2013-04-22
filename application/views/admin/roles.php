@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <h1>{title}</h1>
+    <fieldset><legend>{title}</legend>
     <?php
     // Show error
     echo validation_errors();
@@ -35,7 +35,7 @@ $this->load->view('templates/header');
 	<div class="controls">
 	    <?php
 	    echo form_input('role_name', '', ' id="role_name"');
-	    echo form_submit('add', 'Добавить роль', ' class="btn btn-primary"');
+	    echo form_submit('add', 'Добавить роль', ' class="btn btn-primary"')." ";
 	    echo form_submit('delete', 'Удалить выбранную роль', ' class="btn btn-danger"');
 	    ?>
 	</div>
@@ -48,6 +48,7 @@ $this->load->view('templates/header');
 
     echo form_close();
     ?>
+    </fieldset>
 </div>
 <?php
 $this->load->view('templates/footer');

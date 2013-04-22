@@ -242,7 +242,7 @@ class Admin extends CI_Controller {
 
         // Default role_id that will be showed
         $role_id = $this->input->post('role') ? $this->input->post('role') : 1;
-
+	$data['selected_role'] = $role_id;
         // Get all role from database
         $data['roles'] = $this->roles->get_all()->result();
         // Get edit and delete permissions

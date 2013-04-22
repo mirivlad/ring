@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <h1>{title}</h1>
+    <fieldset><legend>{title}</legend>
     <div class="accordion" id="accordion2">
         <div class="accordion-group">
             <div class="accordion-heading" style="background-color: #D54413;">
@@ -41,6 +41,7 @@ $this->load->view('templates/header');
             </div>
         </div>
     </div>
+    </fieldset>
 </div>
 <?php
 $this->load->view('templates/footer');

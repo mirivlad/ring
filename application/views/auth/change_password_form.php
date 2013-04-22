@@ -47,7 +47,7 @@ $this->load->view('templates/header');
 		<?php echo form_error($confirm_new_password['name']); ?>
 	    </dd>
 
-	    <dt></dt>
+	    <br>
 	    <dd><?php echo form_submit('change', 'Сменить пароль', ' class="btn btn-primary"'); ?></dd>
 	</dl>
 
