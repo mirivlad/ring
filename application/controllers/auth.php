@@ -28,7 +28,8 @@ class Auth extends CI_Controller {
     function username_check($username) {
 	$result = $this->dx_auth->is_username_available($username);
 	if (!$result) {
-	    $this->form_validation->set_message('username_check', 'Username already exist. Please choose another username.');
+	    //$this->notify->error('Такое имя уже есть. Выберите другое.');
+	    $this->form_validation->set_message('username_check', 'Такое имя уже есть. Выберите другое.');
 	}
 
 	return $result;
@@ -37,7 +38,8 @@ class Auth extends CI_Controller {
     function email_check($email) {
 	$result = $this->dx_auth->is_email_available($email);
 	if (!$result) {
-	    $this->form_validation->set_message('email_check', 'Email is already used by another user. Please choose another email address.');
+	    //$this->notify->error('Такой email уже зарегистрирован. Укажите другой.');
+	    $this->form_validation->set_message('email_check', 'Такой email уже зарегистрирован. Укажите другой.');
 	}
 
 	return $result;
@@ -48,10 +50,12 @@ class Auth extends CI_Controller {
 
 	if ($this->dx_auth->is_captcha_expired()) {
 	    // Will replace this error msg with $lang
-	    $this->form_validation->set_message('captcha_check', 'Your confirmation code has expired. Please try again.');
+	    //$this->notify->error('Срок действия кода с картинки истёк. Попробуйте заново.');
+	    $this->form_validation->set_message('captcha_check', 'Срок действия кода с картинки истёк. Попробуйте заново.');
 	    $result = FALSE;
 	} elseif (!$this->dx_auth->is_captcha_match($code)) {
-	    $this->form_validation->set_message('captcha_check', 'Your confirmation code does not match the one in the image. Try again.');
+	    //$this->notify->error('Введеный вами код с картинки неправильный. Попробуйте заново.');
+	    $this->form_validation->set_message('captcha_check', 'Введеный вами код с картинки неправильный. Попробуйте заново.');
 	    $result = FALSE;
 	}
 
@@ -61,7 +65,8 @@ class Auth extends CI_Controller {
     function recaptcha_check() {
 	$result = $this->dx_auth->is_recaptcha_match();
 	if (!$result) {
-	    $this->form_validation->set_message('recaptcha_check', 'Your confirmation code does not match the one in the image. Try again.');
+	    //$this->notify->error('Введеный вами код с картинки неправильный. Попробуйте заново.');
+	    $this->form_validation->set_message('recaptcha_check', 'Введеный вами код с картинки неправильный. Попробуйте заново.');
 	}
 
 	return $result;

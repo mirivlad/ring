@@ -9,7 +9,6 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->library('table');
-        $this->load->helper('url');
         $this->lang->load('dx_auth');
         $this->dx_auth->check_uri_permissions();
 //        if (!$this->dx_auth->logged_in()) {
@@ -37,11 +36,13 @@ class Admin extends CI_Controller {
                 // If ban button pressed
                 if (isset($_POST['ban'])) {
                     // Ban user based on checkbox value (id)
+		    $this->notify->success('Пользователь забанен');
                     $this->users->ban_user($value);
                 }
                 // If unban button pressed
                 else if (isset($_POST['unban'])) {
                     // Unban user
+		    $this->notify->success('Пользователь разбанен');
                     $this->users->unban_user($value);
                 } else if (isset($_POST['reset_pass'])) {
                     // Set default message
@@ -61,8 +62,10 @@ class Admin extends CI_Controller {
 
                             // Reset the password
                             if ($this->dx_auth->reset_password($user->username, $user->newpass_key)) {
-                                $data['reset_message'] = 'Сброс пароля выполнен';
-                            }
+				$this->notify->success('Сброс пароля выполнен');
+                            }else{
+				$this->notify->error('Сброс пароля невыполнен');
+			    }
                         }
                     }
                 }
@@ -110,6 +113,7 @@ class Admin extends CI_Controller {
                     // Check if user exist, $value is username
                     if ($query = $this->user_temp->get_login($value) AND $query->num_rows() == 1) {
                         // Activate user
+			$this->notify->success('Активация выполнена');
                         $this->dx_auth->activate($value, $query->row()->activation_key);
                     }
                 }
@@ -151,6 +155,7 @@ class Admin extends CI_Controller {
         // If Add role button pressed
         if ($this->input->post('add')) {
             // Create role
+	    $this->notify->success('Роль добавлена');
             $this->roles->create_role($this->input->post('role_name'), $this->input->post('role_parent'));
         } else if ($this->input->post('delete')) {
             // Loop trough $_POST array and delete checked checkbox
@@ -158,6 +163,7 @@ class Admin extends CI_Controller {
                 // If checkbox found
                 if (substr($key, 0, 9) == 'checkbox_') {
                     // Delete role
+		    $this->notify->success('Роль удалена');
                     $this->roles->delete_role($value);
                 }
             }
@@ -191,6 +197,7 @@ class Admin extends CI_Controller {
             // Set URI permission data
             // IMPORTANT: uri permission data, is saved using 'uri' as key.
             // So this key name is preserved, if you want to use custom permission use other key.
+	    $this->notify->success('Права доступа к URI сохранены');
             $this->permissions->set_permission_value($this->input->post('role'), 'uri', $allowed_uris);
         }
 
@@ -233,7 +240,7 @@ class Admin extends CI_Controller {
             // Set value in permission data array
             $permission_data['edit'] = $this->input->post('edit');
             $permission_data['delete'] = $this->input->post('delete');
-
+	    $this->notify->success('Права доступа сохранены');
             // Set permission data for role_id
             $this->permissions->set_permission_data($this->input->post('role'), $permission_data);
         }

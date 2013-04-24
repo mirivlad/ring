@@ -6,7 +6,8 @@ $this->load->view('templates/header');
     <fieldset><legend>{title}</legend>
     <?php
     // Show error
-    echo validation_errors();
+    //echo validation_errors($this->config->item('DX_validation_error_prefix'),$this->config->item('DX_validation_error_suffix'));
+
 
     // Build drop down menu
     $options[0] = 'Нет';

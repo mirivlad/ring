@@ -39,25 +39,21 @@ $email = array(
 	<dt><?php echo form_label('Username', $username['id']);?></dt>
 	<dd>
 		<?php echo form_input($username)?>
-    <?php echo form_error($username['name']); ?>
 	</dd>
 
 	<dt><?php echo form_label('Password', $password['id']);?></dt>
 	<dd>
 		<?php echo form_password($password)?>
-    <?php echo form_error($password['name']); ?>
 	</dd>
 
 	<dt><?php echo form_label('Confirm Password', $confirm_password['id']);?></dt>
 	<dd>
 		<?php echo form_password($confirm_password);?>
-		<?php echo form_error($confirm_password['name']); ?>
 	</dd>
 
 	<dt><?php echo form_label('Email Address', $email['id']);?></dt>
 	<dd>
 		<?php echo form_input($email);?>
-		<?php echo form_error($email['name']); ?>
 	</dd>
 		
 <?php if ($this->dx_auth->captcha_registration): ?>
@@ -77,7 +73,6 @@ $email = array(
 	<dt><?php echo $this->dx_auth->get_recaptcha_label(); ?></dt>
 	<dd>
 		<?php echo $this->dx_auth->get_recaptcha_input(); ?>
-		<?php echo form_error('recaptcha_response_field'); ?>
 	</dd>
 	
 	<?php 

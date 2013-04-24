@@ -44,14 +44,12 @@ $this->load->view('templates/header');
 	    <div class="controls">
 		<input type="text" id="inputName" placeholder="Имя" name="username">
 	    </div>
-	    <?php echo form_error($username['name'], "<div class='controls text-error'>", "</div>"); ?>    
 	</div>
 	<div class="control-group">
 	    <label class="control-label" for="inputPassword">Пароль</label>
 	    <div class="controls">
 		<input type="password" id="inputPassword" placeholder="Пароль" name="password">
 	    </div>
-	    <?php echo form_error($password['name'], "<div class='controls text-error'>", "</div>"); ?>
 	</div>    
 
 
@@ -65,7 +63,6 @@ $this->load->view('templates/header');
     	    <div class="controls">
 		    <?php echo $this->dx_auth->get_captcha_image(); ?>
     	    </div>
-		<?php echo form_error($confirmation_code['name'], "<div class='controls text-error'>", "</div>"); ?>
     	</div>    
 	<?php endif; ?>
 	<div class="control-group">

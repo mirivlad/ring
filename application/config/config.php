@@ -366,6 +366,6 @@ $config['proxy_ips'] = '';
 | Default theme = default
 */
 $config['theme'] = 'united';
-
+$config['fade_timeout'] = 100;
 /* End of file config.php */
 /* Location: ./application/config/config.php */

@@ -22,7 +22,6 @@ $this->load->view('templates/header');
 	<dt><?php echo form_label('Ваш пароль', $password['id']); ?></dt>
 	<dd>
 		<?php echo form_password($password); ?>
-		<?php echo form_error($password['name']); ?>
 	</dd>
 	<dt></dt>
 	<dd><?php echo form_submit('cancel', 'Деактивировать', ' class="btn btn-primary"'); ?></dd>

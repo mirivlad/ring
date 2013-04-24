@@ -49,28 +49,24 @@ $this->load->view('templates/header');
             <div class="controls">
                 <?php echo form_input($username) ?>
             </div>
-            <?php echo form_error($username['name'], "<div class='controls text-error'>", "</div>"); ?>    
         </div>
         <div class="control-group">
             <label class="control-label" for="password"><i class="icon-key"  style="color:#5f5;"></i> Пароль</label>
             <div class="controls">
                 <?php echo form_password($password) ?>
             </div>
-            <?php echo form_error($password['name'], "<div class='controls text-error'>", "</div>"); ?>    
         </div>
         <div class="control-group">
             <label class="control-label" for="confirm_password"><i class="icon-key" style="color:#55f;"></i> Повторите пароль</label>
             <div class="controls">
                 <?php echo form_input($confirm_password) ?>
             </div>
-            <?php echo form_error($confirm_password['name'], "<div class='controls text-error'>", "</div>"); ?>    
         </div>
         <div class="control-group">
             <label class="control-label" for="email"><i class="icon-inbox"></i> Адрес email</label>
             <div class="controls">
                 <?php echo form_input($email) ?>
             </div>
-            <?php echo form_error($email['name'], "<div class='controls text-error'>", "</div>"); ?>    
         </div>
 
         <?php if ($this->dx_auth->captcha_registration): ?>
@@ -82,7 +78,6 @@ $this->load->view('templates/header');
                 </div>
                 <div class="controls text-info">Введите код с картинки. Ноля на ней не бывает.</div>
                 <div class="controls"><?php echo $this->dx_auth->get_captcha_image(); ?></div>
-                <?php echo form_error($captcha['name'], "<div class='controls text-error'>", "</div>"); ?>    
             </div>
 
         <?php endif; ?>

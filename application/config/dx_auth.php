@@ -242,4 +242,9 @@ $config['DX_register_disabled_view'] = 'auth/general_message';
 $config['DX_activate_failed_view'] = 'auth/general_message';
 $config['DX_reset_password_failed_view'] = 'auth/general_message';
 
+$config['DX_validation_error_prefix'] = ' <div class="alert alert-error">
+	    <button type="button" class="close" data-dismiss="alert">&times;</button>
+	    <h4>Ошибка!</h4>';
+$config['DX_validation_error_suffix'] = '</div>';
+
 ?>

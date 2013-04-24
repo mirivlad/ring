@@ -24,7 +24,6 @@ $this->load->view('templates/header');
 		<?php echo form_input($login, ' placeholder="Логин/email"'); ?>
 		<?php echo form_submit('reset', 'Сбросить пароль', ' class="btn btn-primary"'); ?>
 	    </div>
-		<?php echo form_error($login['name'], "<div class='controls text-error'>", "</div>"); ?>    
 	</div>
 	    <?php echo form_close() ?>
     </fieldset>

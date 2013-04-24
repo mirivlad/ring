@@ -4,14 +4,11 @@ $this->load->view('templates/header');
 
 <div class="span10">
     <fieldset><legend>{title}</legend>
-    <?php
-    // Show reset password message if exist
-    if (isset($reset_message))
-	echo $reset_message;
 
+ 
+<?php   
     // Show error
-    echo validation_errors();
-
+    //echo validation_errors($this->config->item('DX_validation_error_prefix'),$this->config->item('DX_validation_error_suffix'));
     echo form_open($this->uri->uri_string());
 
     echo form_submit('ban', 'Забанить', ' class="btn btn-warning"') . " ";
