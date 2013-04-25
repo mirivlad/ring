@@ -6,9 +6,9 @@ $this->load->view('templates/header');
     <fieldset><legend>{title}</legend>
     <div class="accordion" id="accordion2">
         <div class="accordion-group">
-            <div class="accordion-heading" style="background-color: #D54413;">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" style="color:#fff;">
-                    Администрирование пользователей
+            <div class="accordion-heading">
+                <a class="accordion-toggle text-success" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                    <span class="text-success icon-user"> Администрирование пользователей</span>
                 </a>
             </div>
             <div id="collapseOne" class="accordion-body collapse">
@@ -24,9 +24,9 @@ $this->load->view('templates/header');
             </div>
         </div>
         <div class="accordion-group">
-            <div class="accordion-heading" style="background-color: #D54413;">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" style="color:#fff;">
-                    Администрирование пользователей
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                    <span class="text-success icon-user"> Администрирование пользователей</span>
                 </a>
             </div>
             <div id="collapseTwo" class="accordion-body collapse">
