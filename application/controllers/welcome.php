@@ -19,10 +19,15 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		//$this->load->library('parser');
+                $this->load->library('rssparser');							// load library
+                //$this->rssparser->set_feed_url('https://github.com/mirivlad/ring/commits/master.atom'); 	// get feed
+                $this->rssparser->set_feed_url('http://mirvir.ru/feed'); 
+                $this->rssparser->set_cache_life(120); 						// Set cache life time in minutes
+                $rss = $this->rssparser->getFeed(6); 						// Get six items from the feed
 		$data = array(
 		    'title' => 'Главная',
-		    'main' => 'active'
+		    'main' => 'active',
+                    'news' => $rss
 		);
 
 		$this->parser->parse('welcome', $data);

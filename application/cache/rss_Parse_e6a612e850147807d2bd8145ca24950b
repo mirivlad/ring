@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Блог одного админа</title>
+	<atom:link href="http://mirvir.ru/feed" rel="self" type="application/rss+xml" />
+	<link>http://mirvir.ru</link>
+	<description>о Linux, IT, системном администрировании, и немного о личном</description>
+	<lastBuildDate>Mon, 15 Apr 2013 04:00:06 +0000</lastBuildDate>
+	<language>ru-RU</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>http://wordpress.org/?v=3.5.1</generator>
+		<item>
+		<title>Принудительная установка всех переменных MySQL на кодировку UTF-8</title>
+		<link>http://mirvir.ru/prinuditel-naya-ustanovka-vseh-peremenny-h-mysql-na-kodirovku-utf-8</link>
+		<comments>http://mirvir.ru/prinuditel-naya-ustanovka-vseh-peremenny-h-mysql-na-kodirovku-utf-8#comments</comments>
+		<pubDate>Mon, 15 Apr 2013 04:00:06 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Склерозник]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[utf8]]></category>
+		<category><![CDATA[кодировка]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2104</guid>
+		<description><![CDATA[/etc/mysql/my.cnf skip-character-set-client-handshake init-connect='SET NAMES utf8' character_set_server  = utf8 collation_server = utf8_general_ci]]></description>
+				<content:encoded><![CDATA[<p>/etc/mysql/my.cnf</p>
+<p><code><br />
+skip-character-set-client-handshake<br />
+init-connect='SET NAMES utf8'<br />
+character_set_server  = utf8<br />
+collation_server = utf8_general_ci<br />
+</code></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/prinuditel-naya-ustanovka-vseh-peremenny-h-mysql-na-kodirovku-utf-8/feed</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Дискриминация по кириллическому признаку от Microsoft</title>
+		<link>http://mirvir.ru/diskriminaciya-po-kirilicheskomu-priznaku-ot-microsoft</link>
+		<comments>http://mirvir.ru/diskriminaciya-po-kirilicheskomu-priznaku-ot-microsoft#comments</comments>
+		<pubDate>Wed, 13 Feb 2013 02:26:55 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Разное]]></category>
+		<category><![CDATA[Microsoft]]></category>
+		<category><![CDATA[кодировка]]></category>
+		<category><![CDATA[лицензия]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2094</guid>
+		<description><![CDATA[Так как я работаю системным администратором, мне приходится иногда приобретать лицензии от Microsoft, которыми я управляю в личном кабинете на сайте их сервиса. От нечего делать стал ковырять что там вообще есть и перешел на страницу Мои права доступа. А там вот такая бяка вместо моих родных русских ФИО]]></description>
+				<content:encoded><![CDATA[<p>Так как я работаю системным администратором, мне приходится иногда приобретать лицензии от Microsoft, которыми я управляю в личном кабинете на сайте их сервиса.</p>
+<p>От нечего делать стал ковырять что там вообще есть и перешел на страницу <em>Мои права доступа.</em></p>
+<p>А там вот такая бяка вместо моих родных русских ФИО <img src='http://i2.wp.com/mirvir.ru/wp-includes/images/smilies/icon_sad.gif?w=640' alt=':(' class='wp-smiley' data-recalc-dims="1" /> </p>
+<p><a href="http://i2.wp.com/mirvir.ru/wp-content/uploads/2013/02/Снимок-экрана-от-2013-02-13-111829.png"><img class="alignleft size-large wp-image-2100" alt="Снимок экрана от 2013-02-13 11:18:29" src="http://i2.wp.com/mirvir.ru/wp-content/uploads/2013/02/Снимок-экрана-от-2013-02-13-111829.png?resize=640%2C360" data-recalc-dims="1" /></a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/diskriminaciya-po-kirilicheskomu-priznaku-ot-microsoft/feed</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>Пределы.Пролог</title>
+		<link>http://mirvir.ru/predely-prolog</link>
+		<comments>http://mirvir.ru/predely-prolog#comments</comments>
+		<pubDate>Wed, 23 Jan 2013 15:00:47 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Книга]]></category>
+		<category><![CDATA[Пределы]]></category>
+		<category><![CDATA[Тексты]]></category>
+		<category><![CDATA[пролог]]></category>
+		<category><![CDATA[Текст]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2069</guid>
+		<description><![CDATA[Если у кого-то есть замечания или поправки &#8212; я с удовольствием прочту, и приму к сведению. Эту книгу я взялся писать просто из потребности выплеснуть то что накопилось в голове. Не знаю, понравится ли это кому-то, но сие есть. А еще очень хочется довести это до логического конца и дать прочитать своим дочерям, которым это [...]]]></description>
+				<content:encoded><![CDATA[<p>Если у кого-то есть замечания или поправки &#8212; я с удовольствием прочту, и приму к сведению.</p>
+<p>Эту книгу я взялся писать просто из потребности выплеснуть то что накопилось в голове. Не знаю, понравится ли это кому-то, но сие есть. А еще очень хочется довести это до логического конца и дать прочитать своим дочерям, которым это и посвящается.<span id="more-2069"></span></p>
+<h3>ПРОЛОГ</h3>
+<p>Никто уже не помнил, почему эти территории назывались Пределы. Толи из-за того что у них были пределы/ограничения, толи от слова &#171;переделы&#187;, но факт остается фактом: город Шишкино любой ребенок называл &#171;Пределы&#187;. Вернее не сам город, а большая его часть. Юг и север Пределов ограничивался промзонами, на востоке пределы заканчивались у реки Шишка, а на западе болотами через которые проходила федеральная трасса М53.</p>
+<p>Пределы делились на более мелкие территории, которые контролировались кланами. Размер территории одного Предела мог варьироваться от одного двора до нескольких микрорайонов. Всё зависело от силы клана которому принадлежал Предел.</p>
+<p>Уже который год над Пределами царила война. Она то затихала и ограничивалась небольшими стычками на границах кланов и развед-вылазками, то разгоралась до огромного пожара охватывающего все Пределы, и тогда заключались союзы, альянсы, временные перемирия, пакты, гремели сражения и ожесточенные бои.</p>
+<p>За тем чтобы не нарушались правила Пределов следило пять Старцев. Никто не знал почему именно они стали хранителями правил, с какой радости они участвовали в этих детских игрищах, и зачем им это было нужно. Но приказы Старцев соблюдались неукоснительно. Решением большинства старцы объявляли виновного в спорных случаях и назначали ему наказание. В подчинении старцев был небольшой отряд Великорослых. Они приводили в исполнение решения Старцев и любой клан должен был содействовать им в их работе.</p>
+<p>Правила Пределов были просты.</p>
+<ul>
+<li>Участие в Пределах добровольное.</li>
+<li>В Пределы принимается любой игрок чей возраст от 5 до 16 лет.</li>
+<li>Каждый участник должен носить две эмблемы &#8212; эмблему пределов и эмблему клана.</li>
+<li>На каждой эмблеме должно быть имя или никнейм игрока.</li>
+<li>За утерю одной эмблемы игрок теряет 1 единицу опыта и при победе получает в два раза меньше опыта. После боя игрок выбывает на 2 дня.</li>
+<li>За утерю 2 эмблем игрок выбывает на неделю и теряет 5 единиц опыта.</li>
+<li>Великорослые могут в произвольном порядке проверять соответствие эмблем игрока своим данным. В случае подлога игрок исключается из игры.</li>
+<li>Защищать эмблемы руками и другими частями тела разрешено.</li>
+<li>Сокращение времени выздоровления или воскрешения возможно при наличии мага жизни или некроманта.</li>
+<li>Маг жизни может восстановить ранение n/10  человек сразу или ускорить выздоровление n/5 человек на 1 день (где N= уровню мага). За одного выздоровевшего маг Жизни получает 2 опыта. За 1 ускоренное выздоровление &#8212; 2,5 опыта. Время восстановления мага за процедуру = 3 дня.</li>
+<li>Некромант может воскресить игрока за 2 дня. Количество воскрешаемых игроков = N/10. Время восстановления некроманта = 5 дней.</li>
+<li>У каждого игрока есть свой уровень который растет по мере его участия в боях, поверженных или раненых противников, по представлению командиров за выполнение нужных, но не приносящих опыта заданий.</li>
+<li>Получение опыта считается так: 1 бой = 3 опыта, Количество опыта за противника = x/y единиц. Где X &#8212; уровень проигравшего игрока (например игрок 3 уровня победил игрока 4 уровня, значит его полученный опыт будет равен 4/3 единиц опыта. Однако если победит игрок 4 уровня, то его опыт будет равен всего лишь 3/4 единиц опыта)</li>
+<li>Количество уровней неограниченно.</li>
+<li>Количество опыта для следующего уровня считается по арифметической прогрессии. Таблицу для 100 первых уровней смотрите в <a title="Приложение 1" href="http://mirvir.ru/predely-pril1" target="_blank">приложении 1</a>.</li>
+<li>Оружие вносит в игру чисто развлекательный, но не боевой момент.</li>
+<li>Оружие должно быть деревянным, и сделанным руками участника Пределов.</li>
+<li>За нанесение телесного вреда, вреда неигровому имуществу = суд Старейшин и наказание от 5 дней бана до исключения из Пределов.</li>
+</ul>
+<p>Я записал эти правила, так как всегда их забывал. Тем более я не учавствовал в Пределах с 5 лет как это разрешено в Правилах, и даже не подозревал о их существовании, поэтому запоминать мне их пришлось в спешке и на собственном опыте.</p>
+<p>Я переехал в Шишкино вместе с семьёй. Мой отец был офицером Российской Армии и мы часто мотались по стране. с 7 до 9 лет я успел сменить 3 школы, и постоять на учете в 4 детских комнатах полиции. Вечерняя порка ремнем была для меня обычным делом, а слямзить у отца или матери стольник на сигареты или шоколад, я не считал чем-то позорным или противозаконным. Частенько с компанией таких же оболтусов как я &#8212; мы отбирали деньги в школе у первоклашек, и, бывало, сами их отдавали более старшим ученикам.</p>
+<p>Но попав в Шишкино, и прожив в нём 2 месяца я понял что этот город какой-то другой. Гопоты здесь было мало. Я бы даже сказал: мизерно мало. Взрослые были какие-то собранные, не несущие на лице печать тоски, скуки, печали, депрессии. Они улыбались, радовались каждому мгновению жизни и на детей ВСЕГДА смотрели с улыбкой.</p>
+<p>Поначалу меня это очень озадачивало, и я даже начал подозревать, не перевели ли отца в какой-то спецгородок для психбольных. Однако отец меня разуверил. Он получил подполковника, ему дали квартиру и вроде как оставили в покое, обещав более не переводить. Хотя конечно на командование надеяться не стоило.</p>
+<p>Таким образом, я стал Шишкинцем в марте 2017 года. А полноправным гражданином города ощутил себя в июне&#8230;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/predely-prolog/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Ben, это Данила! I need help!</title>
+		<link>http://mirvir.ru/ben-eto-danila-i-need-help</link>
+		<comments>http://mirvir.ru/ben-eto-danila-i-need-help#comments</comments>
+		<pubDate>Wed, 16 Jan 2013 02:45:35 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Программы]]></category>
+		<category><![CDATA[2003]]></category>
+		<category><![CDATA[2008]]></category>
+		<category><![CDATA[debian]]></category>
+		<category><![CDATA[Server]]></category>
+		<category><![CDATA[windows]]></category>
+		<category><![CDATA[Кластер]]></category>
+		<category><![CDATA[Помощь]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2062</guid>
+		<description><![CDATA[Требуется совет от интернет-над-разума. В понедрельник в предприятии упал сервер на 2008 винде где был основной контроллер ActiveDirectory. Сдохла мать. Все бы ничего &#8212; есть запасной. Но на этом сервере еще была пара шар для пары отделов. Пока перенес инфу на другие, пока перенастроил пути &#8212; полдня убил. Кое-кто из юзверей давай капать директору на [...]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://i2.wp.com/mirvir.ru/wp-content/uploads/2013/01/гейтс-думает.jpg"><img class="alignleft size-full wp-image-2064" style="margin-left: 15px; margin-right: 15px;" alt="гейтс-думает" src="http://i2.wp.com/mirvir.ru/wp-content/uploads/2013/01/гейтс-думает.jpg?resize=296%2C231" data-recalc-dims="1" /></a>Требуется совет от интернет-над-разума.<br />
+В понедрельник в предприятии упал сервер на 2008 винде где был основной контроллер ActiveDirectory. Сдохла мать. Все бы ничего &#8212; есть запасной. Но на этом сервере еще была пара шар для пары отделов. Пока перенес инфу на другие, пока перенастроил пути &#8212; полдня убил.<br />
+Кое-кто из юзверей давай капать директору на мозги &#8212; мол есть методы у товарищей чтобы вообще все работало.<br />
+Он дал задание мне. Обеспечить бесперебойность работы пользователей в случае выхода из строя 1 из серверов.<br />
+На предприятии в данный момент 4 сервера -<br />
+1 на дебиане &#8212; шлюз+почта+VPN маршрутизация для виртуальных сетей предприятия.<br />
+1 на вин 2003 &#8212; база 1Cv8 + сервер терминалов для доступа к 1С.<br />
+1 на вин 2003 &#8212; бекапный сервер (собственно с него инфа и сливалась) + пара не особо важных шар (обменники)<br />
+1 на вин 2008 &#8212; дублирующий сервер АД + пара шар для отделов<br />
+1 на вин 2008 &#8212; (который помер) основной сервер АД + пара шар + работа как LDAP адресной книги (в почтовиках юзеров указан именно этот сервер)<br />
+Плюс по серверам разбросаны всякие аппаратные ключи защиты типа Guardant и Alladin<span id="more-2062"></span></p>
+<p>Обеспечить беспрерывность работы я пока вижу только в одном случае &#8212; если все будут видеть в сети 1 сервер с одним IP и одним именем &#8212; и это значит требуется какой-то кластер в котором будет крутится ВСЁ это добро которое сейчас работает на разных серверах.</p>
+<p>Допустим железо то можно пообновить, что-то докупить&#8230;<br />
+Как быть с купленными серверными лицензиями, калами? Ведь насколько я понимаю для поднятия кластера на винде придется брать и лицухи на кластерные вин-сервера.</p>
+<p>Или может быть я узко мыслю и можно еще как-то решить данную проблему?</p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/ben-eto-danila-i-need-help/feed</wfw:commentRss>
+		<slash:comments>9</slash:comments>
+		</item>
+		<item>
+		<title>Переезд</title>
+		<link>http://mirvir.ru/pereezd</link>
+		<comments>http://mirvir.ru/pereezd#comments</comments>
+		<pubDate>Mon, 24 Dec 2012 06:08:16 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Всячина]]></category>
+		<category><![CDATA[быт]]></category>
+		<category><![CDATA[переезд]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2058</guid>
+		<description><![CDATA[Я наконец-то переехал в свою хатку В минус 35-40 в субботу перевозили вещи, в такую же погоду воскресенье грузили с отцом мебель и перетаскивали барахлишко в мою конуру. Сегодня спали уже на новом месте. Дети на удивление спокойно спали в своей отдельной комнате. Я подрубил себе Иркнэт на 100 мегабит и повешал роутер на бесперебойник. [...]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/22765.jpg"><img class="alignleft size-medium wp-image-2059" style="margin-left: 15px; margin-right: 15px;" alt="22765" src="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/22765.jpg?resize=214%2C300" data-recalc-dims="1" /></a>Я наконец-то переехал в свою хатку <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /> </p>
+<p>В минус 35-40 в субботу перевозили вещи, в такую же погоду воскресенье грузили с отцом мебель и перетаскивали барахлишко в мою конуру.</p>
+<p>Сегодня спали уже на новом месте. Дети на удивление спокойно спали в своей отдельной комнате.</p>
+<p>Я подрубил себе Иркнэт на 100 мегабит и повешал роутер на бесперебойник. Подвесил дополнительную лампу на кухне над мойкой, и расставили с женой всю посуду что нам надарили 8 лет назад на свадьбу &#8212; по своим местам. Это в принципе все что я успел сделать за вечер воскресенья.</p>
+<p>Спать легли с женой около 2 ночи. Подъем в 6 утра. Поэтому я сегодня торможу как никогда <img src='http://i1.wp.com/mirvir.ru/wp-includes/images/smilies/icon_biggrin.gif?w=640' alt=':D' class='wp-smiley' data-recalc-dims="1" /> </p>
+<p>Еще конечно куча дел, как-то: доклеить обои в зале, добить линолеум, доставить плинтуса&#8230; Но все же это уже своё &#8212; родное <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/pereezd/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Посвящение Иринке.</title>
+		<link>http://mirvir.ru/posvyashhenie-irinke</link>
+		<comments>http://mirvir.ru/posvyashhenie-irinke#comments</comments>
+		<pubDate>Thu, 20 Dec 2012 14:23:15 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Бложег]]></category>
+		<category><![CDATA[Тексты]]></category>
+		<category><![CDATA[жена]]></category>
+		<category><![CDATA[Лирика]]></category>
+		<category><![CDATA[Стих]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2056</guid>
+		<description><![CDATA[Посвящается моей жене Иринке. Как долго мы уже с тобой, И я все чаще замечаю, Что стала ты такой родной, Что я души в тебе не чаю. И до сих пор, одним касаньем, Твоей руки моей рукою, Меня сбивает с ног желаньем, До смерти быть с тобой одною. И каждый раз твоя улыбка, Как зверька [...]]]></description>
+				<content:encoded><![CDATA[<p>Посвящается моей жене Иринке.</p>
+<p>Как долго мы уже с тобой,<br />
+И я все чаще замечаю,<br />
+Что стала ты такой родной,<br />
+Что я души в тебе не чаю.</p>
+<p>И до сих пор, одним касаньем,<br />
+Твоей руки моей рукою,<br />
+Меня сбивает с ног желаньем,<br />
+До смерти быть с тобой одною.</p>
+<p>И каждый раз твоя улыбка,<br />
+Как зверька хитрый промелькнувши,<br />
+Подобно блеску золотого слитка,<br />
+Мой разжигает взор потухший.</p>
+<p>И нежность рвется из груди на долгие мгновенья,<br />
+И слов мне не найти чтоб передать,<br />
+Что я люблю тебя до умопомраченья,<br />
+И за тебя могу последнее отдать.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/posvyashhenie-irinke/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Праздник к нам приходит!</title>
+		<link>http://mirvir.ru/prazdnik-k-nam-prixodit</link>
+		<comments>http://mirvir.ru/prazdnik-k-nam-prixodit#comments</comments>
+		<pubDate>Wed, 19 Dec 2012 23:12:53 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Бложег]]></category>
+		<category><![CDATA[Фото]]></category>
+		<category><![CDATA[it]]></category>
+		<category><![CDATA[Елка]]></category>
+		<category><![CDATA[Новый Год]]></category>
+		<category><![CDATA[Праздник]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2049</guid>
+		<description><![CDATA[Нарядили елочку к Новому Году в нашем отделе Елочка антиквариат &#8212; 40 лет от роду. На украшения пошли компакты, флешки, разобранный винчестер]]></description>
+				<content:encoded><![CDATA[<p>Нарядили елочку к Новому Году в нашем отделе <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" />  Елочка антиквариат &#8212; 40 лет от роду. На украшения пошли компакты, флешки, разобранный винчестер <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /> </p>
+<div id="attachment_2050" class="wp-caption aligncenter" style="width: 310px"><a href="http://i1.wp.com/mirvir.ru/wp-content/uploads/2012/12/IMG107.jpg"><img class="size-medium wp-image-2050" alt="Елка" src="http://i1.wp.com/mirvir.ru/wp-content/uploads/2012/12/IMG107.jpg?resize=300%2C225" data-recalc-dims="1" /></a><p class="wp-caption-text">К Новому Году готовы!</p></div>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/prazdnik-k-nam-prixodit/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Debian Wheezy + Gnome 3 = Немного скриншотов</title>
+		<link>http://mirvir.ru/debian-wheezy-gnome-3-nemnogo-skrinshotov</link>
+		<comments>http://mirvir.ru/debian-wheezy-gnome-3-nemnogo-skrinshotov#comments</comments>
+		<pubDate>Fri, 14 Dec 2012 00:54:54 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Linux]]></category>
+		<category><![CDATA[Картинки]]></category>
+		<category><![CDATA[debian]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[скриншоты]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2039</guid>
+		<description><![CDATA[Удалил с домашнего ноутбка ubuntu 12.10 и поставил тестинг Debian. Что удивительно &#8212; работает шустрее убунты, гном не падает, с несколькими дополнениями на Gnome 3 вполне можно жить. Из софта стоит Deadbeef, Dropbox, Skype, Gajim, LAMP, свежий Iceweasel. Ну и пока &#8212; не разобрался еще почему расширенный настройщик гнома не видит установленные из репозитория дополнительные [...]]]></description>
+				<content:encoded><![CDATA[<p>Удалил с домашнего ноутбка ubuntu 12.10 и поставил тестинг Debian. Что удивительно &#8212; работает шустрее убунты, гном не падает, с несколькими дополнениями на Gnome 3 вполне можно жить.</p>
+<p>Из софта стоит Deadbeef, Dropbox, Skype, Gajim, LAMP, свежий Iceweasel.</p>
+<p>Ну и пока &#8212; не разобрался еще почему расширенный настройщик гнома не видит установленные из репозитория дополнительные темы для гнома и иконок. но это фигня <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /><br />
+Под катом немного скриншотов <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /> <span id="more-2039"></span></p>
+<p style="text-align: center;"><a href="http://i2.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000659.png"><img class="size-medium wp-image-2046" alt="Снимок экрана от 2012-12-14 00:06:59" src="http://i2.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000659.png?resize=300%2C168" data-recalc-dims="1" /></a> <a href="http://i1.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000609.png"><img class="size-medium wp-image-2045" alt="Снимок экрана от 2012-12-14 00:06:09" src="http://i1.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000609.png?resize=300%2C168" data-recalc-dims="1" /></a> <a href="http://i1.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000550.png"><img class="size-medium wp-image-2044" alt="Снимок экрана от 2012-12-14 00:05:50" src="http://i1.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000550.png?resize=300%2C168" data-recalc-dims="1" /></a> <a href="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000529.png"><img class="size-medium wp-image-2043" alt="Снимок экрана от 2012-12-14 00:05:29" src="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000529.png?resize=300%2C168" data-recalc-dims="1" /></a> <a href="http://i2.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000503.png"><img class="size-medium wp-image-2042" alt="Снимок экрана от 2012-12-14 00:05:03" src="http://i2.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000503.png?resize=300%2C168" data-recalc-dims="1" /></a> <a href="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000428.png"><img class="size-medium wp-image-2041" alt="Снимок экрана от 2012-12-14 00:04:28" src="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000428.png?resize=300%2C168" data-recalc-dims="1" /></a> <a href="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000316.png"><img class="aligncenter size-medium wp-image-2040" alt="Снимок экрана от 2012-12-14 00:03:16" src="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/12/Снимок-экрана-от-2012-12-14-000316.png?resize=300%2C168" data-recalc-dims="1" /></a></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/debian-wheezy-gnome-3-nemnogo-skrinshotov/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Почистил плагины</title>
+		<link>http://mirvir.ru/pochistil-plaginy</link>
+		<comments>http://mirvir.ru/pochistil-plaginy#comments</comments>
+		<pubDate>Thu, 11 Oct 2012 04:52:22 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Бложег]]></category>
+		<category><![CDATA[blog]]></category>
+		<category><![CDATA[зачистка]]></category>
+		<category><![CDATA[Плагины]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2029</guid>
+		<description><![CDATA[Отключил в блоге Disqus. Он перестал синхронизировать комментарии в своей системе и в блоге. То бишь комменты отправленные в дискус &#8212; перестали появляться в базе блога. Не люблю быть зависимым от стороннего сервиса в случае его накрывания какой-нибудь звездой. Лучше уж встроенные буду использовать. Отрубил Fancy Gallery &#8212; фоток, картинок и прочих котиков я размещаю [...]]]></description>
+				<content:encoded><![CDATA[<p><a href="http://i2.wp.com/mirvir.ru/wp-content/uploads/2012/10/awc3varwe.jpeg"><img class="alignleft size-full wp-image-2030" title="awc3varwe" alt="" src="http://i2.wp.com/mirvir.ru/wp-content/uploads/2012/10/awc3varwe.jpeg?resize=259%2C194" data-recalc-dims="1" /></a>Отключил в блоге Disqus. Он перестал синхронизировать комментарии в своей системе и в блоге. То бишь комменты отправленные в дискус &#8212; перестали появляться в базе блога. Не люблю быть зависимым от стороннего сервиса в случае его накрывания какой-нибудь звездой. Лучше уж встроенные буду использовать.</p>
+<p>Отрубил Fancy Gallery &#8212; фоток, картинок и прочих котиков я размещаю мало, а назойливое красное сообщение что я такой негодяй не хочу им закинуть бабла &#8212; надоело.</p>
+<p>Отрубил ultimate tinymce &#8212; весь функционал не использую, а страница добавления записи грузится дольше. Да и проще порой в html накидать то что надо чем извращаться с WYSIWYG. Как результат &#8212; еще пара плагинов использующих этот &#8212; тоже полетели нахер.</p>
+<p>Так же выкинул User File manager &#8212; надо будет &#8212; залью на файлохостинг. В конце-концов у меня блог, а не портал <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /> </p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/pochistil-plaginy/feed</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>Очистка кеша squid в Debian/Ubuntu</title>
+		<link>http://mirvir.ru/ochistka-kesha-squid-v-debianubuntu</link>
+		<comments>http://mirvir.ru/ochistka-kesha-squid-v-debianubuntu#comments</comments>
+		<pubDate>Thu, 11 Oct 2012 02:45:51 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Linux]]></category>
+		<category><![CDATA[Склерозник]]></category>
+		<category><![CDATA[cache]]></category>
+		<category><![CDATA[debian]]></category>
+		<category><![CDATA[squid]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[очистка]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2017</guid>
+		<description><![CDATA[Бывает нужно очистить кеш прокси-сервера squid. В Debian/Ubuntu это делается так: sudo service squid stop Ждем остановки squid, и удаляем весь кеш (путь может отличаться в зависимости от настроек) sudo rm -rf /var/spool/squid/* Пересоздаем структуру кеша sudo squid -z Запускаем squid sudo service squid start]]></description>
+				<content:encoded><![CDATA[<p>Бывает нужно очистить кеш прокси-сервера squid. В Debian/Ubuntu это делается так:<br />
+<code>sudo service squid stop</code><br />
+Ждем остановки squid, и удаляем весь кеш (путь может отличаться в зависимости от настроек)<br />
+<code>sudo rm -rf /var/spool/squid/*</code><br />
+Пересоздаем структуру кеша<br />
+<code>sudo squid -z</code><br />
+Запускаем squid<br />
+<code>sudo service squid start</code></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/ochistka-kesha-squid-v-debianubuntu/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Конвертирование тегов mp3 в utf8 на Ubuntu</title>
+		<link>http://mirvir.ru/konvertirovanie-tegov-mp3-v-utf8-na-ubuntu</link>
+		<comments>http://mirvir.ru/konvertirovanie-tegov-mp3-v-utf8-na-ubuntu#comments</comments>
+		<pubDate>Thu, 11 Oct 2012 02:14:22 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Linux]]></category>
+		<category><![CDATA[Склерозник]]></category>
+		<category><![CDATA[mp3]]></category>
+		<category><![CDATA[tags]]></category>
+		<category><![CDATA[Ubuntu]]></category>
+		<category><![CDATA[utf8]]></category>
+		<category><![CDATA[конвертирование]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=2014</guid>
+		<description><![CDATA[С этой заметки — начну раздел напоминалок для себя. Читать этот раздел необязательно. Просто надоело постоянно одно и тоже искать по всему интернету. Устанавливаем python-mutagen: apt-get install python-mutagen Переходим в директорию с музыкой и запускаем: find -iname '*.mp3' -print0 &#124; xargs -0 mid3iconv -eCP1251 --remove-v1]]></description>
+				<content:encoded><![CDATA[<p>С этой заметки — начну раздел напоминалок для себя. Читать этот раздел необязательно. Просто надоело постоянно одно и тоже искать по всему интернету.</p>
+<p>Устанавливаем python-mutagen:<br />
+<code>apt-get install python-mutagen</code><br />
+Переходим в директорию с музыкой и запускаем:<br />
+<code>find -iname '*.mp3' -print0 | xargs -0 mid3iconv -eCP1251 --remove-v1</code></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/konvertirovanie-tegov-mp3-v-utf8-na-ubuntu/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Периодическое отключение пользователей от SAMBA shares</title>
+		<link>http://mirvir.ru/periodicheskoe-otklyuchenie-polzovatelej-ot-samba-shares</link>
+		<comments>http://mirvir.ru/periodicheskoe-otklyuchenie-polzovatelej-ot-samba-shares#comments</comments>
+		<pubDate>Tue, 09 Oct 2012 02:06:30 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Linux]]></category>
+		<category><![CDATA[Samba]]></category>
+		<category><![CDATA[shares]]></category>
+		<category><![CDATA[users]]></category>
+		<category><![CDATA[отключения]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=1999</guid>
+		<description><![CDATA[Всем доброго дня. давно не писал, но вот прижало. А прижала меня одна проблема, про которую в интернетах гуглится очень плохо. Суть проблемы. Имеется сервер на Linux Zentyal (в основе Ubuntu 10.04 LTS). На этом сервере крутится samba и создана папка общего доступа со входом в нее под логином и паролем. Проблема в том, что [...]]]></description>
+				<content:encoded><![CDATA[<div><a href="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/10/samba_logo.jpg"><img class="alignleft  wp-image-2002" style="margin: 5px 15px;" title="samba_logo" src="http://i0.wp.com/mirvir.ru/wp-content/uploads/2012/10/samba_logo.jpg?resize=152%2C180" alt="" data-recalc-dims="1" /></a>Всем доброго дня. давно не писал, но вот прижало. А прижала меня одна проблема, про которую в интернетах гуглится очень плохо.<br />
+Суть проблемы. Имеется сервер на Linux Zentyal (в основе Ubuntu 10.04 LTS). На этом сервере крутится samba и создана папка общего доступа со входом в нее под логином и паролем. Проблема в том, что периодически (раза 2-3 за день) программы работающие с этой шарой (1С и другая специфичная утилита) отваливаются и не могут найти свои БД которые находятся на этой шаре. так же периодами отваливаются сетевые диски подключенные в Windows на машинах клиентов. Логин в шары и подключение &#8212; работают идеально, однако ж отваливание программ в процессе работы в них &#8212; чревато истериками со стороны сотрудниц.<br />
+Под катом привожу логи и конфиг. PDC не используется, так что конфигурация диска H: может игнорироваться. Буду благодарен если кто подскажет кто сталкивался с подобной проблемой и как решил её.</div>
+<p><span id="more-1999"></span></p>
+<p>В логах смог обнаружить только такое:</p>
+<p><code><br />
+mirivlad@user210:~$ sudo cat /var/log/samba/user238<br />
+[2012/10/01 09:32:15, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/01 09:32:15, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. Permission denied<br />
+[2012/10/01 09:32:15, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/01 09:32:15, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/01 09:32:15, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/01 09:32:15, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/01 09:32:29, 0] lib/util_sock.c:539(read_fd_with_timeout)<br />
+[2012/10/01 09:32:29, 0] lib/util_sock.c:1491(get_peer_addr_internal)<br />
+getpeername failed. Error was Transport endpoint is not connected<br />
+read_fd_with_timeout: client 0.0.0.0 read error = Connection reset by peer.<br />
+[2012/10/02 10:31:30, 1] smbd/service.c:1063(make_connection_snum)<br />
+user238 (192.168.10.21) connect to service work initially as user verbickaya (uid=2005, gid=1901) (pid 1794)<br />
+[2012/10/02 10:34:30, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 10:34:30, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 10:47:31, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 10:47:31, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:00:32, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:00:32, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:13:32, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:13:32, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:26:33, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:26:33, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:39:33, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:39:33, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:52:34, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 11:52:34, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:05:35, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:05:35, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:18:35, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:18:35, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:31:36, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:31:36, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:44:36, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:44:36, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:57:37, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 12:57:37, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:10:37, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:10:37, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:23:38, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:23:38, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:36:38, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:36:38, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:49:39, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 13:49:39, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:02:40, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:02:40, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:15:40, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:15:40, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:28:41, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:28:41, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:41:41, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:41:41, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:54:42, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 14:54:42, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:07:43, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:07:43, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:20:43, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:20:43, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:33:44, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:33:44, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:46:44, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:46:44, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:59:45, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 15:59:45, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 16:12:45, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 16:12:45, 0] printing/print_cups.c:103(cups_connect)<br />
+Unable to connect to CUPS server localhost:631 - Connection refused<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:539(read_fd_with_timeout)<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:1491(get_peer_addr_internal)<br />
+getpeername failed. Error was Transport endpoint is not connected<br />
+read_fd_with_timeout: client 0.0.0.0 read error = Connection timed out.<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:738(write_data)<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:1491(get_peer_addr_internal)<br />
+getpeername failed. Error was Transport endpoint is not connected<br />
+write_data: write failure in writing to client 0.0.0.0. Error Broken pipe<br />
+[2012/10/02 16:13:55, 0] smbd/process.c:62(srv_send_smb)<br />
+Error writing 75 bytes to client. -1. (Transport endpoint is not connected)<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:738(write_data)<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:1491(get_peer_addr_internal)<br />
+getpeername failed. Error was Transport endpoint is not connected<br />
+write_data: write failure in writing to client 0.0.0.0. Error Broken pipe<br />
+[2012/10/02 16:13:55, 0] smbd/process.c:62(srv_send_smb)<br />
+Error writing 75 bytes to client. -1. (Transport endpoint is not connected)<br />
+[2012/10/02 16:13:55, 1] smbd/service.c:1240(close_cnum)<br />
+user238 (192.168.10.21) closed connection to service work<br />
+[2012/10/02 16:13:55, 0] lib/util_sock.c:1491(get_peer_addr_internal)<br />
+getpeername failed. Error was Transport endpoint is not connected<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. Permission denied<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. Permission denied<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. Permission denied<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. Permission denied<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:43, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:43, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. Permission denied<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. Permission denied<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/verbickay failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service verbickay<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. Permission denied<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 1] smbd/service.c:676(make_connection_snum)<br />
+create_connection_server_info failed: NT_STATUS_ACCESS_DENIED<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. Permission denied<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:44, 0] param/loadparm.c:8569(process_usershare_file)<br />
+process_usershare_file: stat of /var/lib/samba/usershares/wor failed. No such file or directory<br />
+[2012/10/08 09:24:44, 0] smbd/service.c:1202(make_connection)<br />
+user238 (192.168.10.21) couldn't find service wor<br />
+[2012/10/08 09:24:57, 0] lib/util_sock.c:539(read_fd_with_timeout)<br />
+[2012/10/08 09:24:57, 0] lib/util_sock.c:1491(get_peer_addr_internal)<br />
+getpeername failed. Error was Transport endpoint is not connected<br />
+read_fd_with_timeout: client 0.0.0.0 read error = Connection reset by peer.</code></p>
+<p>Сам конфиг самбы сгенерированый в админке Zentyal:</p>
+<p><code>[global]<br />
+workgroup = ZENTYAL-DOMAIN<br />
+netbios name = venera<br />
+server string = Zentyal File Server<br />
+enable privileges = yes<br />
+interfaces = lo,eth0<br />
+bind interfaces only = yes<br />
+passdb backend = ldapsam:ldapi://%2fvar%2frun%2fslapd%2fldapi<br />
+ldap ssl = off<br />
+log level = 1<br />
+syslog = 0<br />
+log file = /var/log/samba/%m<br />
+max log size = 50<br />
+include = /etc/samba/smb.conf.%m<br />
+vfs objects = full_audit<br />
+full_audit:success = connect opendir open disconnect unlink mkdir rmdir rename<br />
+full_audit:failure = none<br />
+smb ports = 137 138 139 445<br />
+name resolve order = wins bcast hosts<br />
+time server = yes<br />
+printcap name = CUPS<br />
+wins support = yes<br />
+dns proxy = yes<br />
+ldap suffix = dc=user210,dc=office,dc=kp,dc=ru<br />
+ldap machine suffix = ou=Computers<br />
+ldap user suffix = ou=Users<br />
+ldap group suffix = ou=Groups<br />
+ldap idmap suffix = ou=Idmap<br />
+ldap admin dn = cn=ebox,dc=user210,dc=office,dc=kp,dc=ru<br />
+map acl inherit = yes<br />
+printing = cups<br />
+map to guest = Bad User<br />
+encrypt passwords = yes<br />
+obey pam restrictions = no<br />
+ldap passwd sync = yes<br />
+mangling method = hash2<br />
+logon script = zentyal-logon.bat<br />
+logon drive = H:<br />
+logon home =<br />
+logon path =<br />
+domain logons = yes<br />
+os level = 65<br />
+preferred master = yes<br />
+domain master = yes<br />
+add user script = /usr/sbin/smbldap-useradd -m "%u"<br />
+ldap delete dn = yes<br />
+add machine script = /usr/sbin/smbldap-useradd -w "%u"<br />
+add group script = /usr/sbin/smbldap-groupadd -p "%g"<br />
+add user to group script = /usr/sbin/smbldap-groupmod -m "%u" "%g"<br />
+delete user from group script = /usr/sbin/smbldap-groupmod -x "%u" "%g"<br />
+set primary group script = /usr/sbin/smbldap-usermod -g "%g" "%u"</p>
+<p>[netlogon]<br />
+path = /home/samba/netlogon/<br />
+browseable = no<br />
+read only = yes</p>
+<p>[profiles]<br />
+path = /home/samba/profiles<br />
+browseable = no<br />
+read only = no<br />
+guest ok = yes<br />
+valid users = %U<br />
+admin users = @"Domain Admins"<br />
+map hidden = yes<br />
+map system = yes<br />
+create mask = 0611<br />
+directory mask = 0711<br />
+profile acls = yes<br />
+csc policy = disable<br />
+hide files = /desktop.ini/outlook*.lnk/*Briefcase*/</p>
+<p>[homes]<br />
+comment = Home Directories<br />
+valid users = %S<br />
+read only = no<br />
+browseable = no<br />
+vfs objects = full_audit</p>
+<p>[all]<br />
+comment = for All<br />
+path = /home/samba/shares/all<br />
+browseable = yes<br />
+read only = no<br />
+guest only = yes<br />
+guest ok = yes<br />
+force create mode = 0660<br />
+force directory mode = 0660<br />
+vfs objects = full_audit<br />
+[work]<br />
+comment = work<br />
+path = /home/samba/shares/work<br />
+browseable = yes<br />
+read only = no<br />
+valid users = "carkova", @"sotrudniki"<br />
+read list = "carkova"<br />
+write list = @"sotrudniki"<br />
+admin users =<br />
+force create mode = 0660<br />
+force directory mode = 0660<br />
+vfs objects = full_audit<br />
+[1c]<br />
+comment = 1c<br />
+path = /home/samba/shares/1c<br />
+browseable = yes<br />
+read only = no<br />
+valid users = "sidinhe", "yarkova"<br />
+read list =<br />
+write list = "sidinhe", "yarkova"<br />
+admin users =<br />
+force create mode = 0660<br />
+force directory mode = 0660<br />
+vfs objects = full_audit<br />
+[UC]<br />
+comment = UC_programm<br />
+path = /home/samba/shares/uc<br />
+browseable = yes<br />
+read only = no<br />
+valid users = @"uc", "carkova"<br />
+read list =<br />
+write list = @"uc", "carkova"<br />
+admin users =<br />
+force create mode = 0660<br />
+force directory mode = 0660<br />
+vfs objects = full_audit<br />
+[root]<br />
+comment = root<br />
+path = /<br />
+browseable = yes<br />
+read only = no<br />
+valid users = "mirv"<br />
+read list =<br />
+write list =<br />
+admin users = "mirv"<br />
+force create mode = 0660<br />
+force directory mode = 0660<br />
+vfs objects = full_audit</p>
+<p>[zentyal-internal-backups]<br />
+path = /var/lib/zentyal/conf/backups<br />
+browseable = yes<br />
+read only = yes<br />
+valid users = @"Domain Admins"<br />
+admin users = @"Domain Admins"<br />
+force group = ebox<br />
+force user = ebox</p>
+<p>[zentyal-quarantine]<br />
+path = /var/lib/zentyal/quarantine<br />
+browseable = yes<br />
+read only = no<br />
+valid users = @"Domain Admins"<br />
+admin users = @"Domain Admins"</p>
+<p>[print$]<br />
+comment = "Printer Drivers"<br />
+path = /var/lib/samba/printers<br />
+browseable = yes<br />
+read only = yes<br />
+guest ok = no<br />
+write list = @"Domain Admins"<br />
+valid users = @"Domain Users"<br />
+</code></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/periodicheskoe-otklyuchenie-polzovatelej-ot-samba-shares/feed</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Oldschool</title>
+		<link>http://mirvir.ru/oldschool</link>
+		<comments>http://mirvir.ru/oldschool#comments</comments>
+		<pubDate>Fri, 15 Jun 2012 07:55:31 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Без рубрики]]></category>
+		<category><![CDATA[Заметочки]]></category>
+		<category><![CDATA[genius]]></category>
+		<category><![CDATA[oldschool]]></category>
+		<category><![CDATA[photo]]></category>
+		<category><![CDATA[track]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=1986</guid>
+		<description><![CDATA[Oldschool!! Вот такое откопал у нас на работе она даже вроде как рабочее twitter.com/mirivlad/statu… &#8212; mirivlad (@mirivlad) Juni 15, 2012]]></description>
+				<content:encoded><![CDATA[<blockquote class="twitter-tweet" width="550" lang="de"><p>Oldschool!! Вот такое откопал у нас на работе <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':-)' class='wp-smiley' data-recalc-dims="1" />  она даже вроде как рабочее <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':-)' class='wp-smiley' data-recalc-dims="1" />  <a href="http://t.co/d9d7p1Uv" title="http://twitter.com/mirivlad/status/213537603419521024/photo/1">twitter.com/mirivlad/statu…</a></p>
+<p>&mdash; mirivlad (@mirivlad) <a href="https://twitter.com/mirivlad/status/213537603419521024" data-datetime="2012-06-15T07:45:07+00:00">Juni 15, 2012</a></p></blockquote>
+<p><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/oldschool/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Проблема с переключение раскладки при логине в Linux Mint Debian Edition</title>
+		<link>http://mirvir.ru/problema-s-pereklyuchenie-raskladki-pri-logine-v-linux-mint-debian-edition</link>
+		<comments>http://mirvir.ru/problema-s-pereklyuchenie-raskladki-pri-logine-v-linux-mint-debian-edition#comments</comments>
+		<pubDate>Fri, 08 Jun 2012 00:14:50 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Linux]]></category>
+		<category><![CDATA[debian]]></category>
+		<category><![CDATA[mate]]></category>
+		<category><![CDATA[MInt]]></category>
+		<category><![CDATA[клавиатура]]></category>
+		<category><![CDATA[раскладка]]></category>
+		<category><![CDATA[русский]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=1984</guid>
+		<description><![CDATA[Собственно решил глянуть на Linux Mint Debian Edition c MATE из коробки. С помощью Unetbootin залил образ на флешку, запустил лайв, запустил установку. При установке выбрал русскую локаль. Логин и пароль ввел на английской раскладке. После установки получил систему в которую нельзя войти, так как на экране логина требуется ввести имя и пароль на английском, [...]]]></description>
+				<content:encoded><![CDATA[<p>Собственно решил глянуть на Linux Mint Debian Edition c MATE из коробки. С помощью Unetbootin залил образ на флешку, запустил лайв, запустил установку. При установке выбрал русскую локаль. Логин и пароль ввел на английской раскладке. После установки получил систему в которую нельзя войти, так как на экране логина требуется ввести имя и пароль на английском, а раскладка на русском и не переключается ни одним из известных вариантов (потмоу что тупо нет английской раскладки в настройках и настроить без входа в систему нельзя). такая же беда с консолью. Решение нагуглилось за пять минут.<span id="more-1984"></span><br />
+Первое что надо сделать &#8212; загрузиться с live-usb.<br />
+Ну а далее отредактировать в /etc/mdm/mdm.conf для автологина в систему чтобы поправить раскладки в настройках MATE</p>
+<p><code>[daemon]<br />
+AutomaticLoginEnable=true<br />
+AutomaticLogin=(ваш логин на нАглицком)</code></p>
+<p>Осталось поправить локаль в /etc/default/locale:<br />
+<code><br />
+LANG=ru_RU.UTF-8<br />
+LANGUAGE="en:ru"</code></p>
+<p>И настройки клавиатуры в /etc/default/keyboard:</p>
+<p><code>XKBMODEL="pc105"<br />
+XKBLAYOUT="us,ru"<br />
+XKBVARIANT=","<br />
+XKBOPTIONS="grp:ctrl_shift_toggle,grp_led:scroll"</code></p>
+<p>Потом перезагрузиться и установить console-cyrillic для вменяемой кириллизации в консоли и снова reboot.<br />
+Даже не знаю. Если такая же беда при установке Wheezy (который я буду пробовать только после релиза и только если mate будет в репах) то это грустно.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/problema-s-pereklyuchenie-raskladki-pri-logine-v-linux-mint-debian-edition/feed</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Пролог.</title>
+		<link>http://mirvir.ru/prolog</link>
+		<comments>http://mirvir.ru/prolog#comments</comments>
+		<pubDate>Thu, 07 Jun 2012 07:56:54 +0000</pubDate>
+		<dc:creator>Mirivlad</dc:creator>
+				<category><![CDATA[Книга]]></category>
+		<category><![CDATA[noname]]></category>
+		<category><![CDATA[война]]></category>
+
+		<guid isPermaLink="false">http://mirvir.ru/?p=1977</guid>
+		<description><![CDATA[Хочу вот попробовать написать что-то более-менее большое. Не ругайтесь если коряво выходит, давно ничего внятного не писал кроме как в микроблогах. Готов обсудить где, чего как, может есть предложения как продолжить? Это началось, как и бывает обычно, внезапно. Лишь вчера еще люди праздновали девятое мая, смотрели на салюты, поминали дедов и прадедов павших на полях [...]]]></description>
+				<content:encoded><![CDATA[<p>Хочу вот попробовать написать что-то более-менее большое. Не ругайтесь если коряво выходит, давно ничего внятного не писал кроме как в микроблогах. Готов обсудить где, чего как, может есть предложения как продолжить? <img src='http://i0.wp.com/mirvir.ru/wp-includes/images/smilies/icon_smile.gif?w=640' alt=':)' class='wp-smiley' data-recalc-dims="1" /> </p>
+<p><span id="more-1977"></span></p>
+<hr />
+Это началось, как и бывает обычно, внезапно. Лишь вчера еще люди праздновали девятое мая, смотрели на салюты, поминали дедов и прадедов павших на полях сражений за Родину&#8230; А сегодня, только собираясь на работу и включив телевизоры они уже смотрели сообщение генерального штаба коалиции НАТО по демократизации России. Это было первым шоком. Вместо мыла мелодрам, дурацких телепередач с вечно улыбающимися телеведущими, люди увидели хмурое лицо чернокожего американского генерала, который на чистейшем русском языке призывал не принимать попыток сопротивления войскам вводимым на территорию России. Всё делалось на благо народа. После стольких лет волнений, неурядиц, нечестных выборов братский народ Америки решил помочь русским гражданам в святом деле обретения свободы и свержении узурпаторского режима. Так сказал черный генерал и его хмурое лицо сменилось заставкой в виде развевающегося флага и гимна США.</p>
+<p>Это и правда было шоком. Для всех. Российское руководство рвало и метало, требуя срочно вернуть контроль над телевещанием, которое с таким трудом удалось перевести на цифровые рельсы всего-то несколько лет назад. Потом руководство рвало и метало генералов всех спецслужб, потому что над столицей оказывается уже несколько часов велись бои беспилотников, однако наверх не было доложено, потому что проморгали. Автоматика вела контрразведывательный бой в воздухе, а мирные граждане спокойно спали.</p>
+<p>Гонор русских о своей исключительности, непобедимости и т.д. был основательно погнут одним ударом НАТОвской махины. Взлом системы цифрового телевещания, практически уничтоженные (и без того малочисленные в виду дороговизны и ненадежности) беспилотники, скопившиеся у границ Латвии, Польши, Финляндии полки коалиции развернувшиеся и готовые махнуть через невидимую линию, означавшую войну, по первому приказу.</p>
+<p>Напряжение в то утро охватило всех. Российский президент провел совещание. Потом второе. Третье. Были телефонные переговоры с главами стран бывшего Союза. Потом состоялся долгий и тяжелый разговор с президентом США. Условия были на редкость простые. Снятие всего правительства. Установление демократического режима под началом назначенных советом ООН управленцев. Снятие привилегий, дипломатической, депутатской неприкосновенности. Расследование и суд государственных аппаратчиков.</p>
+<p>Об этих требованиях россиянам поведала красивая стройная блондинка с ослепительной белозубой улыбкой. Буквально через 5 минут после разговора президентов США и России.</p>
+<p>Некоторые вздрогнули. Некоторые радостно потерли руки. Многие непонимающе смотрели на блондинку, которая продолжала вещать о том что в случае непринятия условий США на территорию России будут введены войска коалиции для свержения диктаторского режима.</p>
+<p>Оставалась надежда на ядерную кнопку. &#171;Они не посмеют&#187;, &#8212; думали все. &#171;Они знают что у нас есть, что мы можем&#187;. Однако всех ткнули носом в общее дерьмо. У Американцев тоже были кнопки. И они тоже могли. Нажать кнопку означало не просто войну. Это означало конец всем. И чемоданчики с кнопками остались болтаться у ответственных сотрудников как мера крайнего воздействия &#8212; как шанс на возмездие в случае проигрыша.</p>
+<p>А кампания набирала обороты. Интернет на территории России работал с перебоями. Провайдерские узлы прогибались под мощными DDoS направленными на государственные ресурсы. Множество сайтов гос.контор было взломано и задефейсено на издевательскую надпись на главной странице &#8212; Здесь был Bill <img src='http://i2.wp.com/mirvir.ru/wp-includes/images/smilies/icon_wink.gif?w=640' alt=';-)' class='wp-smiley' data-recalc-dims="1" /> . Забугорные социальные сети стали недоступны. внутренние еле шевелились. Весь иностранный трафик был ограничен в ноль.</p>
+<p>Стала сбоить сотовая связь. Базовые станции закупленные за границей имели все необходимое для перехвата управления над ними спецслужбами Америки, где встраивание черного хода во все ИТ и около них системы было неотъемлемым требованием к массовому их производству.</p>
+<p>Компьютеры, планшеты, ноуты, смартфоны пользователей веселили всех красивыми глюками от вирусни жившей в них все то время как они были выпущены с конвейера. Зашифрованные документы, испорченные файловые таблицы, затертые данные, остановленные сервисы&#8230; С производств стали поступать тревожные сообщения о выходе из строя SCAD систем, остановке производства, нагло врущем мониторинге. В стране в спешке начали останавливать от греха подальше даже АЭС которые в основном уже давно были переведены на отечественное железо и софт.</p>
+<p>Времени на раздумье у руководства страны оставалось все меньше.</p>
+]]></content:encoded>
+			<wfw:commentRss>http://mirvir.ru/prolog/feed</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>
