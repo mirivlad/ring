@@ -4,8 +4,7 @@ $this->load->view('templates/header');
 {news}
 <h3>{title}</h3>
 <p>
-    <span class="date"><?php
-        echo $data$pubDate;</span>
+    <span class="date">{pubDate}</span>
     <br>
     {description}
 </p>
