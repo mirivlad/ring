@@ -5,7 +5,7 @@ $this->load->view('templates/header');
 <h3>{title}</h3>
 <p>
     <span class="date"><?php
-        echo $data$pubDate</span>
+        echo $data$pubDate;</span>
     <br>
     {description}
 </p>
