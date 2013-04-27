@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <title>Проект CI - {title}</title>
+        <title>Проект "Кольцо" - {title}</title>
         <link href="/assets/css/themes/<?php echo $this->config->item('theme'); ?>/bootstrap.min.css" rel="stylesheet" media="screen">
         <style type="text/css">
             body {
@@ -27,7 +27,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="/">CI - Проект</a>
+                    <a class="brand" href="/">Проект "Кольцо"</a>
                     <div class="nav-collapse collapse navbar-responsive-collapse">
                         <ul class="nav">
                             <li class="{main}"><a href="/" >Главная</a></li>
@@ -94,5 +94,4 @@
         <div class="container-fluid">
             <div class="row-fluid">
 		<?php $this->load->view('templates/sidebar'); ?>
-
                 <div class="span10">
