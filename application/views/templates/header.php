@@ -12,11 +12,20 @@
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" media="all" href="/assets/css/whhg.css" />
+        <link rel="stylesheet" type="text/css" media="all" href="/assets/css/font-awesome.min.css" />
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+        <![endif]-->
 	<?php
 	echo $this->notify->initJsCss();
 	?>
-	<!--{adding}-->
+	<?php
+        if(isset($header_add) AND is_array($header_add)){
+            foreach ($header_add as $value) {
+                echo $value;
+            }
+        }
+        ?>
     </head>
     <body>
         <div class="navbar navbar-fixed-top" style="margin-bottom: 2em;">

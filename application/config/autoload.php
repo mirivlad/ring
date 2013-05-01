@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'parser', 'dx_auth', 'pagination', 'session', 'notify');
+$autoload['libraries'] = array('database', 'parser', 'dx_auth', 'pagination', 'session', 'notify', 'utils');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array('dx_auth/user_profile');
 
 
 /* End of file autoload.php */
