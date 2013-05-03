@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'parser', 'dx_auth', 'pagination', 'session', 'notify', 'utils');
+$autoload['libraries'] = array('database', 'parser', 'dx_auth', 'pagination', 'session', 'notify', 'utils','migration');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('url');
 |
 */
 
-$autoload['config'] = array('pagination');
+$autoload['config'] = array('pagination','migration');
 
 
 /*

@@ -21,10 +21,27 @@ class Admin extends CI_Controller {
     }
 
     function index() {
-        $this->data['title'] = "Администрирование системы";
-        $this->parser->parse('admin/admin_panel', $this->data);
-    }
+        $this->data['title'] = "Панель администратора";
+        $this->data['current_db'] = $this->migration->get_db_version();
+        $this->data['actual_db'] = $this->migration->get_fs_version();
 
+        $this->parser->parse('admin/admin_panel', $this->data);
+        
+    }
+    
+    public function update_db() {
+        if ($this->dx_auth->is_admin()){
+            $this->data['title'] = 'Обновление Базы Данных';
+            if ( ! $this->migration->current()) {
+                $this->data['error'] = $this->migration->error_string();
+                $this->notify->error($this->migration->error_string());
+            }	
+            $this->data['error'] = "Все операции выполнены.";
+            $this->parser->parse('admin/update_db', $this->data);
+        }else{
+            redirect("/auth/login");
+        }
+    }
     function users() {
 
         $this->load->model('dx_auth/users', 'users');

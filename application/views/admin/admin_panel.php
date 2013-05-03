@@ -8,7 +8,7 @@ $this->load->view('templates/header');
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle text-success" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-                    <span class="text-success icon-user"> Администрирование пользователей</span>
+                    <span class="text-success icon-user"> <strong>Администрирование Пользователей</strong></span>
                 </a>
             </div>
             <div id="collapseOne" class="accordion-body collapse">
@@ -26,16 +26,20 @@ $this->load->view('templates/header');
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-                    <span class="text-success icon-user"> Администрирование пользователей</span>
+                    <span class="text-success icon-suitcase"> <strong>Администрирование Системы</strong></span>
                 </a>
             </div>
             <div id="collapseTwo" class="accordion-body collapse">
                 <div class="accordion-inner">
                     <ul class="unstyled">
-                        <li><i class="icon-list"></i>&nbsp;&nbsp;<a href="/admin/users">Список пользователей</a></li>
-                        <li><i class="icon-list-alt"></i>&nbsp;&nbsp;<a href="/admin_panel/list_groups">Список групп</a></li>
-                        <li><i class="icon-plus"></i>&nbsp;&nbsp;<a href="/admin_panel/create_user">Создание пользователя</a></li>
-                        <li><i class="icon-plus-sign"></i>&nbsp;&nbsp;<a href="/admin_panel/create_group">Создание группы</a></li>
+                        <?php
+                        if($current_db < $actual_db){
+                            $db = "<li><i class=\"icon-arrow-up\" style=\"color: #f33;\"></i>&nbsp;&nbsp;<a href=\"/admin/update_db\">Выполнить обновление до версии ".$actual_db."</a></li>";
+                        }else{
+                            $db = "<li><i class=\"icon-ok\" style=\"color: #3f3;\"></i>&nbsp;&nbsp;База данных в актуальном состоянии</a></li>"; 
+                        }
+                        ?>
+                        <?=$db?>
                     </ul>
                 </div>
             </div>
