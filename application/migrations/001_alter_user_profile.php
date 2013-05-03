@@ -30,16 +30,17 @@ class Migration_Alter_user_profile extends CI_Migration {
             'birthdate'=> array(
                 'type' => 'DATE'
                 ),
+            'description'=> array(
+                'type' => 'TEXT'
+                ),
             'sex'=> array(
                 'type' => 'SET', 
                 'constraint' => array(
                     "men","women","not_set"
                 ), 
                 "default" => "not_set"
-                ),
-            'description'=> array(
-                'type' => 'TEXT'
                 )
+
         );
         $this->dbforge->add_column('user_profile', $fields);
 	}

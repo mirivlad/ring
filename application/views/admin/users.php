@@ -36,7 +36,12 @@ $this->load->view('templates/header');
 	<?php
 	foreach ($users as $user) {
 	    $banned = ($user->banned == 1) ? '<i style="color:red;">Забанен</i>' : '<i style="color:green;">Не забанен</i>';
-            $avatar = $this->user_profile->get_profile_field($user->id, "avatar")->result()[0]->avatar;
+            $ava_query = $this->user_profile->get_profile_field($user->id, "avatar")->result();
+            if(count($ava_query)){
+                $avatar = $ava_query[0]->avatar;
+            }else{
+                $avatar = 'default.png';
+            }
             
 	    ?>
     	<tr>

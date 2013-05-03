@@ -380,9 +380,10 @@ class Auth extends CI_Controller {
                 $this->user_profile->set_profile($user_id, $data);
                 redirect($this->uri->uri_string());
             }
-
-            $data['user_profile'] = $this->user_profile->get_profile($user_id)->result()[0];
-            $data['user_profile']->login = $this->users->get_user_by_id($user_id)->result()[0]->username;
+            $user_profile = $this->user_profile->get_profile($user_id)->result();
+            $data['user_profile'] = $user_profile[0];
+            $login = $this->users->get_user_by_id($user_id)->result();
+            $data['user_profile']->login = $login[0]->username;
             $data['footer_add'][] = "
                 <script src=\"/assets/js/bootstrap-datepicker.js\"></script>
                 <script>
