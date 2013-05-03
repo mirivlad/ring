@@ -22,9 +22,17 @@ class User_Profile extends CI_Model {
 	}
 
 	function get_profile($user_id)
-	{
+	{       
 		$this->db->where('user_id', $user_id);
-		return $this->db->get($this->_table);
+                $q = $this->db->get($this->_table);
+                if ($q->result()){
+                    return $q;
+                }else{
+                    $this->create_profile($user_id);
+                    $this->db->where('user_id', $user_id);
+                    $q = $this->db->get($this->_table);
+                }
+		return $q;
 	}
 
 	function set_profile($user_id, $data)

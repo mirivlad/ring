@@ -28,7 +28,7 @@ class Admin extends CI_Controller {
     function users() {
 
         $this->load->model('dx_auth/users', 'users');
-
+        $this->load->model('dx_auth/user_profile', 'user_profile');
         // Search checkbox in post array
         foreach ($_POST as $key => $value) {
             // If checkbox found
@@ -81,7 +81,7 @@ class Admin extends CI_Controller {
 
         // Get all users
         $data['users'] = $this->users->get_all($offset, $row_count)->result();
-
+        //$data['user_profile'] = $this->user_profile;
         // Pagination config
         $p_config['base_url'] = '/admin/users/';
         $p_config['uri_segment'] = 3;

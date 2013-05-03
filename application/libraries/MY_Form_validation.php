@@ -248,7 +248,45 @@ class MY_Form_Validation extends CI_Form_validation {
 			}
 		}
 	}
+        /**
+	 * Alpha
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	bool
+	 */
+	public function alpha($str)
+	{
+		return ( ! preg_match("/^([a-zа-яё])+$/ui", $str)) ? FALSE : TRUE;
+	}
 
+	// --------------------------------------------------------------------
+
+	/**
+	 * Alpha-numeric
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	bool
+	 */
+	public function alpha_numeric($str)
+	{
+		return ( ! preg_match("/^([a-zа-яё0-9])+$/ui", $str)) ? FALSE : TRUE;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Alpha-numeric with underscores and dashes
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	bool
+	 */
+	public function alpha_dash($str)
+	{
+		return ( ! preg_match("/^([-a-zа-яё0-9_-])+$/i", $str)) ? FALSE : TRUE;
+	}
 }
 
 // END Parser Class

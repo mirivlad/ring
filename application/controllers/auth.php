@@ -91,7 +91,8 @@ class Auth extends CI_Controller {
 
             if ($val->run() AND $this->dx_auth->login($val->set_value('username'), $val->set_value('password'), $val->set_value('remember'))) {
                 // Redirect to homepage
-                redirect('', 'location');
+                $redirect = $this->input->post('redirect_url', TRUE);
+                redirect($redirect, 'location');
             } else {
                 // Check if the user is failed logged in because user is banned user or not
                 if ($this->dx_auth->is_banned()) {
@@ -115,7 +116,9 @@ class Auth extends CI_Controller {
                 }
             }
         } else {
-            redirect('', 'location');
+            $redirect = $this->input->post('redirect_url', TRUE);
+            redirect($redirect, 'location');
+
             //$data['auth_message'] = 'You are already logged in.';
             //$this->load->view($this->dx_auth->logged_in_view, $data);
         }
@@ -331,21 +334,55 @@ class Auth extends CI_Controller {
     }
 
     function edit_profile($id = '') {
+        $this->load->model('dx_auth/users', 'users');
+        $this->load->model('dx_auth/user_profile', 'user_profile');
         if (!$this->dx_auth->is_logged_in()) {
             $this->dx_auth->deny_access('login');
         }
         if ($id == '' OR $this->dx_auth->is_admin()) {
+            if (isset($id) AND $id != '') {
+                $user_id = $id;
+            } else {
+                $user_id = $this->dx_auth->get_user_id();
+            }
+            if (!count($this->users->get_user_by_id($user_id)->result())) {
+                $this->notify->setComeback('/auth/edit_profile');
+                $this->notify->returnError('Такого пользователя не существует!');
+                //redirect("/auth/edit_profile",'location');
+            }
+
+
             $data['title'] = "Редактирование профиля пользователя";
             $val = $this->form_validation;
             // Set form validation rules
-            $this->load->model('dx_auth/user_profile', 'user_profile');
-            $user_id = $this->dx_auth->get_user_id();
-            $user_profile = $this->utils->object_to_array(
-                    $this->user_profile->get_profile($user_id)->result()
-            );
-            $data['user_profile'] = $user_profile[0];
+            $val->set_rules('first_name', 'Имя', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('middle_name', 'Отчество', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('surname', 'Фамилия', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('country', 'Страна', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('city', 'Город', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('website', 'Сайт', "trim|prep_url|xss_clean");
+            $val->set_rules('birthdate', 'Дата рождения', "trim|xss_clean");
+            $val->set_rules('sex', 'Пол', "trim|description|xss_clean");
+            $val->set_rules('description', 'Подпись', "trim|max_length[1000]|xss_clean");
+            
+            if ($val->run()) {
+                $data = array(
+                    "first_name" => $this->input->post('first_name', TRUE),
+                    "middle_name" => $this->input->post('middle_name', TRUE),
+                    "surname" => $this->input->post('surname', TRUE),
+                    "country" => $this->input->post('country', TRUE),
+                    "city" => $this->input->post('city', TRUE),
+                    "website" => $this->input->post('website', TRUE),
+                    "birthdate" => date("Y-m-d",strtotime($this->input->post('birthdate', TRUE))),
+                    "sex" => $this->input->post('sex', TRUE),
+                    "description" => $this->input->post('description', TRUE),
+                );
+                $this->user_profile->set_profile($user_id, $data);
+                redirect($this->uri->uri_string());
+            }
 
-            $data['user_profile']['login'] = $this->dx_auth->get_username();
+            $data['user_profile'] = $this->user_profile->get_profile($user_id)->result()[0];
+            $data['user_profile']->login = $this->users->get_user_by_id($user_id)->result()[0]->username;
             $data['footer_add'][] = "
                 <script src=\"/assets/js/bootstrap-datepicker.js\"></script>
                 <script>
@@ -354,12 +391,8 @@ class Auth extends CI_Controller {
                     $('#dp3').datepicker();
                     });
                 </script>";
-            $data['header_add'][]="<link href=\"/assets/css/datepicker.css\" rel=\"stylesheet\">";
+            $data['header_add'][] = "<link href=\"/assets/css/datepicker.css\" rel=\"stylesheet\">";
             $this->parser->parse('auth/edit_profile', $data);
-//            echo "<pre>";
-//            print_r($data['user_profile']);
-//            echo "</pre>";
-            //$val->set_rules('web', 'URL', 'trim|required|xss_clean|valid_url');
         }
     }
 

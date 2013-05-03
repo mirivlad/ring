@@ -23,6 +23,7 @@ $this->load->view('templates/header');
         <tr>
             <th></th>
             <th>ID</th>
+            <th>Аватар</th>
             <th>Логин</th>
             <th>Email</th>
             <th>Роль</th>
@@ -30,14 +31,18 @@ $this->load->view('templates/header');
             <th>Последний IP</th>
             <th>Последний вход</th>
             <th>Дата регистрации</th>
+            <th>Опции</th>
         </tr>
 	<?php
 	foreach ($users as $user) {
 	    $banned = ($user->banned == 1) ? '<i style="color:red;">Забанен</i>' : '<i style="color:green;">Не забанен</i>';
+            $avatar = $this->user_profile->get_profile_field($user->id, "avatar")->result()[0]->avatar;
+            
 	    ?>
     	<tr>
     	    <td><?php echo form_checkbox('checkbox_' . $user->id, $user->id) ?></td>
     	    <td><?= $user->id ?></td>
+            <td><img src="/assets/img/avatars/<?=$avatar?>"</td>
     	    <td><?= $user->username ?></td>
     	    <td><?= $user->email ?></td>
     	    <td><?= $user->role_name ?></td>
@@ -45,6 +50,7 @@ $this->load->view('templates/header');
     	    <td><?= $user->last_ip ?></td>
     	    <td><?= date('Y-m-d', strtotime($user->last_login)) ?></td>
     	    <td><?= date('Y-m-d', strtotime($user->created)) ?></td>
+            <td><a href="/auth/edit_profile/<?= $user->id ?>"><i class="icon-edit"></i> Изменить профиль</a></td>
     	</tr>
 	    <?php
 	}
