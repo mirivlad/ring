@@ -16,7 +16,7 @@
 */
 
 $config['DX_website_name'] = 'Проект Кольцо';
-$config['DX_webmaster_email'] = 'webmaster@ci.local';
+$config['DX_webmaster_email'] = 'sk@kommunar.su';
 
 /*
 |--------------------------------------------------------------------------

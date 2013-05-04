@@ -44,6 +44,22 @@ $this->load->view('templates/header');
                 </div>
             </div>
         </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse3">
+                    <span class="text-success icon-info-sign"> <strong>Информация о системе</strong></span>
+                </a>
+            </div>
+            <div id="collapse3" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ul class="unstyled">
+                        <?php
+                            phpinfo();
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     </fieldset>
 </div>
