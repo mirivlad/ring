@@ -11,6 +11,8 @@ class Admin extends CI_Controller {
         $this->load->library('table');
         $this->lang->load('dx_auth');
         $this->dx_auth->check_uri_permissions();
+        $this->load->helper('url');
+        $this->load->helper('form');
 //        if (!$this->dx_auth->logged_in()) {
 //            //redirect them to the login page
 //            redirect('auth/login', 'refresh');
@@ -275,6 +277,35 @@ class Admin extends CI_Controller {
 
         // Load view
         $this->parser->parse('admin/custom_permissions', $data);
+    }
+    
+    function create_user() {
+        
+            $val = $this->form_validation;
+            $data['title'] = "Создание пользователя";
+            // Set form validation rules			
+            $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
+            $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
+            $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
+            $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+
+
+            // Run form validation and register user if it's pass the validation
+            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+                // Set success message accordingly
+                if ($this->dx_auth->email_activation) {
+                    $data['auth_message'] = 'Пользователь зарегистрирован. На его email высланы данные об активации. <br> 
+                        Так же вы можете активировать пользователя вручную <a href="/admin/unactivated_users"> по этой ссылке</a>.';
+                } else {
+                    $data['auth_message'] = 'Пользователь зарегистрирован. Вы можете сообщить ему данные для входа любым доступным вам способом, так как вы отключили активацию по email.';
+                }
+
+                // Load registration success page
+                $this->parser->parse($this->dx_auth->register_success_view, $data);
+            } else {
+                // Load registration page
+                $this->parser->parse($this->dx_auth->register_view, $data);
+            }
     }
 
 }

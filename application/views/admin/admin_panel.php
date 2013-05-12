@@ -15,6 +15,7 @@ $this->load->view('templates/header');
                 <div class="accordion-inner">
                     <ul class="unstyled">
                         <li><i class="icon-list"></i>&nbsp;&nbsp;<a href="/admin/users">Список пользователей</a></li>
+                        <li><i class="icon-user"></i>&nbsp;&nbsp;<a href="/admin/create_user">Создать пользователя</a></li>
                         <li><i class="icon-list-alt"></i>&nbsp;&nbsp;<a href="/admin/unactivated_users">Не активированные пользователи</a></li>
                         <li><i class="icon-star"></i>&nbsp;&nbsp;<a href="/admin/roles">Роли</a></li>
                         <li><i class="icon-certificate"></i>&nbsp;&nbsp;<a href="/admin/uri_permissions">Права доступа к URI</a></li>

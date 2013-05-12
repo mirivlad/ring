@@ -206,7 +206,7 @@ $config['DX_reset_password_uri'] = '/auth/reset_password/';
 */
 
 // Registration
-$config['DX_allow_registration'] = TRUE; 
+$config['DX_allow_registration'] = FALSE; 
 $config['DX_captcha_registration'] = TRUE;
 
 // Login
@@ -246,5 +246,11 @@ $config['DX_validation_error_prefix'] = ' <div class="alert alert-error">
 	    <button type="button" class="close" data-dismiss="alert">&times;</button>
 	    <h4>Ошибка!</h4>';
 $config['DX_validation_error_suffix'] = '</div>';
+
+    // Used for registering and changing password form validation
+$config['min_username'] = 4;
+$config['max_username'] = 20;
+$config['min_password'] = 4;
+$config['max_password'] = 20;
 
 ?>

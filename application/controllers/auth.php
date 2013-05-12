@@ -136,8 +136,8 @@ class Auth extends CI_Controller {
             $val = $this->form_validation;
             $data['title'] = "Регистрация";
             // Set form validation rules			
-            $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->min_username . ']|max_length[' . $this->max_username . ']|callback_username_check|alpha_dash');
-            $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
+            $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
+            $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
             $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
 
@@ -155,7 +155,7 @@ class Auth extends CI_Controller {
                 }
 
                 // Load registration success page
-                $this->load->view($this->dx_auth->register_success_view, $data);
+                $this->parser->parse($this->dx_auth->register_success_view, $data);
             } else {
                 // Is registration using captcha
                 if ($this->dx_auth->captcha_registration) {
@@ -173,7 +173,8 @@ class Auth extends CI_Controller {
             $this->parser->parse($this->dx_auth->logged_in_view, $data);
         }
     }
-
+    
+    
     function register_recaptcha() {
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
@@ -202,17 +203,17 @@ class Auth extends CI_Controller {
                 }
 
                 // Load registration success page
-                $this->load->view($this->dx_auth->register_success_view, $data);
+                $this->parser->parse($this->dx_auth->register_success_view, $data);
             } else {
                 // Load registration page
-                $this->load->view('auth/register_recaptcha_form');
+                $this->parser->parse('auth/register_recaptcha_form');
             }
         } elseif (!$this->dx_auth->allow_registration) {
-            $data['auth_message'] = 'Registration has been disabled.';
-            $this->load->view($this->dx_auth->register_disabled_view, $data);
+            $data['auth_message'] = 'Самостоятельная регистрация отключена. Обратитесь к администратору для ручной регистрации. Контакты администратора системы <a href="/contacts">здесь</a>.';
+            $this->parser->parse($this->dx_auth->register_disabled_view, $data);
         } else {
-            $data['auth_message'] = 'You have to logout first, before registering.';
-            $this->load->view($this->dx_auth->logged_in_view, $data);
+            $data['auth_message'] = 'Вы уже вошли в систему. Регистрация невозможна.';
+            $this->parser->parse($this->dx_auth->logged_in_view, $data);
         }
     }
 
@@ -364,7 +365,7 @@ class Auth extends CI_Controller {
             $val->set_rules('birthdate', 'Дата рождения', "trim|xss_clean");
             $val->set_rules('sex', 'Пол', "trim|description|xss_clean");
             $val->set_rules('description', 'Подпись', "trim|max_length[1000]|xss_clean");
-            
+
             if ($val->run()) {
                 $data = array(
                     "first_name" => $this->input->post('first_name', TRUE),
@@ -373,7 +374,7 @@ class Auth extends CI_Controller {
                     "country" => $this->input->post('country', TRUE),
                     "city" => $this->input->post('city', TRUE),
                     "website" => $this->input->post('website', TRUE),
-                    "birthdate" => date("Y-m-d",strtotime($this->input->post('birthdate', TRUE))),
+                    "birthdate" => date("Y-m-d", strtotime($this->input->post('birthdate', TRUE))),
                     "sex" => $this->input->post('sex', TRUE),
                     "description" => $this->input->post('description', TRUE),
                 );

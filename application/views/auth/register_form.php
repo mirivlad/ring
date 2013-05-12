@@ -68,8 +68,10 @@ $this->load->view('templates/header');
                 <?php echo form_input($email) ?>
             </div>
         </div>
-
-        <?php if ($this->dx_auth->captcha_registration): ?>
+        
+        <?php 
+        if (uri_string() != "admin/create_user") {
+            if ($this->dx_auth->captcha_registration) { ?>
 
             <div class="control-group">
                 <label class="control-label" for="captcha"><i class="icon-barcode"></i> Код с картинки</label>
@@ -79,8 +81,10 @@ $this->load->view('templates/header');
                 <div class="controls text-info">Введите код с картинки. Ноля на ней не бывает.</div>
                 <div class="controls"><?php echo $this->dx_auth->get_captcha_image(); ?></div>
             </div>
-
-        <?php endif; ?>
+        <?php
+            }
+        }
+        ?>
         <div class="control-group">
             <div class="controls">
                 <?php echo form_submit('register', 'Регистрация', ' class="btn btn-primary"'); ?>
