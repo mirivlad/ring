@@ -3,13 +3,13 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
     <?php
     // Show error
     //echo validation_errors($this->config->item('DX_validation_error_prefix'),$this->config->item('DX_validation_error_suffix'));
 
     ?>
-    <div class="text-center">{pagination}</div>
+    <div class="text-center"><?=$pagination?></div>
     <?= form_open($this->uri->uri_string());?>
     <?= form_submit('activate', 'Активировать', ' class="btn btn-primary"');?>
     <hr/>
@@ -51,7 +51,7 @@ $this->load->view('templates/header');
     ?>
     </table>
     <?= form_close();?>
-    <div class="text-center">{pagination}</div>
+    <div class="text-center"><?=$pagination?></div>
     </fieldset>
 </div>
 <?php

@@ -19,13 +19,13 @@ class Contacts extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->library('parser');
+		
 		$data = array(
 		    'title' => 'Контакты',
 		    'contacts' => 'active'
 		);
 
-		$this->parser->parse('contacts', $data);
+		$this->load->view('contacts', $data);
 		//$this->load->view('welcome_message');
 	}
 }

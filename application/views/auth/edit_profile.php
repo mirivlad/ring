@@ -67,7 +67,7 @@ $this->load->view('templates/header');
 <div class="span10">
 
     <fieldset>
-        <legend>{title} : <?= $user_profile->login ?></legend>
+        <legend><?=$title?> : <?= $user_profile->login ?></legend>
         <?php echo form_open($this->uri->uri_string(), ' class="form-horizontal"') ?>
         <div class="control-group">
             <label class="control-label" for="surname">Фамилия</label>

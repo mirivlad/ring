@@ -112,7 +112,7 @@ class Auth extends CI_Controller {
                     }
                     //$data['ip']=  $this->input->ip_address();
                     // Load login page view
-                    $this->parser->parse('auth/login', $data);
+                    $this->load->view('auth/login', $data);
                 }
             }
         } else {
@@ -155,7 +155,7 @@ class Auth extends CI_Controller {
                 }
 
                 // Load registration success page
-                $this->parser->parse($this->dx_auth->register_success_view, $data);
+                $this->load->view($this->dx_auth->register_success_view, $data);
             } else {
                 // Is registration using captcha
                 if ($this->dx_auth->captcha_registration) {
@@ -163,14 +163,14 @@ class Auth extends CI_Controller {
                 }
 
                 // Load registration page
-                $this->parser->parse($this->dx_auth->register_view, $data);
+                $this->load->view($this->dx_auth->register_view, $data);
             }
         } elseif (!$this->dx_auth->allow_registration) {
             $data['auth_message'] = 'Регистрация отключена.';
-            $this->parser->parse($this->dx_auth->register_disabled_view, $data);
+            $this->load->view($this->dx_auth->register_disabled_view, $data);
         } else {
             $data['auth_message'] = 'Сначало нужно выполнить выход с сайта, чтобы можно было зарегистрироваться.';
-            $this->parser->parse($this->dx_auth->logged_in_view, $data);
+            $this->load->view($this->dx_auth->logged_in_view, $data);
         }
     }
     
@@ -203,17 +203,17 @@ class Auth extends CI_Controller {
                 }
 
                 // Load registration success page
-                $this->parser->parse($this->dx_auth->register_success_view, $data);
+                $this->load->view($this->dx_auth->register_success_view, $data);
             } else {
                 // Load registration page
-                $this->parser->parse('auth/register_recaptcha_form');
+                $this->load->view('auth/register_recaptcha_form');
             }
         } elseif (!$this->dx_auth->allow_registration) {
             $data['auth_message'] = 'Самостоятельная регистрация отключена. Обратитесь к администратору для ручной регистрации. Контакты администратора системы <a href="/contacts">здесь</a>.';
-            $this->parser->parse($this->dx_auth->register_disabled_view, $data);
+            $this->load->view($this->dx_auth->register_disabled_view, $data);
         } else {
             $data['auth_message'] = 'Вы уже вошли в систему. Регистрация невозможна.';
-            $this->parser->parse($this->dx_auth->logged_in_view, $data);
+            $this->load->view($this->dx_auth->logged_in_view, $data);
         }
     }
 
@@ -225,10 +225,10 @@ class Auth extends CI_Controller {
         // Activate user
         if ($this->dx_auth->activate($username, $key)) {
             $data['auth_message'] = 'Ваш аккаунт активирован. ' . anchor(site_url($this->dx_auth->login_uri), 'Войти');
-            $this->parser->parse($this->dx_auth->activate_success_view, $data);
+            $this->load->view($this->dx_auth->activate_success_view, $data);
         } else {
             $data['auth_message'] = 'Код активации неверен. Проверьте свой email и попробуйте снова.';
-            $this->parser->parse($this->dx_auth->activate_failed_view, $data);
+            $this->load->view($this->dx_auth->activate_failed_view, $data);
         }
     }
 
@@ -241,9 +241,9 @@ class Auth extends CI_Controller {
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('login'))) {
             $data['auth_message'] = 'На ваш адрес email было отправлено письмо с инструкциями по активации вашего нового пароля.';
-            $this->parser->parse($this->dx_auth->forgot_password_success_view, $data);
+            $this->load->view($this->dx_auth->forgot_password_success_view, $data);
         } else {
-            $this->parser->parse($this->dx_auth->forgot_password_view, $data);
+            $this->load->view($this->dx_auth->forgot_password_view, $data);
         }
     }
 
@@ -255,10 +255,10 @@ class Auth extends CI_Controller {
         // Reset password
         if ($this->dx_auth->reset_password($username, $key)) {
             $data['auth_message'] = 'Ваш пароль успешно изменен, ' . anchor(site_url($this->dx_auth->login_uri), 'Вход');
-            $this->parser->parse($this->dx_auth->reset_password_success_view, $data);
+            $this->load->view($this->dx_auth->reset_password_success_view, $data);
         } else {
             $data['auth_message'] = 'Сброс пароля не выполнен. Имя или ключ не правильные. Проверьте письмо которое мы вам отправили и следуйте инструкции.';
-            $this->parser->parse($this->dx_auth->reset_password_failed_view, $data);
+            $this->load->view($this->dx_auth->reset_password_failed_view, $data);
         }
     }
 
@@ -275,9 +275,9 @@ class Auth extends CI_Controller {
             // Validate rules and change password
             if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
                 $data['auth_message'] = 'Ваш пароль успешно изменен.';
-                $this->parser->parse($this->dx_auth->change_password_success_view, $data);
+                $this->load->view($this->dx_auth->change_password_success_view, $data);
             } else {
-                $this->parser->parse($this->dx_auth->change_password_view, $data);
+                $this->load->view($this->dx_auth->change_password_view, $data);
             }
         } else {
             // Redirect to login page
@@ -304,7 +304,7 @@ class Auth extends CI_Controller {
                     'size' => 30
                 );
                 //$this->load->view($this->dx_auth->cancel_account_view);
-                $this->parser->parse('auth/cancel_account', $data);
+                $this->load->view('auth/cancel_account', $data);
             }
         } else {
             // Redirect to login page
@@ -394,7 +394,7 @@ class Auth extends CI_Controller {
                     });
                 </script>";
             $data['header_add'][] = "<link href=\"/assets/css/datepicker.css\" rel=\"stylesheet\">";
-            $this->parser->parse('auth/edit_profile', $data);
+            $this->load->view('auth/edit_profile', $data);
         }
     }
 

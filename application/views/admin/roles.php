@@ -3,12 +3,9 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
     <?php
     // Show error
-    //echo validation_errors($this->config->item('DX_validation_error_prefix'),$this->config->item('DX_validation_error_suffix'));
-
-
     // Build drop down menu
     $options[0] = 'Нет';
     foreach ($roles as $role) {

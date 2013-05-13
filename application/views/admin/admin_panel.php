@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
     <div class="accordion" id="accordion2">
         <div class="accordion-group">
             <div class="accordion-heading">
@@ -54,9 +54,7 @@ $this->load->view('templates/header');
             <div id="collapse3" class="accordion-body collapse">
                 <div class="accordion-inner">
                     <ul class="unstyled">
-                        <?php
-                            phpinfo();
-                        ?>
+                        <li><a href="/admin/phpinfo">phpinfo();</li>
                     </ul>
                 </div>
             </div>

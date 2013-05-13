@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
     <?php
     echo '<b>Выберите роль для настройки её разрешений.</b><br/><br/>';
 
@@ -39,7 +39,7 @@ $this->load->view('templates/header');
     </div>
 <?php
     echo form_label('', 'uri_label');
-    print_r ($options);
+
     echo '<hr/>';
 
     echo form_checkbox('edit', '1', $edit);

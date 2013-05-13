@@ -32,7 +32,7 @@ $email = array(
 <html>
 <body>
 
-<fieldset><legend>Register</legend>
+<fieldset><legend><?=$title?></legend>
 <?php echo form_open($this->uri->uri_string())?>
 
 <dl>

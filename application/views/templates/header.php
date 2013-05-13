@@ -2,7 +2,7 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <title>Проект "Кольцо" - {title}</title>
+        <title>Проект "Кольцо" - <?=$title?></title>
         <link href="/assets/css/themes/<?php echo $this->config->item('theme'); ?>/bootstrap.min.css" rel="stylesheet" media="screen">
 
         <style type="text/css">
@@ -53,16 +53,15 @@
                         </a>
                         <a class="brand" href="/">Проект "Кольцо"</a>
                         <div class="nav-collapse collapse navbar-responsive-collapse">
-                            <ul class="nav">
-                                <li class="{main}"><a href="/" >Главная</a></li>
-                                <li class="{about}"><a href="/about">О проекте</a></li>
-                                <li class="{contacts}"><a href="/contacts">Контакты</a></li>
+                            <ul class="menu nav">
+                                <li><a href="/" >Главная</a></li>
+                                <li><a href="/about">О проекте</a></li>
+                                <li><a href="/contacts">Контакты</a></li>
                             </ul>
                             <form class="navbar-search pull-right" action="">
                                 <input class="search-query span2" placeholder="Поиск..." type="text">
                             </form>
                             <ul class="nav pull-right">
-                                <li><a href="#">Link</a></li>
                                 <li class="divider-vertical"></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Действия <b class="caret"></b></a>
@@ -108,6 +107,7 @@
                                         </ul>
                                     <?php } ?>
                                 </li>
+                                <li class="divider-vertical"></li>
                             </ul>
                         </div><!-- /.nav-collapse -->
                     </div>

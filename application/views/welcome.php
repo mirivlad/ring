@@ -2,7 +2,7 @@
 $this->load->view('templates/header');
 ?>
 <fieldset>
-    <legend>{title}</legend>
+    <legend><?=$title?></legend>
     <h4>Последние изменения в коде проекта. Данные получены из ATOM-ленты GitHub.</h4>
     <hr>
     <br>

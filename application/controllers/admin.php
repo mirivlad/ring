@@ -27,7 +27,7 @@ class Admin extends CI_Controller {
         $this->data['current_db'] = $this->migration->get_db_version();
         $this->data['actual_db'] = $this->migration->get_fs_version();
 
-        $this->parser->parse('admin/admin_panel', $this->data);
+        $this->load->view('admin/admin_panel', $this->data);
         
     }
     
@@ -39,7 +39,7 @@ class Admin extends CI_Controller {
                 $this->notify->error($this->migration->error_string());
             }	
             $this->data['error'] = "Все операции выполнены.";
-            $this->parser->parse('admin/update_db', $this->data);
+            $this->load->view('admin/update_db', $this->data);
         }else{
             redirect("/auth/login");
         }
@@ -114,7 +114,7 @@ class Admin extends CI_Controller {
         $data['pagination'] = $this->pagination->create_links();
         $data['title'] = "Пользователи";
         // Load view
-        $this->parser->parse('admin/users', $data);
+        $this->load->view('admin/users', $data);
     }
 
     function unactivated_users() {
@@ -162,7 +162,7 @@ class Admin extends CI_Controller {
         $data['pagination'] = $this->pagination->create_links();
 
         // Load view
-        $this->parser->parse('admin/unactivated_users', $data);
+        $this->load->view('admin/unactivated_users', $data);
     }
 
     function roles() {
@@ -194,7 +194,7 @@ class Admin extends CI_Controller {
         $data['roles'] = $this->roles->get_all()->result();
 
         // Load view
-        $this->parser->parse('admin/roles', $data);
+        $this->load->view('admin/roles', $data);
     }
 
     function uri_permissions() {
@@ -231,7 +231,7 @@ class Admin extends CI_Controller {
         $data['allowed_uris'] = $this->permissions->get_permission_value($role_id, 'uri');
 
         // Load view
-        $this->parser->parse('admin/uri_permissions', $data);
+        $this->load->view('admin/uri_permissions', $data);
     }
 
     function custom_permissions() {
@@ -276,7 +276,7 @@ class Admin extends CI_Controller {
         $data['delete'] = $this->permissions->get_permission_value($role_id, 'delete');
 
         // Load view
-        $this->parser->parse('admin/custom_permissions', $data);
+        $this->load->view('admin/custom_permissions', $data);
     }
     
     function create_user() {
@@ -301,11 +301,15 @@ class Admin extends CI_Controller {
                 }
 
                 // Load registration success page
-                $this->parser->parse($this->dx_auth->register_success_view, $data);
+                $this->load->view($this->dx_auth->register_success_view, $data);
             } else {
                 // Load registration page
-                $this->parser->parse($this->dx_auth->register_view, $data);
+                $this->load->view($this->dx_auth->register_view, $data);
             }
+    }
+    
+    function phpinfo(){
+        $this->load->view("admin/phpinfo");
     }
 
 }

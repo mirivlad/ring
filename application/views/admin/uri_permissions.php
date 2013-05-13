@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
 	<?php
 	// Build drop down menu
 	foreach ($roles as $role) {

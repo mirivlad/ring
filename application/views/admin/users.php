@@ -3,7 +3,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
 
  
 <?php   
@@ -18,7 +18,7 @@ $this->load->view('templates/header');
     echo '<hr/>';
     ?>
 
-    <div class="text-center">{pagination}</div>
+    <div class="text-center"><?=$pagination?></div>
     <table class="table table-striped table-bordered" width="100%">
         <tr>
             <th></th>
@@ -44,25 +44,25 @@ $this->load->view('templates/header');
             }
             
 	    ?>
-    	<tr>
-    	    <td><?php echo form_checkbox('checkbox_' . $user->id, $user->id) ?></td>
-    	    <td><?= $user->id ?></td>
-            <td><img src="/assets/img/avatars/<?=$avatar?>"</td>
-    	    <td><?= $user->username ?></td>
-    	    <td><?= $user->email ?></td>
-    	    <td><?= $user->role_name ?></td>
-    	    <td><div class="text-center"><?= $banned ?></div></td>
-    	    <td><?= $user->last_ip ?></td>
-    	    <td><?= date('Y-m-d', strtotime($user->last_login)) ?></td>
-    	    <td><?= date('Y-m-d', strtotime($user->created)) ?></td>
-            <td><a href="/auth/edit_profile/<?= $user->id ?>"><i class="icon-edit"></i> Изменить профиль</a></td>
-    	</tr>
+            <tr>
+                <td><?php echo form_checkbox('checkbox_' . $user->id, $user->id) ?></td>
+                <td><?= $user->id ?></td>
+                <td><img src="/assets/img/avatars/<?=$avatar?>"</td>
+                <td><?= $user->username ?></td>
+                <td><?= $user->email ?></td>
+                <td><?= $user->role_name ?></td>
+                <td><div class="text-center"><?= $banned ?></div></td>
+                <td><?= $user->last_ip ?></td>
+                <td><?= date('Y-m-d', strtotime($user->last_login)) ?></td>
+                <td><?= date('Y-m-d', strtotime($user->created)) ?></td>
+                <td><a href="/auth/edit_profile/<?= $user->id ?>"><i class="icon-edit"></i> Изменить профиль</a></td>
+            </tr>
 	    <?php
 	}
 	?>
     </table>
     <?php echo form_close(); ?>
-    <div class="text-center">{pagination}</div>
+    <div class="text-center"><?=$pagination?></div>
     </fieldset>
 </div>
 <?php

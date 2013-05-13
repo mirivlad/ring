@@ -1,7 +1,7 @@
 <?php
 $password = array(
 	'name'	=> 'password',
-	'id'		=> 'password',
+	'id'	=> 'password',
 	'size' 	=> 30
 );
 
@@ -13,7 +13,7 @@ $this->load->view('templates/header');
 <div class="span10">
 
 <fieldset>
-<legend>{title}</legend>
+<legend><?=$title?></legend>
 <?php echo form_open($this->uri->uri_string()); ?>
 
 <?php echo $this->dx_auth->get_auth_error(); ?>

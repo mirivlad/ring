@@ -19,13 +19,12 @@ class About extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->library('parser');
 		$data = array(
 		    'title' => 'О проекте',
 		    'about' => 'active'
 		);
 
-		$this->parser->parse('about', $data);
+		$this->load->view('about', $data);
 		//$this->load->view('welcome_message');
 	}
 }

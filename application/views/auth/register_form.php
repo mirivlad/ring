@@ -42,7 +42,7 @@ $this->load->view('templates/header');
 <div class="span10">
 
     <fieldset>
-        <legend>{title}</legend>
+        <legend><?=$title?></legend>
         <?php echo form_open($this->uri->uri_string(), ' class="form-horizontal"') ?>
         <div class="control-group">
             <label class="control-label" for="username"><i class="icon-user"></i> Логин</label>

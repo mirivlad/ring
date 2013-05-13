@@ -30,7 +30,7 @@ class Welcome extends CI_Controller {
                     'news' => $rss
 		);
 
-		$this->parser->parse('welcome', $data);
+		$this->load->view('welcome', $data);
 		//$this->load->view('welcome_message');
 	}
 }

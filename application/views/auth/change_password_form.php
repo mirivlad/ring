@@ -23,7 +23,7 @@ $this->load->view('templates/header');
 ?>
 
 <div class="span10">
-    <fieldset><legend>{title}</legend>
+    <fieldset><legend><?=$title?></legend>
 	<?php echo form_open($this->uri->uri_string(), ' class="form-inline"'); ?>
 
 	<?php echo $this->dx_auth->get_auth_error(); ?>
