@@ -368,10 +368,6 @@ class Auth extends CI_Controller {
             $val->set_rules('description', 'Подпись', "trim|max_length[1000]|xss_clean");
 
             if ($val->run()) {
-                $avatar = $this->utils->upload_avatar($user_id);
-                if ($avatar != ''){
-                    $this->notify->returnError($avatar);
-                }
                 $data = array(
                     "first_name" => $this->input->post('first_name', TRUE),
                     "middle_name" => $this->input->post('middle_name', TRUE),
@@ -384,6 +380,7 @@ class Auth extends CI_Controller {
                     "description" => $this->input->post('description', TRUE),
                 );
                 $this->user_profile->set_profile($user_id, $data);
+                $avatar = $this->utils->upload_avatar($user_id);
                 redirect($this->uri->uri_string());
             }
             $user_profile = $this->user_profile->get_profile($user_id)->result();

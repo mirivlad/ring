@@ -51,12 +51,16 @@ class Utils {
         $config['overwrite'] = FALSE;
         $config['file_name'] = time().$user_id.base64_encode($user_id);
         $ci->load->library('upload', $config);
-        if ( ! $ci->upload->do_upload('avatar')){
-            return $ci->upload->display_errors();
+        if ( !$ci->upload->do_upload('avatar')){
+            if ( count($ci->upload->data())>0){
+		return '';
+            }else{
+                 $this->notify->returnError($ci->upload->display_errors());
+            }
 	}else{
                 $avatar = $ci->upload->data();
                 if ($this->user_get_avatar($user_id) != 'default.png'){
-                    unlink("/assets/img/avatars/".$this->user_get_avatar($user_id));
+                    unlink(BASEPATH."../assets/img/avatars/".$this->user_get_avatar($user_id));
                 }
                 $data = array("avatar"=>$avatar['file_name']);
                 $ci->user_profile->set_profile($user_id, $data);
