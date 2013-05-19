@@ -41,9 +41,41 @@ class Utils {
      * @param string $user_id user id
      * @return string $avatar url to user avatar
      */
-    public function upload_avatar($avatar){
-        
+    public function upload_avatar($user_id=''){
+        $ci = $this->_ci;
+        $config['upload_path'] = './assets/img/avatars/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size']	= '150';
+        $config['max_width']  = '64';
+        $config['max_height']  = '64';
+        $config['overwrite'] = FALSE;
+        $config['file_name'] = time().$user_id.base64_encode($user_id);
+        $ci->load->library('upload', $config);
+        if ( ! $ci->upload->do_upload('avatar')){
+            return $ci->upload->display_errors();
+	}else{
+                $avatar = $ci->upload->data();
+                if ($this->user_get_avatar($user_id) != 'default.png'){
+                    unlink("/assets/img/avatars/".$this->user_get_avatar($user_id));
+                }
+                $data = array("avatar"=>$avatar['file_name']);
+                $ci->user_profile->set_profile($user_id, $data);
+                return '';
+        }
     }
-
+    
+    public function user_get_avatar($user_id=''){
+        $ci = $this->_ci;
+        if (!isset($user_id) OR $user_id == '') {
+            $user_id = $ci->dx_auth->get_user_id();
+        }
+        $ava_query = $ci->user_profile->get_profile_field($user_id, "avatar")->result();
+        if(count($ava_query)){
+            $avatar = $ava_query[0]->avatar;
+        }else{
+            $avatar = 'default.png';
+        }
+        return $avatar;
+    }
 
 }

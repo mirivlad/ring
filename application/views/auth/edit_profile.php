@@ -1,4 +1,14 @@
 <?php
+$avatar = array(
+    'name' => 'avatar',
+    'id' => 'avatar',
+    'size' => 30,
+    'value' => '',
+    'class' => "filestyle",
+    'data-classButton' => "btn btn-inverse",
+    'data-input' => "false",
+    'data-buttonText' => "Изменить аватар"
+);
 
 $first_name = array(
     'name' => 'first_name',
@@ -49,7 +59,7 @@ $birthdate = array(
     'name' => 'birthdate',
     'id' => 'birthdate',
     'size' => 16,
-    'value' => date("d-m-Y",strtotime($user_profile->birthdate))
+    'value' => date("d-m-Y", strtotime($user_profile->birthdate))
 );
 
 $sex_options = array(
@@ -57,7 +67,7 @@ $sex_options = array(
     'woman' => "женский",
     'not_set' => "не указано"
 );
-
+$avatar_img = $this->utils->user_get_avatar($user_id);
 ?>
 
 <?php
@@ -67,8 +77,17 @@ $this->load->view('templates/header');
 <div class="span10">
 
     <fieldset>
-        <legend><?=$title?> : <?= $user_profile->login ?></legend>
-        <?php echo form_open($this->uri->uri_string(), ' class="form-horizontal"') ?>
+        <legend><?= $title ?> : <?= $user_profile->login ?></legend>
+        <?php echo form_open_multipart($this->uri->uri_string(), ' class="form-horizontal"') ?>
+        <div class="control-group">
+            <label class="control-label" for="avatar">Аватар</label>
+            <div class="controls">
+                <img src="/assets/img/avatars/<?= $avatar_img ?>" style="padding-bottom: 0.2em;"/><br>
+                <?php echo form_upload($avatar) ?><br>
+                <span class="text-info">Разрешены к загрузке файлы <strong>JPG, PNG, GIF</strong> размером <strong>не более 150кб</strong> и <strong>не более 64x64 пикселей</strong>.<br>
+                    При загрузке нового аватара старый будет удален.</span>
+            </div>
+        </div>
         <div class="control-group">
             <label class="control-label" for="surname">Фамилия</label>
             <div class="controls">
@@ -96,7 +115,7 @@ $this->load->view('templates/header');
         <div class="control-group">
             <label class="control-label" for="birthdate">Дата рождения</label>
             <div class="controls">
-                <div class="input-append date dropdown-toggle" id="dp3" data-date="<?= $birthdate['value'] ?>" data-date-format="dd-mm-yyyy" data-toggle="dropdown">
+                <div class="input-append date dropdown-toggle" id="dp3" data-date="<?= $birthdate['value'] ?>" data-date-format="dd-mm-yyyy" data-date-weekStart="1" data-toggle="dropdown">
                     <?php echo form_input($birthdate) ?>
                     <span class="add-on"><i class="icon-calendar"></i></span>
                 </div>
@@ -118,7 +137,7 @@ $this->load->view('templates/header');
             <label class="control-label" for="website">Web-сайт</label>
             <div class="controls">
                 <?php echo form_input($website) ?>
-                <span class="text-warning">url вашего сайта вместе с http://</span>
+                <span class="text-info">url вашего сайта вместе с http://</span>
             </div>
         </div>        
 
@@ -128,7 +147,7 @@ $this->load->view('templates/header');
             <div class="controls">
                 <?php echo form_textarea($description) ?>
                 <br>
-                <span class="text-warning">Только текст. Максимум 1000 символов. Любые теги запрещены.</span>
+                <span class="text-info">Только текст. Максимум 1000 символов. Любые теги запрещены.</span>
             </div>
         </div>   
 

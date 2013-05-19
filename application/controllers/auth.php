@@ -351,11 +351,12 @@ class Auth extends CI_Controller {
                 $this->notify->returnError('Такого пользователя не существует!');
                 //redirect("/auth/edit_profile",'location');
             }
-
-
+            $data['user_id'] = $user_id;
+            $data['footer_add'] = array('<script type="text/javascript" src="/assets/js/bootstrap-filestyle.min.js"></script>');
             $data['title'] = "Редактирование профиля пользователя";
             $val = $this->form_validation;
             // Set form validation rules
+            $val->set_rules('avatar', 'Файл аватара', "trim|max_length[255]|xss_clean");
             $val->set_rules('first_name', 'Имя', "trim|alpha|max_length[255]|xss_clean");
             $val->set_rules('middle_name', 'Отчество', "trim|alpha|max_length[255]|xss_clean");
             $val->set_rules('surname', 'Фамилия', "trim|alpha|max_length[255]|xss_clean");
@@ -367,6 +368,10 @@ class Auth extends CI_Controller {
             $val->set_rules('description', 'Подпись', "trim|max_length[1000]|xss_clean");
 
             if ($val->run()) {
+                $avatar = $this->utils->upload_avatar($user_id);
+                if ($avatar != ''){
+                    $this->notify->returnError($avatar);
+                }
                 $data = array(
                     "first_name" => $this->input->post('first_name', TRUE),
                     "middle_name" => $this->input->post('middle_name', TRUE),

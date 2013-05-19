@@ -1,21 +1,21 @@
 <?php
 
-$lang['upload_userfile_not_set'] = "Unable to find a post variable called userfile.";
-$lang['upload_file_exceeds_limit'] = "The uploaded file exceeds the maximum allowed size in your PHP configuration file.";
-$lang['upload_file_exceeds_form_limit'] = "The uploaded file exceeds the maximum size allowed by the submission form.";
-$lang['upload_file_partial'] = "The file was only partially uploaded.";
-$lang['upload_no_temp_directory'] = "The temporary folder is missing.";
-$lang['upload_unable_to_write_file'] = "The file could not be written to disk.";
-$lang['upload_stopped_by_extension'] = "The file upload was stopped by extension.";
-$lang['upload_no_file_selected'] = "You did not select a file to upload.";
-$lang['upload_invalid_filetype'] = "The filetype you are attempting to upload is not allowed.";
-$lang['upload_invalid_filesize'] = "The file you are attempting to upload is larger than the permitted size.";
-$lang['upload_invalid_dimensions'] = "The image you are attempting to upload exceedes the maximum height or width.";
-$lang['upload_destination_error'] = "A problem was encountered while attempting to move the uploaded file to the final destination.";
-$lang['upload_no_filepath'] = "The upload path does not appear to be valid.";
-$lang['upload_no_file_types'] = "You have not specified any allowed file types.";
-$lang['upload_bad_filename'] = "The file name you submitted already exists on the server.";
-$lang['upload_not_writable'] = "The upload destination folder does not appear to be writable.";
+$lang['upload_userfile_not_set'] = "Не удалось найти переменную POST вызываемую пользовательским файлом.";
+$lang['upload_file_exceeds_limit'] = "Размер загружаемого файла превышает разрешенный в конфигурации PHP.";
+$lang['upload_file_exceeds_form_limit'] = "Загружаемый файл превышает размер разрешенный при отправке из формы.";
+$lang['upload_file_partial'] = "Файл был загружен лишь частично.";
+$lang['upload_no_temp_directory'] = "Неверная временная папка.";
+$lang['upload_unable_to_write_file'] = "Файл не может быть записан на диск.";
+$lang['upload_stopped_by_extension'] = "Загрузка файла прекращена из-за расширения.";
+$lang['upload_no_file_selected'] = "Вы не выбрали файл для загрузки.";
+$lang['upload_invalid_filetype'] = "Тип выбранного вами для загрузки файла - не разрешен.";
+$lang['upload_invalid_filesize'] = "Размер загружаемого файла больше разрешенного.";
+$lang['upload_invalid_dimensions'] = "Размер загружаемого изображения по высоте или ширине больше разрешенного.";
+$lang['upload_destination_error'] = "Проблема с перемещением файла в конечный путь. Проверьте существование пути и права на него.";
+$lang['upload_no_filepath'] = "Указанный путь для загрузки неверно задан.";
+$lang['upload_no_file_types'] = "Вы не указали ни одного разрешенного для загрузки типа файлов.";
+$lang['upload_bad_filename'] = "На сервере уже есть файл с таким именем.";
+$lang['upload_not_writable'] = "Директория для загружаемых файлов не доступна на запись.";
 
 
 /* End of file upload_lang.php */
