@@ -311,6 +311,19 @@ class Admin extends CI_Controller {
     function phpinfo(){
         $this->load->view("admin/phpinfo");
     }
+    
+    function test_email(){
+        $this->load->library('email');
+
+        $this->email->from('mirivlad@gmail.com', 'Mirivlad');
+        $this->email->to('mirivlad@yandex.ru');
+        $this->email->subject('Email Test');
+        $this->email->message('Testing the email class.');
+
+        $this->email->send();
+
+        echo $this->email->print_debugger();
+    }
 
 }
 
