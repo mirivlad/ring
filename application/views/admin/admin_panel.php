@@ -32,12 +32,17 @@ $this->load->view('templates/header');
             </div>
             <div id="collapseTwo" class="accordion-body collapse">
                 <div class="accordion-inner">
+                        <?php
+                        if ($current_db == $actual_db){
+                            echo "<i class=\"icon-ok\" style=\"color: #3f3;\"></i>&nbsp;&nbsp;База данных в актуальном состоянии!"; 
+                        }
+                        ?>
                     <ul class="unstyled">
                         <?php
                         if($current_db < $actual_db){
                             $db = "<li><i class=\"icon-arrow-up\" style=\"color: #f33;\"></i>&nbsp;&nbsp;<a href=\"/admin/update_db\">Выполнить обновление до версии ".$actual_db."</a></li>";
-                        }else{
-                            $db = "<li><i class=\"icon-ok\" style=\"color: #3f3;\"></i>&nbsp;&nbsp;База данных в актуальном состоянии</a></li>"; 
+                        }elseif ($current_db > 1){
+                            $db = "<li><i class=\"icon-arrow-down\" style=\"color: #f33;\"></i>&nbsp;&nbsp;<a href=\"/admin/downgrade_db\">Выполнить откат до версии ".($current_db-1)."</a></li>";
                         }
                         ?>
                         <?=$db?>
@@ -54,7 +59,10 @@ $this->load->view('templates/header');
             <div id="collapse3" class="accordion-body collapse">
                 <div class="accordion-inner">
                     <ul class="unstyled">
-                        <li><a href="/admin/phpinfo">phpinfo();</li>
+                        <li><a href="/admin/phpinfo">phpinfo()</a></li>
+                    </ul>
+                    <ul class="unstyled">
+                        <li><a href="/admin/show_log">Лог системы за сегодня</a></li>
                     </ul>
                 </div>
             </div>

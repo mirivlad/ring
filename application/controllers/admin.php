@@ -36,15 +36,51 @@ class Admin extends CI_Controller {
             $this->data['title'] = 'Обновление Базы Данных';
             if ( ! $this->migration->current()) {
                 $this->data['error'] = $this->migration->error_string();
-                $this->notify->error($this->migration->error_string());
-            }	
-            $this->data['error'] = "Все операции выполнены.";
-            $this->load->view('admin/update_db', $this->data);
+                $this->notify->returnError($this->data['error']);
+            }
+            $this->data['error'] = "Обновление базы данных выполнено.";
+            $this->notify->returnSuccess($this->data['error']);
+            redirect("/admin");
+            //$this->load->view('admin/update_db', $this->data);
         }else{
             redirect("/auth/login");
         }
     }
-    function users() {
+    public function downgrade_db() {
+        if ($this->dx_auth->is_admin()){
+            $this->data['title'] = 'Откат Базы Данных';
+            $down_version = $this->migration->get_db_version()-1;
+            if ( ! $this->migration->version($down_version)) {
+                $this->data['error'] = $this->migration->error_string();
+                $this->notify->returnError($this->data['error']);
+            }	
+            $this->data['error'] = "Откат базы данных до версии ".$down_version." выполнен.";
+            $this->notify->returnSuccess($this->data['error']);
+            redirect("/admin");
+            //$this->load->view('admin/update_db', $this->data);
+        }else{
+            redirect("/auth/login");
+        }
+    }
+    function show_log(){
+        if ($this->dx_auth->is_admin()){
+            $data['title'] = "Лог системы за сегодня";
+            $current_date = date("Y-m-d", time());
+            $log_file = APPPATH.'logs/log-'.$current_date.'.php';
+            if (file_exists($log_file)){
+                $data['log'] = file_get_contents($log_file);
+                if($data['log']=== FALSE){
+                    $data['log'] = "Неверный путь к файлу лога, или файл лога не существует, или нет доступа на чтение лога.";
+                }
+            }else{
+                $data['log'] = "Файл лога не найден.";
+            }
+            $this->load->view('admin/show_log', $data);
+        }  else {
+            redirect("/auth/login");
+        }
+    }
+            function users() {
 
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('dx_auth/user_profile', 'user_profile');

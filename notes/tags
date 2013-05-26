@@ -1,0 +1,52 @@
+
+
+Ну если по простому, то сделать можно примерно так:
+
+-- таблица тегов
+create table tag (
+    id  int primary key auto_index,
+    tag text not null
+)
+-- таблица связка теги <-> статьи
+create table tag_article (
+    tag_id int not null,
+    article_id in not null,
+    primary key (tag_id, article_id)
+)
+-- таблица статей
+create table article (
+    id int primary key auto_increment,
+    --  все прочие поля
+)
+
+Собственно запрос всех статей с одним указанным тегом:
+
+select
+    a.*
+from article a
+    left join tag_article ta on (a.id = ta.artice_id)
+    left join tag t on (t.id = ta.tag_id)
+where
+    t.tag = 'html'
+
+Запрос всех статей с несколькими указанными тегами. Для более простого понимания процесса понимаем что у нас есть:
+
+$need_tags = array('php','mysql');
+
+путем запроса к таблице tags получаем:
+
+$need_tags_id = array(13,15);
+
+Собственно запрос:
+
+select
+    a.*
+from article 1
+   left join tag_article t on (a.id = t.article_id)
+where
+   t.tag_id in (13,15)
+group by
+   a.id
+having
+   count(t.id) = 2 -- count($need_tags_id)
+
