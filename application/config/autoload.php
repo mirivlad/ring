@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('dx_auth/user_profile');
+$autoload['model'] = array('dx_auth/user_profile', 'bank/bank_model');
 
 
 /* End of file autoload.php */

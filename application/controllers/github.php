@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Github extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -25,12 +25,12 @@ class Welcome extends CI_Controller {
                 $this->rssparser->set_cache_life(120); 						// Set cache life time in minutes
                 $rss = $this->rssparser->getFeed(15); 						// Get six items from the feed
 		$data = array(
-		    'title' => 'Главная',
+		    'title' => 'Развитие движка проекта',
 		    'main' => 'active',
                     'news' => $rss
 		);
 
-		$this->load->view('welcome', $data);
+		$this->load->view('github', $data);
 		//$this->load->view('welcome_message');
 	}
 }

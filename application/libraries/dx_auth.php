@@ -1190,7 +1190,13 @@ class DX_Auth {
 
 	return $resp->is_valid;
     }
-
+    
+    function get_user_name ($id){
+        $this->ci->load->model('dx_auth/users', 'users');
+        $query = $this->ci->users->get_user_by_id($id);
+        $user = $query->row();
+        return $user->username;
+    }
     /* End of Recaptcha function */
 }
 

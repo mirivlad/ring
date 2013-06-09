@@ -38,7 +38,11 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "bank";
+//$route['bank/:num'] = '/bank/index/$1';
+
+
+
 $route['404_override'] = '';
 
 

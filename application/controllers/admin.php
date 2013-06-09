@@ -28,13 +28,12 @@ class Admin extends CI_Controller {
         $this->data['actual_db'] = $this->migration->get_fs_version();
 
         $this->load->view('admin/admin_panel', $this->data);
-        
     }
-    
+
     public function update_db() {
-        if ($this->dx_auth->is_admin()){
+        if ($this->dx_auth->is_admin()) {
             $this->data['title'] = 'Обновление Базы Данных';
-            if ( ! $this->migration->current()) {
+            if (!$this->migration->current()) {
                 $this->data['error'] = $this->migration->error_string();
                 $this->notify->returnError($this->data['error']);
             }
@@ -42,45 +41,48 @@ class Admin extends CI_Controller {
             $this->notify->returnSuccess($this->data['error']);
             redirect("/admin");
             //$this->load->view('admin/update_db', $this->data);
-        }else{
+        } else {
             redirect("/auth/login");
         }
     }
+
     public function downgrade_db() {
-        if ($this->dx_auth->is_admin()){
+        if ($this->dx_auth->is_admin()) {
             $this->data['title'] = 'Откат Базы Данных';
-            $down_version = $this->migration->get_db_version()-1;
-            if ( ! $this->migration->version($down_version)) {
+            $down_version = $this->migration->get_db_version() - 1;
+            if (!$this->migration->version($down_version)) {
                 $this->data['error'] = $this->migration->error_string();
                 $this->notify->returnError($this->data['error']);
-            }	
-            $this->data['error'] = "Откат базы данных до версии ".$down_version." выполнен.";
+            }
+            $this->data['error'] = "Откат базы данных до версии " . $down_version . " выполнен.";
             $this->notify->returnSuccess($this->data['error']);
             redirect("/admin");
             //$this->load->view('admin/update_db', $this->data);
-        }else{
+        } else {
             redirect("/auth/login");
         }
     }
-    function show_log(){
-        if ($this->dx_auth->is_admin()){
+
+    function show_log() {
+        if ($this->dx_auth->is_admin()) {
             $data['title'] = "Лог системы за сегодня";
             $current_date = date("Y-m-d", time());
-            $log_file = APPPATH.'logs/log-'.$current_date.'.php';
-            if (file_exists($log_file)){
+            $log_file = APPPATH . 'logs/log-' . $current_date . '.php';
+            if (file_exists($log_file)) {
                 $data['log'] = file_get_contents($log_file);
-                if($data['log']=== FALSE){
+                if ($data['log'] === FALSE) {
                     $data['log'] = "Неверный путь к файлу лога, или файл лога не существует, или нет доступа на чтение лога.";
                 }
-            }else{
+            } else {
                 $data['log'] = "Файл лога не найден.";
             }
             $this->load->view('admin/show_log', $data);
-        }  else {
+        } else {
             redirect("/auth/login");
         }
     }
-            function users() {
+
+    function users() {
 
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('dx_auth/user_profile', 'user_profile');
@@ -91,13 +93,13 @@ class Admin extends CI_Controller {
                 // If ban button pressed
                 if (isset($_POST['ban'])) {
                     // Ban user based on checkbox value (id)
-		    $this->notify->success('Пользователь забанен');
+                    $this->notify->success('Пользователь забанен');
                     $this->users->ban_user($value);
                 }
                 // If unban button pressed
                 else if (isset($_POST['unban'])) {
                     // Unban user
-		    $this->notify->success('Пользователь разбанен');
+                    $this->notify->success('Пользователь разбанен');
                     $this->users->unban_user($value);
                 } else if (isset($_POST['reset_pass'])) {
                     // Set default message
@@ -117,10 +119,10 @@ class Admin extends CI_Controller {
 
                             // Reset the password
                             if ($this->dx_auth->reset_password($user->username, $user->newpass_key)) {
-				$this->notify->success('Сброс пароля выполнен');
-                            }else{
-				$this->notify->error('Сброс пароля невыполнен');
-			    }
+                                $this->notify->success('Сброс пароля выполнен');
+                            } else {
+                                $this->notify->error('Сброс пароля невыполнен');
+                            }
                         }
                     }
                 }
@@ -168,7 +170,7 @@ class Admin extends CI_Controller {
                     // Check if user exist, $value is username
                     if ($query = $this->user_temp->get_login($value) AND $query->num_rows() == 1) {
                         // Activate user
-			$this->notify->success('Активация выполнена');
+                        $this->notify->success('Активация выполнена');
                         $this->dx_auth->activate($value, $query->row()->activation_key);
                     }
                 }
@@ -210,7 +212,7 @@ class Admin extends CI_Controller {
         // If Add role button pressed
         if ($this->input->post('add')) {
             // Create role
-	    $this->notify->success('Роль добавлена');
+            $this->notify->success('Роль добавлена');
             $this->roles->create_role($this->input->post('role_name'), $this->input->post('role_parent'));
         } else if ($this->input->post('delete')) {
             // Loop trough $_POST array and delete checked checkbox
@@ -218,7 +220,7 @@ class Admin extends CI_Controller {
                 // If checkbox found
                 if (substr($key, 0, 9) == 'checkbox_') {
                     // Delete role
-		    $this->notify->success('Роль удалена');
+                    $this->notify->success('Роль удалена');
                     $this->roles->delete_role($value);
                 }
             }
@@ -235,6 +237,7 @@ class Admin extends CI_Controller {
 
     function uri_permissions() {
         $data['title'] = "Права доступа к URI";
+
         function trim_value(&$value) {
             $value = trim($value);
         }
@@ -252,7 +255,7 @@ class Admin extends CI_Controller {
             // Set URI permission data
             // IMPORTANT: uri permission data, is saved using 'uri' as key.
             // So this key name is preserved, if you want to use custom permission use other key.
-	    $this->notify->success('Права доступа к URI сохранены');
+            $this->notify->success('Права доступа к URI сохранены');
             $this->permissions->set_permission_value($this->input->post('role'), 'uri', $allowed_uris);
         }
 
@@ -295,7 +298,7 @@ class Admin extends CI_Controller {
             // Set value in permission data array
             $permission_data['edit'] = $this->input->post('edit');
             $permission_data['delete'] = $this->input->post('delete');
-	    $this->notify->success('Права доступа сохранены');
+            $this->notify->success('Права доступа сохранены');
             // Set permission data for role_id
             $this->permissions->set_permission_data($this->input->post('role'), $permission_data);
         }
@@ -304,7 +307,7 @@ class Admin extends CI_Controller {
 
         // Default role_id that will be showed
         $role_id = $this->input->post('role') ? $this->input->post('role') : 1;
-	$data['selected_role'] = $role_id;
+        $data['selected_role'] = $role_id;
         // Get all role from database
         $data['roles'] = $this->roles->get_all()->result();
         // Get edit and delete permissions
@@ -314,41 +317,41 @@ class Admin extends CI_Controller {
         // Load view
         $this->load->view('admin/custom_permissions', $data);
     }
-    
+
     function create_user() {
-        
-            $val = $this->form_validation;
-            $data['title'] = "Создание пользователя";
-            // Set form validation rules			
-            $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
-            $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
-            $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
-            $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+
+        $val = $this->form_validation;
+        $data['title'] = "Создание пользователя";
+        // Set form validation rules			
+        $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
+        $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
+        $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
+        $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
 
 
-            // Run form validation and register user if it's pass the validation
-            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
-                // Set success message accordingly
-                if ($this->dx_auth->email_activation) {
-                    $data['auth_message'] = 'Пользователь зарегистрирован. На его email высланы данные об активации. <br> 
+        // Run form validation and register user if it's pass the validation
+        if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+            // Set success message accordingly
+            if ($this->dx_auth->email_activation) {
+                $data['auth_message'] = 'Пользователь зарегистрирован. На его email высланы данные об активации. <br> 
                         Так же вы можете активировать пользователя вручную <a href="/admin/unactivated_users"> по этой ссылке</a>.';
-                } else {
-                    $data['auth_message'] = 'Пользователь зарегистрирован. Вы можете сообщить ему данные для входа любым доступным вам способом, так как вы отключили активацию по email.';
-                }
-
-                // Load registration success page
-                $this->load->view($this->dx_auth->register_success_view, $data);
             } else {
-                // Load registration page
-                $this->load->view($this->dx_auth->register_view, $data);
+                $data['auth_message'] = 'Пользователь зарегистрирован. Вы можете сообщить ему данные для входа любым доступным вам способом, так как вы отключили активацию по email.';
             }
+
+            // Load registration success page
+            $this->load->view($this->dx_auth->register_success_view, $data);
+        } else {
+            // Load registration page
+            $this->load->view($this->dx_auth->register_view, $data);
+        }
     }
-    
-    function phpinfo(){
+
+    function phpinfo() {
         $this->load->view("admin/phpinfo");
     }
-    
-    function test_email(){
+
+    function test_email() {
         $this->load->library('email');
 
         $this->email->from('mirivlad@gmail.com', 'Mirivlad');
