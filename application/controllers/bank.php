@@ -55,8 +55,9 @@ class Bank extends CI_Controller {
                     $data['title'] = $data['list_data'][0]['name'];
                     $this->load->view("bank/data_list", $data);
                 }else{
+                    $bank_info = $this->bank_model->bank_info($this->bank_id)->result_array();
                     $data['list_data'] = "Этот Банк Данных пока пуст";
-                    $data['title'] = $this->bank_model->bank_info($this->bank_id)->result_array()[0]['name'];
+                    $data['title'] = $bank_info[0]['name'];
                     $this->load->view("bank/data_list", $data);
                 }
     }
