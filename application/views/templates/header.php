@@ -56,6 +56,7 @@
                             <ul class="menu nav">
                                 <li><a href="/" >Главная</a></li>
                                 <li><a href="/about">О проекте</a></li>
+                                <li><a href="/github">Развитие движка проекта</a></li>
                                 <li><a href="/contacts">Контакты</a></li>
                             </ul>
                             <form class="navbar-search pull-right" action="">
