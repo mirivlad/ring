@@ -173,8 +173,7 @@ class Auth extends CI_Controller {
             $this->load->view($this->dx_auth->logged_in_view, $data);
         }
     }
-    
-    
+
     function register_recaptcha() {
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
@@ -398,6 +397,21 @@ class Auth extends CI_Controller {
             $data['header_add'][] = "<link href=\"/assets/css/datepicker.css\" rel=\"stylesheet\">";
             $this->load->view('auth/edit_profile', $data);
         }
+    }
+
+    function show_profile($id = 0) {
+        $this->load->model('dx_auth/users', 'users');
+        $this->load->model('dx_auth/user_profile', 'user_profile');
+        $user_id = (int) $id;
+        if ($id == 0) {
+            redirect("/");
+        }
+        $data['title'] = "Прсмотр профиля пользователя";
+        $user_profile = $this->user_profile->get_profile($user_id)->result();
+        $data['user_profile'] = $user_profile[0];
+        $login = $this->users->get_user_by_id($user_id)->result();
+        $data['user_profile']->login = $login[0]->username;
+        $this->load->view('auth/show_profile', $data);
     }
 
 }

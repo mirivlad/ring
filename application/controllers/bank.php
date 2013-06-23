@@ -13,7 +13,7 @@ class Bank extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->lang->load('dx_auth');
-        //$this->dx_auth->check_uri_permissions();
+        $this->dx_auth->check_uri_permissions();
         $this->load->helper('url');
     }
 

@@ -17,7 +17,7 @@ $this->load->view('templates/header');
                     <th  style="text-align: center;"><?= $item["title"] ?></th>
                 </tr>
                 <tr>
-                    <td colspan="4"><?= $item["decsription"] ?></td>
+                    <td colspan="4"><?= $item["description"] ?></td>
                 </tr>
             </table>
         <?php
