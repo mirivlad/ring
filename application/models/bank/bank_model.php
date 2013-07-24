@@ -13,9 +13,25 @@ class Bank_model extends CI_Model {
         
         function bank_info($id_db){
                 $this->db->where('id_db', (int) $id_db, TRUE);
-                return $this->db->get("list_db");
+                $res = $this->db->get("list_db");
+                $res = $res->result_array();
+                
+                return $res[0];
         }
-        
+        function check_bank_id($id_db=0){
+            $id = (int)$id_db;
+            if ($id <= 0){
+                return FALSE;
+            }
+            $this->db->where("id_db", $id);
+            $this->db->from('list_db');
+            $count = $this->db->count_all_results();
+            if ($count > 0){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
         function get_all_data($bank_id, $offset = 0, $row_count = 0){
             if ($offset >= 0 AND $row_count > 0){
                 $this->db->select("list_db.*", FALSE);
@@ -32,5 +48,19 @@ class Bank_model extends CI_Model {
 		$query = $this->db->get("list_db");
             }
             return $query;
+        }
+        function check_data_id($data_id=0){
+            $id = (int)$data_id;
+            if ($id <= 0){
+                return FALSE;
+            }
+            $this->db->where("id_data", $id);
+            $this->db->from('list_data');
+            $count = $this->db->count_all_results();
+            if ($count > 0){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
         }
 }

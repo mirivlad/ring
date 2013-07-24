@@ -38,7 +38,7 @@ class Bank extends CI_Controller {
     }
     
     public function list_data(){
-                        // Get offset and limit for page viewing
+                // Get offset and limit for page viewing
                 $offset = (int) $this->uri->segment(4,0);
                 $row_count = 10;
                 $p_config['base_url'] = '/bank/' . $this->bank_id . '/';
@@ -55,9 +55,9 @@ class Bank extends CI_Controller {
                     $data['title'] = $data['list_data'][0]['name'];
                     $this->load->view("bank/data_list", $data);
                 }else{
-                    $bank_info = $this->bank_model->bank_info($this->bank_id)->result_array();
+                    $bank_info = $this->bank_model->bank_info($this->bank_id);
                     $data['list_data'] = "Этот Банк Данных пока пуст";
-                    $data['title'] = $bank_info[0]['name'];
+                    $data['title'] = $bank_info['name'];
                     $this->load->view("bank/data_list", $data);
                 }
     }

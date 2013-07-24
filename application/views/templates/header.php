@@ -2,9 +2,10 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <title>Проект "Кольцо" - <?=$title?></title>
+        <title>Проект "Кольцо" - <?= $title ?></title>
+        <script src="/assets/js/jquery-1.9.1.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
         <link href="/assets/css/themes/<?php echo $this->config->item('theme'); ?>/bootstrap.min.css" rel="stylesheet" media="screen">
-
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -95,6 +96,9 @@
                                         </ul>
                                     <?php } else { ?>
                                         <ul class="dropdown-menu">
+                                            <li class="nav-header">Данные</li>
+                                            <li><a href="/data/add_data">Добавить запись в Банк Данных</a></li>
+                                            <li class="divider"></li>
                                             <li class="nav-header">Аккаунт</li>
                                             <li><a href="/auth/edit_profile">Изменить профиль</a></li>
                                             <li><a href="/auth/change_password">Сменить пароль</a></li>

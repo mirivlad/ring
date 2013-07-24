@@ -11,7 +11,7 @@ $this->load->view('templates/header');
 
             <table class="table table-striped table-bordered" width="100%">
                 <tr>
-                    <th width="2%"><a href="/bank/show_data/<?= $item["id_data"] ?>"><?= $item["id_data"] ?></a></th>
+                    <th width="2%"><a href="/data/show_data/<?= $item["id_data"] ?>"><?= $item["id_data"] ?></a></th>
                     <th width="20%" style="text-align: center;"><?php echo date("d-m-Y H:i:s", $item["create_date"]); ?></th>
                     <th width="20%"  style="text-align: center;"><a href="/auth/show_profile/<?= $item["author_id"] ?>"><?php echo $this->dx_auth->get_user_name($item["author_id"]); ?></a></th>
                     <th  style="text-align: center;"><?= $item["title"] ?></th>
