@@ -24,7 +24,7 @@ class Data extends CI_Controller {
         $this->data_id = (int) $this->uri->segment(3, 0);
         //если не вошли в систему
         //$this->bank_id = $bank_id;
-        if ($this->data_id == 0){
+        if ($this->data_id == 0) {
             redirect("/bank");
         }
         if (!$this->bank_model->check_data_id($this->data_id)) {
@@ -39,16 +39,16 @@ class Data extends CI_Controller {
         $this->load->view("bank/error_id", $data);
     }
 
-    public function add_data($bank_id=0) {
-        //$this->firephp->log($bank_id);
+    public function add_data($bank_id = 0) {
+        //$this->firephp->log($_POST);
         $this->bank_id = (int) $bank_id;
-        if (!$this->bank_model->check_bank_id($this->bank_id)){
+        if (!$this->bank_model->check_bank_id($this->bank_id)) {
             redirect("/");
         }
         $bank_info = $this->bank_model->bank_info($this->bank_id);
         //$this->firephp->log($bank_info);
         $data['bank_id'] = $this->bank_id;
-        $data['title'] = "Добавление данных в Банк : ".$bank_info['name'];
+        $data['title'] = "Добавление данных в Банк : " . $bank_info['name'];
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
             <link rel=\"stylesheet\" type=\"text/css\" href='/assets/css/bootstrap-tagmanager.css'></script>\n
             ";
@@ -87,39 +87,48 @@ class Data extends CI_Controller {
                 'rules' => 'required'
             )
         );
-        $this->form_validation->set_rules($add_data_validation); 
+        $this->form_validation->set_rules($add_data_validation);
         if ($this->form_validation->run() != FALSE) {
-            $this->notify->returnSuccess('Данные сохранены.');
+            if ($this->bank_model->save_data()){
+                $this->notify->returnSuccess('Данные сохранены.');
+            }else{
+                $this->notify->returnError('Не удалось сохранить данные.');
+            }
         }
         $this->load->view("bank/add_data", $data);
     }
 
     public function show_data() {
-        // Get offset and limit for page viewing
-        $offset = (int) $this->uri->segment(4, 0);
-        $row_count = 10;
-        $p_config['base_url'] = '/data/' . $this->bank_id . '/';
-        $p_config['uri_segment'] = $offset;
-        $p_config['num_links'] = 2;
-        $p_config['total_rows'] = $this->bank_model->get_all_data($this->bank_id, $offset, $row_count)->num_rows();
-        $p_config['per_page'] = $row_count;
-        if ($p_config['total_rows'] > 0) {
-            $data['list_data'] = $this->bank_model->get_all_data($this->bank_id, $offset, $row_count)->result_array();
-            // Init pagination
-            $this->pagination->initialize($p_config);
-            // Create pagination links
-            $data['pagination'] = $this->pagination->create_links();
-            $data['title'] = $data['list_data'][0]['name'];
-            $this->load->view("bank/data_list", $data);
-        } else {
-            $bank_info = $this->bank_model->bank_info($this->bank_id)->result_array();
-            $data['list_data'] = "Этот Банк Данных пока пуст";
-            $data['title'] = $bank_info[0]['name'];
-            $this->load->view("bank/data_list", $data);
-        }
+            $id = $this->data_id = (int) $this->uri->segment(3, 0);
+            
+            $data['info'] = $this->bank_model->get_data($id);
+            $data['info'] = $data['info'][0];
+            //if (is_array($data['info'])){
+                $data['title'] = $data['info']['title'];
+                $data['author_name'] = $this->dx_auth->get_user_name($data['info']['author_id']);
+                $this->firephp->log($data);
+                $this->load->view("bank/show_data", $data);
+            //}else{
+            //    $this->error_id();
+            //}
+           
     }
-    function ajax_tags (){
-        $var= 0;
+
+    function ajax_tags() {
+        if ($this->input->is_ajax_request()) {
+            $tag = json_decode(file_get_contents("php://input"));
+            if (!empty($tag)) {
+                $return_array = $this->bank_model->like_tag($tag->typeahead);
+                $json_return = "{\"tags\":[";
+                if (is_array($return_array)) {
+                    foreach ($return_array as $key => $value) {
+                        $json_return .= "{\"tag\":\"" . $value['name'] . "\"},";
+                    }
+                }
+                $json_return = preg_replace("/(.*).$/", "\\1", $json_return);
+                echo $json_return . "]}";
+            }
+        }
     }
 
 }

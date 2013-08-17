@@ -39,25 +39,28 @@ class Bank extends CI_Controller {
     
     public function list_data(){
                 // Get offset and limit for page viewing
-                $offset = (int) $this->uri->segment(4,0);
-                $row_count = 10;
-                $p_config['base_url'] = '/bank/' . $this->bank_id . '/';
-                $p_config['uri_segment'] = $offset;
+                $bank_info = $this->bank_model->bank_info($this->bank_id);
+                $offset = (int) $this->uri->segment(4,1);
+                $row_count = 3;
+                $p_config['base_url'] = '/bank/index/' . $this->bank_id . '/';
+                $p_config['uri_segment'] = 4;
                 $p_config['num_links'] = 2;
-                $p_config['total_rows'] = $this->bank_model->get_all_data($this->bank_id, $offset, $row_count)->num_rows();
+                $p_config['total_rows'] = $this->bank_model->get_all_data($this->bank_id)->num_rows();
                 $p_config['per_page'] = $row_count;
+                
                 if ($p_config['total_rows'] > 0) {
                     $data['list_data'] = $this->bank_model->get_all_data($this->bank_id, $offset, $row_count)->result_array();
                     // Init pagination
                     $this->pagination->initialize($p_config);
                     // Create pagination links
                     $data['pagination'] = $this->pagination->create_links();
-                    $data['title'] = $data['list_data'][0]['name'];
+                    $data['title'] = $bank_info['name'];
+                    $data['bank_id'] = $this->bank_id;
                     $this->load->view("bank/data_list", $data);
                 }else{
-                    $bank_info = $this->bank_model->bank_info($this->bank_id);
                     $data['list_data'] = "Этот Банк Данных пока пуст";
                     $data['title'] = $bank_info['name'];
+                    $data['bank_id'] = $this->bank_id;
                     $this->load->view("bank/data_list", $data);
                 }
     }

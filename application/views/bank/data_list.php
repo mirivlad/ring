@@ -2,7 +2,8 @@
 $this->load->view('templates/header');
 ?>
 <fieldset>
-    <legend><i class="icon-bookmark"></i> <?= $title ?></legend>
+    <legend><i class="icon-bookmark"></i> <?= $title ?>
+    <span style="float: right;"><i class="icon-edit"></i> <a href="/data/add_data/<?= $bank_id ?>">Добавить запись в банк</a></span></legend>
 
     <?php
     if (is_array($list_data)) {
@@ -14,7 +15,7 @@ $this->load->view('templates/header');
                     <th width="2%"><a href="/data/show_data/<?= $item["id_data"] ?>"><?= $item["id_data"] ?></a></th>
                     <th width="20%" style="text-align: center;"><?php echo date("d-m-Y H:i:s", $item["create_date"]); ?></th>
                     <th width="20%"  style="text-align: center;"><a href="/auth/show_profile/<?= $item["author_id"] ?>"><?php echo $this->dx_auth->get_user_name($item["author_id"]); ?></a></th>
-                    <th  style="text-align: center;"><?= $item["title"] ?></th>
+                    <th  style="text-align: center;"><a href="/data/show_data/<?= $item["id_data"] ?>"><?= $item["title"] ?></a></th>
                 </tr>
                 <tr>
                     <td colspan="4"><?= $item["description"] ?></td>
