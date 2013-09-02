@@ -138,7 +138,7 @@ class Admin extends CI_Controller {
 
         // Get all users
         $data['users'] = $this->users->get_all($offset, $row_count)->result();
-        //$data['user_profile'] = $this->user_profile;
+        $data['user_profile'] = $this->user_profile;
         // Pagination config
         $p_config['base_url'] = '/admin/users/';
         $p_config['uri_segment'] = 3;
@@ -323,14 +323,17 @@ class Admin extends CI_Controller {
         $val = $this->form_validation;
         $data['title'] = "Создание пользователя";
         // Set form validation rules			
-        $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
-        $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
-        $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
-        $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+            // Set form validation rules			
+            //$val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
+            $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
+            $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
+            $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+            $val->set_rules('first_name', 'Имя', 'trim|required|xss_clean');
+            $val->set_rules('surname', 'Фамилия', 'trim|required|xss_clean');
 
 
         // Run form validation and register user if it's pass the validation
-        if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+        if ($val->run() AND $this->dx_auth->register($val->set_value('email'), $val->set_value('password'), $val->set_value('first_name'), $val->set_value('surname'))) {
             // Set success message accordingly
             if ($this->dx_auth->email_activation) {
                 $data['auth_message'] = 'Пользователь зарегистрирован. На его email высланы данные об активации. <br> 

@@ -42,27 +42,30 @@ $this->load->view('templates/header');
 //            }else{
 //                $avatar = 'default.png';
 //            }
-            
+            $u_profile = $user_profile->get_profile_field($user->id, array('first_name','surname'))->row_array();
             $avatar = $this->utils->user_get_avatar($user->id);
 	    ?>
             <tr>
                 <td><?php echo form_checkbox('checkbox_' . $user->id, $user->id) ?></td>
                 <td><?= $user->id ?></td>
                 <td><img src="/assets/img/avatars/<?=$avatar?>"</td>
-                <td><?= $user->username ?></td>
+                <td><strong><?= $user->username ?></strong>
+                    <hr style="margin-top: 1px; margin-bottom: 1px;" />
+                    <?=$u_profile['first_name']?> <?=$u_profile['surname']?>
+                </td>
                 <td><?= $user->email ?></td>
                 <td><?= $user->role_name ?></td>
                 <td><div class="text-center"><?= $banned ?></div></td>
                 <td><?= $user->last_ip ?></td>
-                <td><?= date('Y-m-d', strtotime($user->last_login)) ?></td>
-                <td><?= date('Y-m-d', strtotime($user->created)) ?></td>
+                <td><?= date('Y-m-d H:i:s', strtotime($user->last_login)) ?></td>
+                <td><?= date('Y-m-d H:i:s', strtotime($user->created)) ?></td>
                 <td><a href="/auth/edit_profile/<?= $user->id ?>"><i class="icon-edit"></i> Изменить профиль</a></td>
             </tr>
 	    <?php
 	}
 	?>
     </table>
-    <?php echo form_close(); ?>
+    <?php echo form_close();?>
     <div class="text-center"><?=$pagination?></div>
     </fieldset>
 </div>

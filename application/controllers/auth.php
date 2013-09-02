@@ -136,17 +136,19 @@ class Auth extends CI_Controller {
             $val = $this->form_validation;
             $data['title'] = "Регистрация";
             // Set form validation rules			
-            $val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
+            //$val->set_rules('username', 'Логин', 'trim|required|xss_clean|min_length[' . $this->config->item("min_username") . ']|max_length[' . $this->config->item("max_username") . ']|callback_username_check|alpha_dash');
             $val->set_rules('password', 'Пароль', 'trim|required|xss_clean|min_length[' . $this->config->item("min_password") . ']|max_length[' . $this->config->item("max_password") . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', 'Подтверждение пароля', 'trim|required|xss_clean');
             $val->set_rules('email', 'Email', 'trim|required|xss_clean|valid_email|callback_email_check');
+            $val->set_rules('first_name', 'Имя', 'trim|required|xss_clean');
+            $val->set_rules('surname', 'Фамилия', 'trim|required|xss_clean');
 
             if ($this->dx_auth->captcha_registration) {
                 $val->set_rules('captcha', 'Код с картинки', 'trim|xss_clean|required|callback_captcha_check');
             }
 
             // Run form validation and register user if it's pass the validation
-            if ($val->run() AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'))) {
+            if ($val->run() AND $this->dx_auth->register($val->set_value('email'), $val->set_value('password'), $val->set_value('first_name'), $val->set_value('surname'))) {
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = 'Вы зарегистрированны. Проверьте свой email для дальнейшей активации аккаунта.';
@@ -356,9 +358,9 @@ class Auth extends CI_Controller {
             $val = $this->form_validation;
             // Set form validation rules
             $val->set_rules('avatar', 'Файл аватара', "trim|max_length[255]|xss_clean");
-            $val->set_rules('first_name', 'Имя', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('first_name', 'Имя', "trim|alpha|max_length[255]|xss_clean|required");
             $val->set_rules('middle_name', 'Отчество', "trim|alpha|max_length[255]|xss_clean");
-            $val->set_rules('surname', 'Фамилия', "trim|alpha|max_length[255]|xss_clean");
+            $val->set_rules('surname', 'Фамилия', "trim|alpha|max_length[255]|xss_clean|required");
             $val->set_rules('country', 'Страна', "trim|alpha|max_length[255]|xss_clean");
             $val->set_rules('city', 'Город', "trim|alpha|max_length[255]|xss_clean");
             $val->set_rules('website', 'Сайт', "trim|prep_url|xss_clean");
@@ -400,6 +402,9 @@ class Auth extends CI_Controller {
     }
 
     function show_profile($id = 0) {
+        if (!$this->dx_auth->is_logged_in()) {
+            redirect("/");
+        }
         $this->load->model('dx_auth/users', 'users');
         $this->load->model('dx_auth/user_profile', 'user_profile');
         $user_id = (int) $id;

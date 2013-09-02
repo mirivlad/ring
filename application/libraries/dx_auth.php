@@ -809,10 +809,11 @@ class DX_Auth {
 	$this->ci->session->sess_destroy();
     }
 
-    function register($username, $password, $email) {
+    function register($email, $password, $first_name, $surname ) {
 	// Load Models
 	$this->ci->load->model('dx_auth/users', 'users');
 	$this->ci->load->model('dx_auth/user_temp', 'user_temp');
+        $this->ci->load->model('dx_auth/user_profile', 'user_profile');
 
 	$this->ci->load->helper('url');
 
@@ -821,9 +822,11 @@ class DX_Auth {
 
 	// New user array
 	$new_user = array(
-	    'username' => $username,
+	    'username' => $email,
 	    'password' => crypt($this->_encode($password)),
 	    'email' => $email,
+            'first_name' => $first_name,
+            'surname' => $surname,
 	    'last_ip' => $this->ci->input->ip_address()
 	);
 
@@ -835,10 +838,19 @@ class DX_Auth {
 	    // Create temporary user in database which means the user still unactivated.
 	    $insert = $this->ci->user_temp->create_temp($new_user);
 	} else {
-	    // Create user 
+	    // We don't have user_profile fields in users table/ Remove it.
+            $unset($new_user['first_name']);
+            $unset($new_user['surname']);
+            // Create user 
 	    $insert = $this->ci->users->create_user($new_user);
+            
 	    // Trigger event
 	    $this->ci->dx_auth_event->user_activated($this->ci->db->insert_id());
+            $profile_data = array(
+                'first_name' => $first_name,
+                'surname' => $surname
+            );
+            $insert = $this->ci->user_profile->set_profile($this->ci->db->insert_id(), $profile_data);
 	}
 
 	if ($insert) {
@@ -966,7 +978,8 @@ class DX_Auth {
 	// Load Models
 	$this->ci->load->model('dx_auth/users', 'users');
 	$this->ci->load->model('dx_auth/user_temp', 'user_temp');
-
+        $this->ci->load->model('dx_auth/user_profile', 'user_profile');
+        
 	// Default return value
 	$result = FALSE;
 
@@ -981,16 +994,26 @@ class DX_Auth {
 	    $row = $query->row_array();
 
 	    $del = $row['id'];
-
+            //$f_name = $row['first_name'];
+            //$s_name = $row['surname'];
 	    // Unset any unwanted fields
 	    unset($row['id']); // We don't want to copy the id across
 	    unset($row['activation_key']);
+            unset($row['first_name']);
+            unset($row['surname']);
 
 	    // Create user
 	    if ($this->ci->users->create_user($row)) {
+                $uid = $this->ci->db->insert_id();
 		// Trigger event
-		$this->ci->dx_auth_event->user_activated($this->ci->db->insert_id());
+		$this->ci->dx_auth_event->user_activated($uid);
+                $temp_data = $this->ci->user_temp->get_login($row['email'])->row_array();
+                $profile_data = array(
+                    'first_name' => $temp_data['first_name'],
+                    'surname' => $temp_data['surname']
+                );
 
+                $insert = $this->ci->user_profile->set_profile($uid, $profile_data);
 		// Delete user from temp
 		$this->ci->user_temp->delete_user($del);
 
@@ -1196,6 +1219,36 @@ class DX_Auth {
         $query = $this->ci->users->get_user_by_id($id);
         $user = $query->row();
         return $user->username;
+    }
+    
+    function get_user_first_name ($id){
+        $this->ci->load->model('dx_auth/user_profile', 'user_profile');
+        $query = $this->ci->user_profile->get_profile_field($id,'first_name');
+        $user = $query->row();
+        return $user->first_name;
+    }
+    function get_user_surname ($id){
+        $this->ci->load->model('dx_auth/user_profile', 'user_profile');
+        $query = $this->ci->user_profile->get_profile_field($id,'surname');
+        $user = $query->row();
+        return $user->surname;
+    }
+    
+    function get_user_profile_name($id){
+        $name = '';
+        $f_name = $this->get_user_first_name($id);
+        $s_name = $this->get_user_surname($id);
+        if ($f_name != ''){
+            $name .= $f_name;
+        }else{
+            $name .= "Аноним";
+        }
+        if ($s_name != ''){
+            $name .= " ".$s_name;
+        }else{
+            $name .= " Анонимов";
+        }
+        return $name;
     }
     /* End of Recaptcha function */
 }

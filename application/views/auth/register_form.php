@@ -1,10 +1,10 @@
 <?php
-$username = array(
-    'name' => 'username',
-    'id' => 'username',
-    'size' => 30,
-    'value' => set_value('username')
-);
+//$username = array(
+//    'name' => 'username',
+//    'id' => 'username',
+//    'size' => 30,
+//    'value' => set_value('username')
+//);
 
 $password = array(
     'name' => 'password',
@@ -28,7 +28,20 @@ $email = array(
     'size' => 30,
     'value' => set_value('email')
 );
-
+$first_name = array(
+    'name' => 'first_name',
+    'id' => 'first_name',
+    'maxlength' => 80,
+    'size' => 30,
+    'value' => set_value('first_name')
+);
+$surname = array(
+    'name' => 'surname',
+    'id' => 'surname',
+    'maxlength' => 80,
+    'size' => 30,
+    'value' => set_value('surname')
+);
 $captcha = array(
     'name' => 'captcha',
     'id' => 'captcha'
@@ -43,11 +56,12 @@ $this->load->view('templates/header');
 
     <fieldset>
         <legend><?=$title?></legend>
-        <?php echo form_open($this->uri->uri_string(), ' class="form-horizontal"') ?>
+        <?php echo form_open($this->uri->uri_string(), ' class="form-vertical"') ?>
+        <p><strong><em>Все поля обязательны для заполнения!</em></strong></p>
         <div class="control-group">
-            <label class="control-label" for="username"><i class="icon-user"></i> Логин</label>
+            <label class="control-label" for="email"><i class="icon-inbox"></i> Адрес email (используется в качестве логина)</label>
             <div class="controls">
-                <?php echo form_input($username) ?>
+                <?php echo form_input($email) ?>
             </div>
         </div>
         <div class="control-group">
@@ -63,9 +77,15 @@ $this->load->view('templates/header');
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="email"><i class="icon-inbox"></i> Адрес email</label>
+            <label class="control-label" for="first_name"><i class="icon-user" style="color:#0aa;"></i> Имя</label>
             <div class="controls">
-                <?php echo form_input($email) ?>
+                <?php echo form_input($first_name) ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="surname"><i class="icon-user" style="color:#0aa;"></i> Фамилия</label>
+            <div class="controls">
+                <?php echo form_input($surname) ?>
             </div>
         </div>
         
