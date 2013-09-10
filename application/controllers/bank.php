@@ -39,6 +39,10 @@ class Bank extends CI_Controller {
     
     public function list_data(){
                 // Get offset and limit for page viewing
+                        
+                if (!$this->bank_model->check_bank_id($this->bank_id)) {
+                    redirect("/");
+                }
                 $bank_info = $this->bank_model->bank_info($this->bank_id);
                 $offset = (int) $this->uri->segment(4,1);
                 $row_count = 3;

@@ -15,8 +15,11 @@ class Bank_model extends CI_Model {
                 $this->db->where('id_db', (int) $id_db, TRUE);
                 $res = $this->db->get("list_db");
                 $res = $res->result_array();
-                
-                return $res[0];
+                if (is_array($res) AND isset($res[0])){
+                    return $res[0];
+                }else{
+                    return FALSE;
+                }
         }
         function check_bank_id($id_db=0){
             $id = (int)$id_db;
