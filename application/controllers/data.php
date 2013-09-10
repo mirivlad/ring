@@ -46,7 +46,7 @@ class Data extends CI_Controller {
             redirect("/");
         }
         $bank_info = $this->bank_model->bank_info($this->bank_id);
-        //$this->firephp->log($bank_info);
+        
         $data['bank_id'] = $this->bank_id;
         $data['title'] = "Добавление данных в Банк : " . $bank_info['name'];
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
@@ -69,7 +69,31 @@ class Data extends CI_Controller {
                             });
                     </script>
                     ";
-        //$data['banks'] = $this->bank_model->bank_list()->result_array();
+        $this->firephp->log($_POST);
+        $data['data_title'] = array(
+                        'name'        => 'data_title',
+                        'id'          => 'data_title',
+                        'value'       =>  isset($_POST['data_title'])?$_POST['data_title']:'',
+                        'maxlength'   => '255',
+                        'style'       => 'width:50%',
+                        'placeholder' => 'Введите заголовок...',
+                      );
+        $data['data_description'] = array(
+                      'name'        => 'data_description',
+                      'id'          => 'data_description',
+                      'value'       => isset($_POST['data_description'])?$_POST['data_description']:'',
+                      'cols'        => '50',
+                      'rows'        => '4',
+                      'style'       => 'width:50%',
+                      'placeholder' => 'Введите описание...',
+                    );
+        $data['data_text'] = array(
+                      'name'        => 'data_text',
+                      'id'          => 'data_text',
+                      'value'       => isset($_POST['data_text'])?$_POST['data_text']:'',
+                      'style'       => 'width: 90%; height: 200px;',
+                      'placeholder' => 'Введите ваш текст записи сюда ...',
+                    );
         $add_data_validation = array(
             array(
                 'field' => 'data_title',
@@ -88,13 +112,14 @@ class Data extends CI_Controller {
             )
         );
         $this->form_validation->set_rules($add_data_validation);
-        if ($this->form_validation->run() != FALSE) {
+        if ($this->form_validation->run()) {
             if ($this->bank_model->save_data()){
                 $this->notify->returnSuccess('Данные сохранены.');
             }else{
                 $this->notify->returnError('Не удалось сохранить данные.');
             }
         }
+        $this->firephp->log($_POST);
         $this->load->view("bank/add_data", $data);
     }
 
@@ -109,7 +134,14 @@ class Data extends CI_Controller {
             
                 $data['title'] = $data['info']['title'];
                 $data['author_name'] = $this->dx_auth->get_user_name($data['info']['author_id']);
-                $this->firephp->log($data);
+                $data_tags = $this->bank_model->get_data_tags($id);
+                $tags_arr = array();
+                $var1 = '';
+                foreach ($data_tags as $tag) {
+                    $var1 = $this->bank_model->get_tag($tag['tag_id']);
+                    $tags_arr[$var1['id_tag']] = $var1['name'];
+                }
+                $data['tags'] = $tags_arr;
                 $this->load->view("bank/show_data", $data);  
             }
            

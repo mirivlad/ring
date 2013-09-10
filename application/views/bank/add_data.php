@@ -1,29 +1,7 @@
 <?php
 $this->load->view('templates/header');
-$data_title = array(
-              'name'        => 'data_title',
-              'id'          => 'data_title',
-              'value'       => '',
-              'maxlength'   => '255',
-              'style'       => 'width:50%',
-              'placeholder' => 'Введите заголовок...',
-            );
-$data_description = array(
-              'name'        => 'data_description',
-              'id'          => 'data_description',
-              'value'       => '',
-              'cols'        => '50',
-              'rows'        => '4',
-              'style'       => 'width:50%',
-              'placeholder' => 'Введите описание...',
-            );
-$data_text = array(
-              'name'        => 'data_text',
-              'id'          => 'data_text',
-              'value'       => '',
-              'style'       => 'width: 90%; height: 200px;',
-              'placeholder' => 'Введите ваш текст записи сюда ...',
-            );
+
+
 //$bank_options = array();
 //foreach ($banks as $value) {
 //    $bank_options[$value['id_db']] = $value['name'];

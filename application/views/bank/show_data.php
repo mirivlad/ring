@@ -11,7 +11,17 @@ $this->load->view('templates/header');
         </span>
     </legend>
         <p><?= $info['content'] ?></p>
-</fieldset>            
+</fieldset>
+<p>
+    Теги: 
+    <?php
+    foreach ($tags as $tag => $value){
+     ?>
+        <span class="badge badge-info"><a href='/tag/<?=$tag['id_tag']?>'><?=$value?></a></span>
+    <?php
+    }
+    ?>
+</p>
     <?php
     $this->load->view('templates/footer');
     ?>

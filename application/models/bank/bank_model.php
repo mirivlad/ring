@@ -122,6 +122,28 @@ class Bank_model extends CI_Model {
                 return FALSE;
             }
         }
+        function get_data_tags ($data_id){
+            $this->db->where('data_id', $data_id);
+            $res = $this->db->get("tags_data");
+            $res = $res->result_array();
+            if (is_array($res)){
+                return $res;
+            }else{
+                return FALSE;
+            }
+        }
+        
+        function get_tag($tag_id){
+            $this->db->where('id_tag', $tag_id);
+            $res = $this->db->get("list_tags");
+            $res = $res->result_array();
+            if (is_array($res)){
+                return $res[0];
+            }else{
+                return FALSE;
+            }
+        }
+        
         function save_data(){
             if ($this->check_bank_id($this->input->post("bank_id"))){
                 $this->save_tags($this->input->post("data_tags"));
