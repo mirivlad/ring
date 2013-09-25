@@ -206,7 +206,11 @@ class Bank_model extends CI_Model {
             $var1 = $this->get_tag($tag['tag_id']);
             $tags_arr[$var1['id_tag']] = $var1['name'];
         }
-        return $tags_arr;
+        if (count($tags_arr)>0){
+                return $tags_arr;
+        }else{
+            return FALSE;
+        }
     }
 
 }
