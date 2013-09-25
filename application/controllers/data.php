@@ -22,8 +22,6 @@ class Data extends CI_Controller {
 
     public function index() {
         $this->data_id = (int) $this->uri->segment(3, 0);
-        //если не вошли в систему
-        //$this->bank_id = $bank_id;
         if ($this->data_id == 0) {
             redirect("/bank");
         }
@@ -40,7 +38,6 @@ class Data extends CI_Controller {
     }
 
     public function add_data($bank_id = 0) {
-        //$this->firephp->log($_POST);
         $this->bank_id = (int) $bank_id;
         if (!$this->bank_model->check_bank_id($this->bank_id)) {
             redirect("/");
@@ -69,11 +66,10 @@ class Data extends CI_Controller {
                             });
                     </script>
                     ";
-        $this->firephp->log($_POST);
         $data['data_title'] = array(
                         'name'        => 'data_title',
                         'id'          => 'data_title',
-                        'value'       =>  isset($_POST['data_title'])?$_POST['data_title']:'',
+                        'value'       => $this->input->post('data_title'),
                         'maxlength'   => '255',
                         'style'       => 'width:50%',
                         'placeholder' => 'Введите заголовок...',
@@ -81,7 +77,7 @@ class Data extends CI_Controller {
         $data['data_description'] = array(
                       'name'        => 'data_description',
                       'id'          => 'data_description',
-                      'value'       => isset($_POST['data_description'])?$_POST['data_description']:'',
+                      'value'       => $this->input->post('data_description'),
                       'cols'        => '50',
                       'rows'        => '4',
                       'style'       => 'width:50%',
@@ -90,24 +86,24 @@ class Data extends CI_Controller {
         $data['data_text'] = array(
                       'name'        => 'data_text',
                       'id'          => 'data_text',
-                      'value'       => isset($_POST['data_text'])?$_POST['data_text']:'',
-                      'style'       => 'width: 90%; height: 200px;',
+                      'value'       => $this->input->post('data_text'),
+                      'style'       => 'width: 90%; height: 400px;',
                       'placeholder' => 'Введите ваш текст записи сюда ...',
                     );
         $add_data_validation = array(
             array(
                 'field' => 'data_title',
-                'label' => 'Заголовок',
+                'label' => 'Заголовок записи',
                 'rules' => 'required'
             ),
             array(
                 'field' => 'data_description',
-                'label' => 'Описание',
+                'label' => 'Описание записи',
                 'rules' => 'required'
             ),
             array(
                 'field' => 'data_text',
-                'label' => 'Текст',
+                'label' => 'Текст записи',
                 'rules' => 'required'
             )
         );
@@ -119,7 +115,6 @@ class Data extends CI_Controller {
                 $this->notify->returnError('Не удалось сохранить данные.');
             }
         }
-        $this->firephp->log($_POST);
         $this->load->view("bank/add_data", $data);
     }
 
@@ -134,14 +129,7 @@ class Data extends CI_Controller {
             
                 $data['title'] = $data['info']['title'];
                 $data['author_name'] = $this->dx_auth->get_user_name($data['info']['author_id']);
-                $data_tags = $this->bank_model->get_data_tags($id);
-                $tags_arr = array();
-                $var1 = '';
-                foreach ($data_tags as $tag) {
-                    $var1 = $this->bank_model->get_tag($tag['tag_id']);
-                    $tags_arr[$var1['id_tag']] = $var1['name'];
-                }
-                $data['tags'] = $tags_arr;
+                $data['tags'] = $this->bank_model->show_tag_array($id);
                 $this->load->view("bank/show_data", $data);  
             }
            
