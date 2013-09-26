@@ -128,7 +128,8 @@ class Data extends CI_Controller {
                 $data['info'] = $data['info'][0];
             
                 $data['title'] = $data['info']['title'];
-                $data['author_name'] = $this->dx_auth->get_user_name($data['info']['author_id']);
+                $data['author_name'] = $this->dx_auth->get_user_profile_name($data['info']['author_id']);
+                    //$this->dx_auth->get_user_name($data['info']['author_id']);
                 $data['tags'] = $this->bank_model->show_tag_array($id);
                 $this->load->view("bank/show_data", $data);  
             }
