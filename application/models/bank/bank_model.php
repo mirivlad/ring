@@ -62,7 +62,28 @@ class Bank_model extends CI_Model {
         }
         return $query;
     }
-
+    function check_owner_data ($data_id = 0){
+        if ($this->dx_auth->is_admin()) return TRUE;
+        
+        $id = (int) $data_id;
+        
+        if (!$this->check_data_id($id)) {
+            return FALSE;
+        }
+        $data = $this->db->get_where('list_data', array('id_data' => $id), 1)->result_array();
+        if (is_array($data) AND count($data)>0){
+            $info = $data[0];
+            if ($info['author_id'] == $this->dx_auth->get_user_id()){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        //$this->firephp->log($data);
+        }else{
+            return FALSE;
+        }
+        return FALSE;
+    }
     function check_data_id($data_id = 0) {
         $id = (int) $data_id;
         if ($id <= 0) {
@@ -199,7 +220,7 @@ class Bank_model extends CI_Model {
 
     function update_data() {
         $data_id = (int) $this->input->post("data_id");
-        if ($this->check_data_id($data_id)) {
+        if ($this->check_data_id($data_id) AND $this->check_owner_data($data_id)) {
             //сохраняем теги в БД
             $this->save_tags($this->input->post("data_tags"));
             $data = array(
@@ -239,7 +260,7 @@ class Bank_model extends CI_Model {
 
     function delete_data($id) {
         $data_id = (int) $id;
-        if ($this->check_data_id($data_id)) {
+        if ($this->check_data_id($data_id) AND $this->check_owner_data($data_id)) {
             //Удаляем запись в БД.
             $this->db->delete('list_data', array("id_data" => $data_id));
 

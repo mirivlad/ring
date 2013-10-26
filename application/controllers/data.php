@@ -120,6 +120,7 @@ class Data extends CI_Controller {
 
     public function edit_data($data_id = 0) {
         $this->data_id = (int) $data_id;
+        $this->bank_model->check_owner_data($data_id);
         if (!$this->bank_model->check_data_id($this->data_id)) {
             redirect("/");
         }

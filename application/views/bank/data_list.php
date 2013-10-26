@@ -44,7 +44,7 @@ $this->load->view('templates/header');
                         ?>
                     </td>
                 </tr>
-                <?php if ($this->dx_auth->is_admin()) {
+                <?php if ($this->bank_model->check_owner_data($item["id_data"])) {
                     ?>
                     <tr>
                         <td colspan="4"><strong>Опции: </strong>

@@ -9,9 +9,14 @@ $this->load->view('templates/header');
         <span class="label label-success">
             <i class="icon-time" style="color:white;"></i> <?php echo date("d-m-Y H:i:s", $info["create_date"]); ?>
         </span>
+        <?php if ($this->bank_model->check_owner_data($info["id_data"])) {
+        ?>
         <strong style="font-size: 0.5em; float: right;"><a href="/data/edit_data/<?= $info["id_data"] ?>"><span class="icon icon-edit"></span>Редактировать</a>&nbsp;&nbsp;&nbsp;
             <a href="/data/delete_data/<?= $info["id_data"] ?>" onClick="return window.confirm('Уверены что хотите удалить эту запись?')"><span class="icon icon-minus-sign"></span>Удалить</a>
         </strong>
+        <?php
+        }
+        ?>
     </legend>
 
 
