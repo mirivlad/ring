@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'ring';
-$db['default']['password'] = 'ring';
-$db['default']['database'] = 'ring';
+$db['default']['username'] = 'kommunar_ring';
+$db['default']['password'] = '44xcr5bu';
+$db['default']['database'] = 'kommunar_ring';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

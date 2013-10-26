@@ -23,7 +23,6 @@ $this->load->view('templates/header');
 
                         <?php
                         $tags = $this->bank_model->show_tag_array($item["id_data"]);
-                        $this->firephp->log($tags);
                         if ($tags) {
                         ?>                                 
                             <p style='margin: .2em .2em .1em .2em; padding-top: .2em; border-top: 1px black dotted;' >
@@ -45,6 +44,17 @@ $this->load->view('templates/header');
                         ?>
                     </td>
                 </tr>
+                <?php if($this->dx_auth->is_admin()){
+                ?>
+                <tr>
+                    <td colspan="4"><strong>Опции: </strong>
+                        <a href="/data/edit_data/<?=$item["id_data"]?>"><span class="icon icon-edit"></span>Редактировать</a>&nbsp;&nbsp;&nbsp;
+                        <a href="/data/delete_data/<?=$item["id_data"]?>" onClick="return window.confirm('Уверены что хотите удалить эту запись?')"><span class="icon icon-minus-sign"></span>Удалить</a>
+                    </td>
+                </tr>
+                <?php
+                }
+                ?>
             </table>
             <?php
         }

@@ -196,7 +196,64 @@ class Bank_model extends CI_Model {
             return FALSE;
         }
     }
+    function update_data() {
+        $data_id = (int)$this->input->post("data_id");
+        if ($this->check_data_id($data_id)) {
+            //сохраняем теги в БД
+            $this->save_tags($this->input->post("data_tags"));
+            $data = array(
+                'create_date' => time(),
+                'title' => strip_tags($this->input->post("data_title")),
+                'description' => strip_tags($this->input->post("data_description")),
+                'content' => $this->input->post("data_text")
+            );
+            //Сохраняем запись в БД.
+            $this->db->update('list_data', $this->security->xss_clean($data),array("id_data"=>$data_id));
+
+            //находим теги записи и удаляем их
+            $data_tags = $this->get_data_tags($data_id);
+            if(is_array($data_tags)){
+                foreach ($data_tags as $data_tag){
+                    $this->db->delete('tags_data', array('data_id' => $data_id)); 
+                }
+            }            
+
+            //массив тегов
+            $tags = explode(",", $this->input->post("data_tags"));
+            //находим теги в БД и их ID
+            $array_tags = $this->search_tags($tags);
+            if (is_array($array_tags)) {
+                $data2 = array();
+                foreach ($array_tags as $val) {
+                    $data2 = array('id_tagdata' => NULL, 'tag_id' => $val, 'data_id' => $data_id);
+                    $data2 = $this->security->xss_clean($data2);
+                    $this->db->insert('tags_data', $data2);
+                }
+            }
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
     
+    function delete_data($id){
+        $data_id = (int)$id;
+        if ($this->check_data_id($data_id)) {
+            //Удаляем запись в БД.
+            $this->db->delete('list_data', array("id_data"=>$data_id));
+
+            //находим теги записи и удаляем их
+            $data_tags = $this->get_data_tags($data_id);
+            if(is_array($data_tags)){
+                foreach ($data_tags as $data_tag){
+                    $this->db->delete('tags_data', array('data_id' => $data_id)); 
+                }
+            }            
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
     function show_tag_array($id){
         $id = (int) $id;
         $data_tags = $this->get_data_tags($id);

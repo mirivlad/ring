@@ -43,7 +43,7 @@ class Data extends CI_Controller {
             redirect("/");
         }
         $bank_info = $this->bank_model->bank_info($this->bank_id);
-        
+
         $data['bank_id'] = $this->bank_id;
         $data['title'] = "Добавление данных в Банк : " . $bank_info['name'];
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
@@ -67,29 +67,29 @@ class Data extends CI_Controller {
                     </script>
                     ";
         $data['data_title'] = array(
-                        'name'        => 'data_title',
-                        'id'          => 'data_title',
-                        'value'       => $this->input->post('data_title'),
-                        'maxlength'   => '255',
-                        'style'       => 'width:50%',
-                        'placeholder' => 'Введите заголовок...',
-                      );
+            'name' => 'data_title',
+            'id' => 'data_title',
+            'value' => $this->input->post('data_title'),
+            'maxlength' => '255',
+            'style' => 'width:50%',
+            'placeholder' => 'Введите заголовок...',
+        );
         $data['data_description'] = array(
-                      'name'        => 'data_description',
-                      'id'          => 'data_description',
-                      'value'       => $this->input->post('data_description'),
-                      'cols'        => '50',
-                      'rows'        => '4',
-                      'style'       => 'width:50%',
-                      'placeholder' => 'Введите описание...',
-                    );
+            'name' => 'data_description',
+            'id' => 'data_description',
+            'value' => $this->input->post('data_description'),
+            'cols' => '50',
+            'rows' => '4',
+            'style' => 'width:50%',
+            'placeholder' => 'Введите описание...',
+        );
         $data['data_text'] = array(
-                      'name'        => 'data_text',
-                      'id'          => 'data_text',
-                      'value'       => $this->input->post('data_text'),
-                      'style'       => 'width: 90%; height: 400px;',
-                      'placeholder' => 'Введите ваш текст записи сюда ...',
-                    );
+            'name' => 'data_text',
+            'id' => 'data_text',
+            'value' => $this->input->post('data_text'),
+            'style' => 'width: 90%; height: 400px;',
+            'placeholder' => 'Введите ваш текст записи сюда ...',
+        );
         $add_data_validation = array(
             array(
                 'field' => 'data_title',
@@ -109,31 +109,137 @@ class Data extends CI_Controller {
         );
         $this->form_validation->set_rules($add_data_validation);
         if ($this->form_validation->run()) {
-            if ($this->bank_model->save_data()){
+            if ($this->bank_model->save_data()) {
                 $this->notify->returnSuccess('Данные сохранены.');
-            }else{
+            } else {
                 $this->notify->returnError('Не удалось сохранить данные.');
             }
         }
         $this->load->view("bank/add_data", $data);
     }
 
-    public function show_data() {
-            $id = $this->data_id = (int) $this->uri->segment(3, 0);
-            
-            $data['info'] = $this->bank_model->get_data($id);
-            if (!is_array($data['info']) OR !isset($data['info'][0])){
-                $this->error_id();
-            }else{
-                $data['info'] = $data['info'][0];
-            
-                $data['title'] = $data['info']['title'];
-                $data['author_name'] = $this->dx_auth->get_user_profile_name($data['info']['author_id']);
-                    //$this->dx_auth->get_user_name($data['info']['author_id']);
-                $data['tags'] = $this->bank_model->show_tag_array($id);
-                $this->load->view("bank/show_data", $data);  
+    public function edit_data($data_id = 0) {
+        $this->data_id = (int) $data_id;
+        if (!$this->bank_model->check_data_id($this->data_id)) {
+            redirect("/");
+        }
+        $getdata = $this->bank_model->get_data($this->data_id);
+        $data_info = $getdata[0];
+        $data['data_id'] = $this->data_id;
+        $data['tags'] = $this->bank_model->show_tag_array($this->data_id);
+        $data['tags_string'] = "";
+        if (is_array($data['tags']) AND count($data['tags'])>0 ){
+            foreach ($data['tags'] as $tag => $value) {
+                $data['tags_string'].= $value.",";
             }
-           
+        }
+
+        $data['tags_string'] = mb_substr($data['tags_string'], 0, strlen($data['tags_string'])-1);
+        $data['title'] = "Редактирование записи : " . $data_info['title'];
+        $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
+            <link rel=\"stylesheet\" type=\"text/css\" href='/assets/css/bootstrap-tagmanager.css'></script>\n
+            ";
+        $data['footer_add'][] = "
+                    <script src='/assets/js/wysihtml5-0.3.0.min.js'></script>\n
+                    <script src='/assets/js/bootstrap-wysihtml5.js'></script>\n
+                    <script src='/assets/js/wysihtml5_locales/bootstrap-wysihtml5.ru-RU.js'></script>\n
+                    <script src='/assets/js/bootstrap-tagmanager.js'></script>\n
+                    <script type='text/javascript'>
+                      $('#data_text').wysihtml5({locale: \"ru-RU\"});
+                    </script>\n
+                    <script type=\"text/javascript\">
+                            jQuery(\".tm-input\").tagsManager({
+                                typeahead: true,
+                                typeaheadAjaxSource: '/data/ajax_tags',
+                                typeaheadAjaxPolling: true,
+                                prefilled: '".$data['tags_string']."',
+                                hiddenTagListName: 'data_tags'
+                            });
+                    </script>
+                    ";
+        $data['data_title'] = array(
+            'name' => 'data_title',
+            'id' => 'data_title',
+            'value' => $data_info['title'],
+            'maxlength' => '255',
+            'style' => 'width:50%',
+            'placeholder' => 'Введите заголовок...',
+        );
+        $data['data_description'] = array(
+            'name' => 'data_description',
+            'id' => 'data_description',
+            'value' => $data_info['description'],
+            'cols' => '50',
+            'rows' => '4',
+            'style' => 'width:50%',
+            'placeholder' => 'Введите описание...',
+        );
+        $data['data_text'] = array(
+            'name' => 'data_text',
+            'id' => 'data_text',
+            'value' => $data_info['content'],
+            'style' => 'width: 90%; height: 400px;',
+            'placeholder' => 'Введите ваш текст записи сюда ...',
+        );
+
+        
+        $edit_data_validation = array(
+            array(
+                'field' => 'data_title',
+                'label' => 'Заголовок записи',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'data_description',
+                'label' => 'Описание записи',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'data_text',
+                'label' => 'Текст записи',
+                'rules' => 'required'
+            )
+        );
+        $this->form_validation->set_rules($edit_data_validation);
+        if ($this->form_validation->run()) {
+            if ($this->bank_model->update_data()) {
+                $this->notify->returnSuccess('Данные сохранены.');
+            } else {
+                $this->notify->returnError('Не удалось сохранить данные.');
+            }
+        }
+        $this->load->view("bank/edit_data", $data);
+    }
+    
+    public function delete_data($data_id = 0) {
+        $this->data_id = (int) $data_id;
+        if (!$this->bank_model->check_data_id($this->data_id)) {
+            redirect("/");
+        }
+
+            if ($this->bank_model->delete_data($this->data_id)) {
+                $this->notify->returnSuccess('Запись удалена.');
+            } else {
+                $this->notify->returnError('Не удалось удалить запись.');
+            }
+            redirect("/");
+    }
+    
+    public function show_data() {
+        $id = $this->data_id = (int) $this->uri->segment(3, 0);
+
+        $data['info'] = $this->bank_model->get_data($id);
+        if (!is_array($data['info']) OR !isset($data['info'][0])) {
+            $this->error_id();
+        } else {
+            $data['info'] = $data['info'][0];
+
+            $data['title'] = $data['info']['title'];
+            $data['author_name'] = $this->dx_auth->get_user_profile_name($data['info']['author_id']);
+            //$this->dx_auth->get_user_name($data['info']['author_id']);
+            $data['tags'] = $this->bank_model->show_tag_array($id);
+            $this->load->view("bank/show_data", $data);
+        }
     }
 
     function ajax_tags() {

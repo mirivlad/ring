@@ -1,22 +1,12 @@
 <?php
 $this->load->view('templates/header');
-$data_title = array(
-              'name'        => 'data_title',
-              'id'          => 'data_title',
-              'value'       => '',
-              'maxlength'   => '255',
-              'style'       => 'width:50%',
-              'placeholder' => 'Введите заголовок...',
-            );
-$data_description = array(
-              'name'        => 'data_description ',
-              'id'          => 'data_description ',
-              'value'       => '',
-              'cols'        => '50',
-              'rows'        => '4',
-              'style'       => 'width:50%',
-              'placeholder' => 'Введите описание...',
-            );
+
+
+//$bank_options = array();
+//foreach ($banks as $value) {
+//    $bank_options[$value['id_db']] = $value['name'];
+//}
+
 ?>
 <fieldset>
     <legend><i class="icon-edit"></i> <?= $title ?></legend>
@@ -36,18 +26,22 @@ $data_description = array(
         <div class="control-group">
             <label class="control-label" for="data_text">Текст записи</label>
             <div class="controls">
-                <textarea id="data_text" style="width: 90%; height: 200px;" placeholder="Введите ваш текст записи сюда ..."></textarea>
-                <script type="text/javascript">
-                        $('#data_text').wysihtml5();
-                </script>
+                <?php echo form_textarea($data_text) ?>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="data_tag">Теги</label>
+            <div class="controls">
+                <input type="text" name="data_tag" placeholder="Теги" class="tm-input"/>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <?php echo form_submit('add_content', 'Сохранить', ' class="btn btn-primary"'); ?>
+                <?php echo form_submit('save_content', 'Сохранить', ' class="btn btn-primary"'); ?>
                 <?php echo form_reset('reset_content', 'Очистить', ' class="btn btn-warning"'); ?>
             </div>
         </div>
+    <input type="hidden" name="data_id" value="<?=$data_id?>" />
     <?php echo form_close() ?>
 </fieldset>            
     <?php
