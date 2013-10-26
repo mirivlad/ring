@@ -24,35 +24,35 @@ $this->load->view('templates/header');
                         <?php
                         $tags = $this->bank_model->show_tag_array($item["id_data"]);
                         if ($tags) {
-                        ?>                                 
+                            ?>                                 
                             <p style='margin: .2em .2em .1em .2em; padding-top: .2em; border-top: 1px black dotted;' >
                                 <strong>Теги: </strong> 
                                 <?php
                                 foreach ($tags as $tag => $value) {
-                                ?>
+                                    ?>
 
                                     <span class="badge badge-info">
                                         <a style="color:white;" href='/tag/<?= $tag ?>'><?= $value ?></a>
                                     </span>
-                                
-                        <?php
-                            }
-                        ?>
+
+                                    <?php
+                                }
+                                ?>
                             </p>
-                        <?php
+                            <?php
                         }
                         ?>
                     </td>
                 </tr>
-                <?php if($this->dx_auth->is_admin()){
-                ?>
-                <tr>
-                    <td colspan="4"><strong>Опции: </strong>
-                        <a href="/data/edit_data/<?=$item["id_data"]?>"><span class="icon icon-edit"></span>Редактировать</a>&nbsp;&nbsp;&nbsp;
-                        <a href="/data/delete_data/<?=$item["id_data"]?>" onClick="return window.confirm('Уверены что хотите удалить эту запись?')"><span class="icon icon-minus-sign"></span>Удалить</a>
-                    </td>
-                </tr>
-                <?php
+                <?php if ($this->dx_auth->is_admin()) {
+                    ?>
+                    <tr>
+                        <td colspan="4"><strong>Опции: </strong>
+                            <a href="/data/edit_data/<?= $item["id_data"] ?>"><span class="icon icon-edit"></span>Редактировать</a>&nbsp;&nbsp;&nbsp;
+                            <a href="/data/delete_data/<?= $item["id_data"] ?>" onClick="return window.confirm('Уверены что хотите удалить эту запись?')"><span class="icon icon-minus-sign"></span>Удалить</a>
+                        </td>
+                    </tr>
+                    <?php
                 }
                 ?>
             </table>
@@ -64,7 +64,7 @@ $this->load->view('templates/header');
     } else {
         ?>
         <h5>
-        <?= $list_data ?>
+            <?= $list_data ?>
         </h5>
         <?php
     }

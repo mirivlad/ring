@@ -196,8 +196,9 @@ class Bank_model extends CI_Model {
             return FALSE;
         }
     }
+
     function update_data() {
-        $data_id = (int)$this->input->post("data_id");
+        $data_id = (int) $this->input->post("data_id");
         if ($this->check_data_id($data_id)) {
             //сохраняем теги в БД
             $this->save_tags($this->input->post("data_tags"));
@@ -208,15 +209,15 @@ class Bank_model extends CI_Model {
                 'content' => $this->input->post("data_text")
             );
             //Сохраняем запись в БД.
-            $this->db->update('list_data', $this->security->xss_clean($data),array("id_data"=>$data_id));
+            $this->db->update('list_data', $this->security->xss_clean($data), array("id_data" => $data_id));
 
             //находим теги записи и удаляем их
             $data_tags = $this->get_data_tags($data_id);
-            if(is_array($data_tags)){
-                foreach ($data_tags as $data_tag){
-                    $this->db->delete('tags_data', array('data_id' => $data_id)); 
+            if (is_array($data_tags)) {
+                foreach ($data_tags as $data_tag) {
+                    $this->db->delete('tags_data', array('data_id' => $data_id));
                 }
-            }            
+            }
 
             //массив тегов
             $tags = explode(",", $this->input->post("data_tags"));
@@ -235,26 +236,27 @@ class Bank_model extends CI_Model {
             return FALSE;
         }
     }
-    
-    function delete_data($id){
-        $data_id = (int)$id;
+
+    function delete_data($id) {
+        $data_id = (int) $id;
         if ($this->check_data_id($data_id)) {
             //Удаляем запись в БД.
-            $this->db->delete('list_data', array("id_data"=>$data_id));
+            $this->db->delete('list_data', array("id_data" => $data_id));
 
             //находим теги записи и удаляем их
             $data_tags = $this->get_data_tags($data_id);
-            if(is_array($data_tags)){
-                foreach ($data_tags as $data_tag){
-                    $this->db->delete('tags_data', array('data_id' => $data_id)); 
+            if (is_array($data_tags)) {
+                foreach ($data_tags as $data_tag) {
+                    $this->db->delete('tags_data', array('data_id' => $data_id));
                 }
-            }            
+            }
             return TRUE;
         } else {
             return FALSE;
         }
     }
-    function show_tag_array($id){
+
+    function show_tag_array($id) {
         $id = (int) $id;
         $data_tags = $this->get_data_tags($id);
         $tags_arr = array();
@@ -263,9 +265,9 @@ class Bank_model extends CI_Model {
             $var1 = $this->get_tag($tag['tag_id']);
             $tags_arr[$var1['id_tag']] = $var1['name'];
         }
-        if (count($tags_arr)>0){
-                return $tags_arr;
-        }else{
+        if (count($tags_arr) > 0) {
+            return $tags_arr;
+        } else {
             return FALSE;
         }
     }

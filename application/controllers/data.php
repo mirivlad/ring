@@ -128,13 +128,13 @@ class Data extends CI_Controller {
         $data['data_id'] = $this->data_id;
         $data['tags'] = $this->bank_model->show_tag_array($this->data_id);
         $data['tags_string'] = "";
-        if (is_array($data['tags']) AND count($data['tags'])>0 ){
+        if (is_array($data['tags']) AND count($data['tags']) > 0) {
             foreach ($data['tags'] as $tag => $value) {
-                $data['tags_string'].= $value.",";
+                $data['tags_string'].= $value . ",";
             }
         }
 
-        $data['tags_string'] = mb_substr($data['tags_string'], 0, strlen($data['tags_string'])-1);
+        $data['tags_string'] = mb_substr($data['tags_string'], 0, strlen($data['tags_string']) - 1);
         $data['title'] = "Редактирование записи : " . $data_info['title'];
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
             <link rel=\"stylesheet\" type=\"text/css\" href='/assets/css/bootstrap-tagmanager.css'></script>\n
@@ -152,7 +152,7 @@ class Data extends CI_Controller {
                                 typeahead: true,
                                 typeaheadAjaxSource: '/data/ajax_tags',
                                 typeaheadAjaxPolling: true,
-                                prefilled: '".$data['tags_string']."',
+                                prefilled: '" . $data['tags_string'] . "',
                                 hiddenTagListName: 'data_tags'
                             });
                     </script>
@@ -182,7 +182,7 @@ class Data extends CI_Controller {
             'placeholder' => 'Введите ваш текст записи сюда ...',
         );
 
-        
+
         $edit_data_validation = array(
             array(
                 'field' => 'data_title',
@@ -210,21 +210,21 @@ class Data extends CI_Controller {
         }
         $this->load->view("bank/edit_data", $data);
     }
-    
+
     public function delete_data($data_id = 0) {
         $this->data_id = (int) $data_id;
         if (!$this->bank_model->check_data_id($this->data_id)) {
             redirect("/");
         }
 
-            if ($this->bank_model->delete_data($this->data_id)) {
-                $this->notify->returnSuccess('Запись удалена.');
-            } else {
-                $this->notify->returnError('Не удалось удалить запись.');
-            }
-            redirect("/");
+        if ($this->bank_model->delete_data($this->data_id)) {
+            $this->notify->returnSuccess('Запись удалена.');
+        } else {
+            $this->notify->returnError('Не удалось удалить запись.');
+        }
+        redirect("/");
     }
-    
+
     public function show_data() {
         $id = $this->data_id = (int) $this->uri->segment(3, 0);
 
