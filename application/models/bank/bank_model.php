@@ -156,7 +156,7 @@ class Bank_model extends CI_Model {
         $this->db->where('id_tag', $tag_id);
         $res = $this->db->get("list_tags");
         $res = $res->result_array();
-        if (is_array($res)) {
+        if (is_array($res) AND count($res)>0) {
             return $res[0];
         } else {
             return FALSE;

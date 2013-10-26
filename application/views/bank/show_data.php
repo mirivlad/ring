@@ -13,32 +13,37 @@ $this->load->view('templates/header');
             <a href="/data/delete_data/<?= $info["id_data"] ?>" onClick="return window.confirm('Уверены что хотите удалить эту запись?')"><span class="icon icon-minus-sign"></span>Удалить</a>
         </strong>
     </legend>
-    <p style='padding-bottom: 2px; border-bottom: 1px black dotted; border-top: 1px black dotted;' >
 
-        <?php
-        if (is_array($tags)) {
-            ?><strong>Теги: </strong>
+
+    <?php
+    if (is_array($tags)) {
+        ?><p style='padding-bottom: 2px; border-bottom: 1px black dotted; border-top: 1px black dotted;' >
+            <strong>Теги: </strong>
             <?php
             foreach ($tags as $tag => $value) {
                 ?>
                 <span class="badge badge-info"><a style="color:white;" href='/tag/<?= $tag ?>'><?= $value ?></a></span>
                 <?php
             }
-        }
-        ?>
-    </p>
-    <p><?= $info['content'] ?></p>
-</fieldset>
-<p style='padding-bottom: 2px; border-bottom: 1px black dotted;' >
-    <strong>Теги: </strong>
-    <?php
-    foreach ($tags as $tag => $value) {
-        ?>
-        <span class="badge badge-info"><a style="color:white;" href='/tag/<?= $tag['id_tag'] ?>'><?= $value ?></a></span>
+            ?></p>
             <?php
         }
         ?>
-</p>
-<?php
+
+    <p><?= $info['content'] ?></p>
+</fieldset>
+    <?php
+    if (is_array($tags)) {
+        ?><p style='padding-bottom: 2px; border-bottom: 1px black dotted; border-top: 1px black dotted;' >
+            <strong>Теги: </strong>
+            <?php
+            foreach ($tags as $tag => $value) {
+                ?>
+                <span class="badge badge-info"><a style="color:white;" href='/tag/<?= $tag ?>'><?= $value ?></a></span>
+                <?php
+            }
+            ?></p>
+            <?php
+        }
 $this->load->view('templates/footer');
 ?>
