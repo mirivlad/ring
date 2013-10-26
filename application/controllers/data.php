@@ -120,8 +120,7 @@ class Data extends CI_Controller {
 
     public function edit_data($data_id = 0) {
         $this->data_id = (int) $data_id;
-        $this->bank_model->check_owner_data($data_id);
-        if (!$this->bank_model->check_data_id($this->data_id)) {
+        if (!$this->bank_model->check_data_id($this->data_id) OR !$this->bank_model->check_owner_data($this->data_id)) {
             redirect("/");
         }
         $getdata = $this->bank_model->get_data($this->data_id);
@@ -214,7 +213,7 @@ class Data extends CI_Controller {
 
     public function delete_data($data_id = 0) {
         $this->data_id = (int) $data_id;
-        if (!$this->bank_model->check_data_id($this->data_id)) {
+        if (!$this->bank_model->check_data_id($this->data_id) OR !$this->bank_model->check_owner_data($this->data_id)) {
             redirect("/");
         }
 
