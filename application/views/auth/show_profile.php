@@ -6,7 +6,7 @@ $this->load->view('templates/header');
 <div class="span10">
 
     <fieldset>
-        <legend><?= $title ?> : <?= $user_profile->login ?></legend>
+        <legend><?= $title ?> : <?= $user_profile->login ?> <a href="/auth/edit_profile/<?=$user_profile->user_id?>"><i class="icon-edit"></i> Редактировать</a></legend>
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="span1">

@@ -30,7 +30,7 @@ class Users extends CI_Model {
         $query = $this->db->get($this->_table);
         if ($query->num_rows > 0) {
             foreach ($query->result() as $row) {
-                $profile = $this->user_profile->get_profile($row->id)->result()[0];
+                $profile = $this->user_profile->get_profile($row->id)->row();
                 $array[$row->id] = $profile->surname." ".$profile->first_name." ".$profile->middle_name." (".$row->username.")";
             }
             return $array;

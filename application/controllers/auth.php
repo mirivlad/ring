@@ -417,7 +417,7 @@ class Auth extends CI_Controller {
         if ($id == 0) {
             redirect("/");
         }
-        $data['title'] = "Прсмотр профиля пользователя";
+        $data['title'] = "Просмотр профиля пользователя";
         $user_profile = $this->user_profile->get_profile($user_id)->result();
         $data['user_profile'] = $user_profile[0];
         $login = $this->users->get_user_by_id($user_id)->result();
