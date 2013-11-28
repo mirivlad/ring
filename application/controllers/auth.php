@@ -357,6 +357,9 @@ class Auth extends CI_Controller {
             $data['title'] = "Редактирование профиля пользователя";
             $val = $this->form_validation;
             // Set form validation rules
+            if($this->dx_auth->is_admin()){
+                $val->set_rules('role_id', 'Роль пользователя', "trim|required|xss_clean");
+            }
             $val->set_rules('avatar', 'Файл аватара', "trim|max_length[255]|xss_clean");
             $val->set_rules('first_name', 'Имя', "trim|alpha|max_length[255]|xss_clean|required");
             $val->set_rules('middle_name', 'Отчество', "trim|alpha|max_length[255]|xss_clean");
@@ -380,6 +383,9 @@ class Auth extends CI_Controller {
                     "sex" => $this->input->post('sex', TRUE),
                     "description" => $this->input->post('description', TRUE),
                 );
+                if($this->dx_auth->is_admin()){
+                    $this->users->set_role($user_id,$this->input->post('role_id', TRUE) );
+                }
                 $this->user_profile->set_profile($user_id, $data);
                 $avatar = $this->utils->upload_avatar($user_id);
                 redirect($this->uri->uri_string());

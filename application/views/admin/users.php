@@ -1,5 +1,6 @@
 <?php
 $this->load->view('templates/header');
+
 ?>
 
 <div class="span10">
@@ -54,7 +55,7 @@ $this->load->view('templates/header');
                     <?=$u_profile['first_name']?> <?=$u_profile['surname']?>
                 </td>
                 <td><?= $user->email ?></td>
-                <td><?= $user->role_name ?></td>
+                <td><?= $user->role_name?></td>
                 <td><div class="text-center"><?= $banned ?></div></td>
                 <td><?= $user->last_ip ?></td>
                 <td><?= date('Y-m-d H:i:s', strtotime($user->last_login)) ?></td>

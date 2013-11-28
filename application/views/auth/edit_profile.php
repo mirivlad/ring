@@ -68,6 +68,12 @@ $sex_options = array(
     'not_set' => "не указано"
 );
 $avatar_img = $this->utils->user_get_avatar($user_id);
+if($this->dx_auth->is_admin()){
+$this->load->model('dx_auth/users');
+$roles_array = $this->users->get_roles_array();
+$user_role_id = $this->users->get_user_field($user_profile->user_id, "role_id")->row();
+}
+
 ?>
 
 <?php
@@ -88,12 +94,21 @@ $this->load->view('templates/header');
                     При загрузке нового аватара старый будет удален.</span>
             </div>
         </div>
+        <?php if($this->dx_auth->is_admin()){ ?>
+        <div class="control-group">
+            <label class="control-label" for="role_id">Роль пользователя</label>
+            <div class="controls">
+                <?= form_dropdown('role_id', $roles_array, $user_role_id->role_id, ' id="role_id"') ?>
+            </div>
+        </div>
+        <?php } ?>
         <div class="control-group">
             <label class="control-label" for="surname">Фамилия</label>
             <div class="controls">
                 <?php echo form_input($surname) ?>
             </div>
         </div>
+        
         <div class="control-group">
             <label class="control-label" for="first_name">Имя</label>
             <div class="controls">

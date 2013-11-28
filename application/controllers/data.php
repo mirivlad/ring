@@ -124,6 +124,10 @@ class Data extends CI_Controller {
             redirect("/");
         }
         $getdata = $this->bank_model->get_data($this->data_id);
+        if ($this->dx_auth->is_admin()) {
+            $this->load->model('dx_auth/users');
+            $data['data_author_array'] = $this->users->get_users_array();
+        }
         $data_info = $getdata[0];
         $data['data_id'] = $this->data_id;
         $data['tags'] = $this->bank_model->show_tag_array($this->data_id);
@@ -133,7 +137,7 @@ class Data extends CI_Controller {
                 $data['tags_string'].= $value . ",";
             }
         }
-
+        $data['data_author_select'] = $data_info['author_id'];
         $data['tags_string'] = mb_substr($data['tags_string'], 0, strlen($data['tags_string']) - 1);
         $data['title'] = "Редактирование записи : " . $data_info['title'];
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
@@ -181,7 +185,11 @@ class Data extends CI_Controller {
             'style' => 'width: 90%; height: 400px;',
             'placeholder' => 'Введите ваш текст записи сюда ...',
         );
-
+        if ($this->dx_auth->is_admin()) {
+            $data['data_author'] = array(
+                'name' => 'data_author',
+            );
+        }
 
         $edit_data_validation = array(
             array(

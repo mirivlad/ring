@@ -62,28 +62,31 @@ class Bank_model extends CI_Model {
         }
         return $query;
     }
-    function check_owner_data ($data_id = 0){
-        if ($this->dx_auth->is_admin()) return TRUE;
-        
+
+    function check_owner_data($data_id = 0) {
+        if ($this->dx_auth->is_admin())
+            return TRUE;
+
         $id = (int) $data_id;
-        
+
         if (!$this->check_data_id($id)) {
             return FALSE;
         }
         $data = $this->db->get_where('list_data', array('id_data' => $id), 1)->result_array();
-        if (is_array($data) AND count($data)>0){
+        if (is_array($data) AND count($data) > 0) {
             $info = $data[0];
-            if ($info['author_id'] == $this->dx_auth->get_user_id()){
+            if ($info['author_id'] == $this->dx_auth->get_user_id()) {
                 return TRUE;
-            }else{
+            } else {
                 return FALSE;
             }
-        //$this->firephp->log($data);
-        }else{
+            //$this->firephp->log($data);
+        } else {
             return FALSE;
         }
         return FALSE;
     }
+
     function check_data_id($data_id = 0) {
         $id = (int) $data_id;
         if ($id <= 0) {
@@ -177,7 +180,7 @@ class Bank_model extends CI_Model {
         $this->db->where('id_tag', $tag_id);
         $res = $this->db->get("list_tags");
         $res = $res->result_array();
-        if (is_array($res) AND count($res)>0) {
+        if (is_array($res) AND count($res) > 0) {
             return $res[0];
         } else {
             return FALSE;
@@ -223,12 +226,22 @@ class Bank_model extends CI_Model {
         if ($this->check_data_id($data_id) AND $this->check_owner_data($data_id)) {
             //сохраняем теги в БД
             $this->save_tags($this->input->post("data_tags"));
-            $data = array(
-                'create_date' => time(),
-                'title' => strip_tags($this->input->post("data_title")),
-                'description' => strip_tags($this->input->post("data_description")),
-                'content' => $this->input->post("data_text")
-            );
+            if ($this->dx_auth->is_admin()) {
+                $data = array(
+                    'create_date' => time(),
+                    'author_id' => strip_tags($this->input->post("data_author")),
+                    'title' => strip_tags($this->input->post("data_title")),
+                    'description' => strip_tags($this->input->post("data_description")),
+                    'content' => $this->input->post("data_text")
+                );
+            } else {
+                $data = array(
+                    'create_date' => time(),
+                    'title' => strip_tags($this->input->post("data_title")),
+                    'description' => strip_tags($this->input->post("data_description")),
+                    'content' => $this->input->post("data_text")
+                );
+            }
             //Сохраняем запись в БД.
             $this->db->update('list_data', $this->security->xss_clean($data), array("id_data" => $data_id));
 
