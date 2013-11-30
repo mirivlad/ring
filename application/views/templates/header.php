@@ -96,9 +96,6 @@
                                         </ul>
                                     <?php } else { ?>
                                         <ul class="dropdown-menu">
-                                            <li class="nav-header">Данные</li>
-                                            <li><a href="/data/add_data">Добавить запись в Банк Данных</a></li>
-                                            <li class="divider"></li>
                                             <li class="nav-header">Аккаунт</li>
                                             <li><a href="/auth/edit_profile">Изменить профиль</a></li>
                                             <li><a href="/auth/change_password">Сменить пароль</a></li>

@@ -233,8 +233,8 @@ class Data extends CI_Controller {
         redirect("/");
     }
 
-    public function show_data() {
-        $id = $this->data_id = (int) $this->uri->segment(3, 0);
+    public function show_data($id) {
+        //$id = $this->data_id = (int) $this->uri->segment(3, 0);
 
         $query = $this->bank_model->get_data($id);
         if (!$query) {

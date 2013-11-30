@@ -38,7 +38,7 @@ class Bank_model extends CI_Model {
     }
 
     function get_data($data_id) {
-        $res = $this->db->get("list_data",array("id_data"=>$data_id));
+        $res = $this->db->get_where("list_data",array("id_data"=>$data_id));
         if($res->num_rows()>0){
             return $res->row();
         } else {
@@ -49,8 +49,9 @@ class Bank_model extends CI_Model {
     function get_all_data($bank_id, $offset = 0, $row_count = 0) {
         if ($offset >= 0 AND $row_count > 0) {
             //$this->db->select("list_db.*", FALSE);
-            $this->db->where("db_id", $bank_id);
+            
             $this->db->select("*");
+            $this->db->where("db_id", $bank_id);
             //$this->db->join("list_data", "list_data.db_id = list_db.id_db");
             $this->db->order_by("create_date", "DESC");
             $query = $this->db->get("list_data", $row_count, ($offset - 1) * $row_count);

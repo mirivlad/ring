@@ -53,7 +53,7 @@ class Bank extends CI_Controller {
                 $p_config['per_page'] = $row_count;
                 
                 if ($p_config['total_rows'] > 0) {
-                    $data['list_data'] = $this->bank_model->get_all_data($this->bank_id, $offset, $row_count)->result_array();
+                    $data['list_data'] = $this->bank_model->get_all_data($this->bank_id, $offset, $row_count)->result();
                     // Init pagination
                     $this->pagination->initialize($p_config);
                     // Create pagination links
