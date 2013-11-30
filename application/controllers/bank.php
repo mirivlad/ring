@@ -58,12 +58,12 @@ class Bank extends CI_Controller {
                     $this->pagination->initialize($p_config);
                     // Create pagination links
                     $data['pagination'] = $this->pagination->create_links();
-                    $data['title'] = $bank_info['name'];
+                    $data['title'] = $bank_info->name;
                     $data['bank_id'] = $this->bank_id;
                     $this->load->view("bank/data_list", $data);
                 }else{
                     $data['list_data'] = "Этот Банк Данных пока пуст";
-                    $data['title'] = $bank_info['name'];
+                    $data['title'] = $bank_info->name;
                     $data['bank_id'] = $this->bank_id;
                     $this->load->view("bank/data_list", $data);
                 }

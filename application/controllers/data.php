@@ -236,14 +236,15 @@ class Data extends CI_Controller {
     public function show_data() {
         $id = $this->data_id = (int) $this->uri->segment(3, 0);
 
-        $data['info'] = $this->bank_model->get_data($id);
-        if (!is_array($data['info']) OR !isset($data['info'][0])) {
+        $query = $this->bank_model->get_data($id);
+        if (!$query) {
             $this->error_id();
+            //die($data['info']->db_id);
         } else {
-            $data['info'] = $data['info'][0];
-
-            $data['title'] = $data['info']['title'];
-            $data['author_name'] = $this->dx_auth->get_user_profile_name($data['info']['author_id']);
+            $data['info'] = $query;
+            //$data['info'] = $this->bank_model->get_data($id);
+            $data['title'] = $data['info']->title;
+            $data['author_name'] = $this->dx_auth->get_user_profile_name($data['info']->author_id);
             //$this->dx_auth->get_user_name($data['info']['author_id']);
             $data['tags'] = $this->bank_model->show_tag_array($id);
             $this->load->view("bank/show_data", $data);

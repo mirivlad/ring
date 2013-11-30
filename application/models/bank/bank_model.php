@@ -12,11 +12,11 @@ class Bank_model extends CI_Model {
     }
 
     function bank_info($id_db) {
-        $this->db->where('id_db', (int) $id_db, TRUE);
-        $res = $this->db->get("list_db");
-        $res = $res->result_array();
-        if (is_array($res) AND isset($res[0])) {
-            return $res[0];
+        //$this->db->where('id_db', (int) $id_db, TRUE);
+        $res = $this->db->get("list_db",array('id_db'=>$id_db));
+        
+        if ($res->num_rows()>0) {
+            return $res->row();
         } else {
             return FALSE;
         }
@@ -38,10 +38,9 @@ class Bank_model extends CI_Model {
     }
 
     function get_data($data_id) {
-        if ($this->check_data_id($data_id)) {
-            $this->db->where("id_data", $data_id);
-            $res = $this->db->get("list_data");
-            return $res->result_array();
+        $res = $this->db->get("list_data",array("id_data"=>$data_id));
+        if($res->num_rows()>0){
+            return $res->row();
         } else {
             return FALSE;
         }
@@ -88,14 +87,8 @@ class Bank_model extends CI_Model {
     }
 
     function check_data_id($data_id = 0) {
-        $id = (int) $data_id;
-        if ($id <= 0) {
-            return FALSE;
-        }
-        $this->db->where("id_data", $id);
-        $this->db->from('list_data');
-        $count = $this->db->count_all_results();
-        if ($count > 0) {
+        $count = $this->db->get('list_data', array("id_data"=>$data_id));
+        if ($count->num_rows > 0) {
             return TRUE;
         } else {
             return FALSE;
