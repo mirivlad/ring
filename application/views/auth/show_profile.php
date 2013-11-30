@@ -15,7 +15,7 @@ $this->load->view('templates/header');
                 <div class="span10">
                         <strong><?= $user_profile->surname ?> <?= $user_profile->first_name ?> <?= $user_profile->middle_name ?></strong><br><br>
                         <strong>Пол: </strong><?= $user_profile->sex ?><br><br>
-                        <strong>Дата рождения: </strong><?= $user_profile->birthdate ?><br><br>
+                        <strong>Дата рождения: </strong><?= date("d-m-Y", strtotime($user_profile->birthdate))?><br><br>
                         <strong>Страна: </strong><?= $user_profile->country ?><br><br>
                         <strong>Город: </strong><?= $user_profile->city ?><br><br>
                         <strong>Сайт: <a href="<?= $user_profile->website ?>"><?= $user_profile->website ?></a></strong><br><br>
