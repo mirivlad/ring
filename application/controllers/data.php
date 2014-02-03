@@ -38,14 +38,14 @@ class Data extends CI_Controller {
     }
 
     public function add_data($bank_id = 0) {
-        $this->bank_id = (int) $bank_id;
+        $this->bank_id = $bank_id;
         if (!$this->bank_model->check_bank_id($this->bank_id)) {
             redirect("/");
         }
         $bank_info = $this->bank_model->bank_info($this->bank_id);
 
         $data['bank_id'] = $this->bank_id;
-        $data['title'] = "Добавление данных в Банк : " . $bank_info['name'];
+        $data['title'] = "Добавление данных в Банк : " . $bank_info->name;
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
             <link rel=\"stylesheet\" type=\"text/css\" href='/assets/css/bootstrap-tagmanager.css'></script>\n
             ";
@@ -83,6 +83,7 @@ class Data extends CI_Controller {
             'style' => 'width:50%',
             'placeholder' => 'Введите описание...',
         );
+        
         $data['data_text'] = array(
             'name' => 'data_text',
             'id' => 'data_text',
@@ -90,6 +91,16 @@ class Data extends CI_Controller {
             'style' => 'width: 90%; height: 400px;',
             'placeholder' => 'Введите ваш текст записи сюда ...',
         );
+        
+        if ($this->dx_auth->is_admin()) {
+            $this->load->model('dx_auth/users');
+            $data['data_author_array'] = $this->users->get_users_array();
+            $data['data_author_select'] = $this->dx_auth->get_user_id();
+            $data['data_author'] = array(
+                'name' => 'data_author',
+            );
+        }
+        
         $add_data_validation = array(
             array(
                 'field' => 'data_title',
@@ -123,12 +134,13 @@ class Data extends CI_Controller {
         if (!$this->bank_model->check_data_id($this->data_id) OR !$this->bank_model->check_owner_data($this->data_id)) {
             redirect("/");
         }
-        $getdata = $this->bank_model->get_data($this->data_id);
+        $data_info = $this->bank_model->get_data($this->data_id);
         if ($this->dx_auth->is_admin()) {
             $this->load->model('dx_auth/users');
             $data['data_author_array'] = $this->users->get_users_array();
+            $data['data_author_select'] = $data_info->author_id;
         }
-        $data_info = $getdata[0];
+        //$data_info = $getdata[0];
         $data['data_id'] = $this->data_id;
         $data['tags'] = $this->bank_model->show_tag_array($this->data_id);
         $data['tags_string'] = "";
@@ -137,9 +149,9 @@ class Data extends CI_Controller {
                 $data['tags_string'].= $value . ",";
             }
         }
-        $data['data_author_select'] = $data_info['author_id'];
+        
         $data['tags_string'] = mb_substr($data['tags_string'], 0, strlen($data['tags_string']) - 1);
-        $data['title'] = "Редактирование записи : " . $data_info['title'];
+        $data['title'] = "Редактирование записи : " . $data_info->title;
         $data['header_add'][] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/assets/css/bootstrap-wysihtml5.css\">\n
             <link rel=\"stylesheet\" type=\"text/css\" href='/assets/css/bootstrap-tagmanager.css'></script>\n
             ";
@@ -164,7 +176,7 @@ class Data extends CI_Controller {
         $data['data_title'] = array(
             'name' => 'data_title',
             'id' => 'data_title',
-            'value' => $data_info['title'],
+            'value' => $data_info->title,
             'maxlength' => '255',
             'style' => 'width:50%',
             'placeholder' => 'Введите заголовок...',
@@ -172,7 +184,7 @@ class Data extends CI_Controller {
         $data['data_description'] = array(
             'name' => 'data_description',
             'id' => 'data_description',
-            'value' => $data_info['description'],
+            'value' => $data_info->description,
             'cols' => '50',
             'rows' => '4',
             'style' => 'width:50%',
@@ -181,7 +193,7 @@ class Data extends CI_Controller {
         $data['data_text'] = array(
             'name' => 'data_text',
             'id' => 'data_text',
-            'value' => $data_info['content'],
+            'value' => $data_info->content,
             'style' => 'width: 90%; height: 400px;',
             'placeholder' => 'Введите ваш текст записи сюда ...',
         );

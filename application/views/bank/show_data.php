@@ -33,7 +33,7 @@ $bank = $this->bank_model->bank_info($info->db_id);
             <?php
             foreach ($tags as $tag => $value) {
                 ?>
-                <span class="badge badge-info"><a style="color:white;" href='/tag/<?= $tag ?>'><?= $value ?></a></span>
+                <span class="badge badge-info"><a style="color:white;" href='/tags/index/<?= $tag ?>'><?= $value ?></a></span>
                 <?php
             }
             ?></p>

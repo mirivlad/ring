@@ -56,6 +56,7 @@
                         <div class="nav-collapse collapse navbar-responsive-collapse">
                             <ul class="menu nav">
                                 <li><a href="/" >Главная</a></li>
+                                <li><a href="/tags/list_tags" >Теги</a></li>
                                 <li><a href="/about">О проекте</a></li>
                                 <li><a href="/github">Развитие движка проекта</a></li>
                                 <li><a href="/contacts">Контакты</a></li>

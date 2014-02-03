@@ -12,8 +12,8 @@ class Bank_model extends CI_Model {
     }
 
     function bank_info($id_db) {
-        //$this->db->where('id_db', (int) $id_db, TRUE);
-        $res = $this->db->get("list_db",array('id_db'=>$id_db));
+        $this->db->where('id_db', (int) $id_db, TRUE);
+        $res = $this->db->get("list_db");
         
         if ($res->num_rows()>0) {
             return $res->row();
@@ -62,7 +62,28 @@ class Bank_model extends CI_Model {
         }
         return $query;
     }
-
+    function get_data_by_tag($tag_id, $offset = 0, $row_count = 0) {
+        if ($offset >= 0 AND $row_count > 0) {
+            //$this->db->select("list_db.*", FALSE);
+            $this->db->select('tags.*, data.*');
+            $this->db->from('tags_data as tags');
+            $this->db->join('list_data as data', 'tags.data_id=data.id_data', 'left');
+            $this->db->where('tags.tag_id', $tag_id);
+            $this->db->where('data.id_data !=', 0);
+            $this->db->limit($row_count, ($offset - 1) * $row_count);
+            $this->db->order_by("data.create_date", "DESC");
+            $query = $this->db->get();
+        } else {
+            $this->db->select('tags.*, data.*');
+            $this->db->from('tags_data as tags');
+            $this->db->join('list_data as data', 'tags.data_id=data.id_data', 'left');
+            $this->db->where('tags.tag_id', $tag_id);
+            $this->db->where('data.id_data !=', 0);
+            $this->db->order_by("data.create_date", "DESC");
+            $query = $this->db->get();
+        }
+        return $query;
+    }
     function check_owner_data($data_id = 0) {
         if ($this->dx_auth->is_admin())
             return TRUE;
@@ -169,7 +190,12 @@ class Bank_model extends CI_Model {
             return FALSE;
         }
     }
-
+    
+    function get_list_tags() {
+        $res = $this->db->get("list_tags");
+        return $res->result();
+    }
+    
     function get_tag($tag_id) {
         $this->db->where('id_tag', $tag_id);
         $res = $this->db->get("list_tags");
@@ -185,15 +211,28 @@ class Bank_model extends CI_Model {
         if ($this->check_bank_id($this->input->post("bank_id"))) {
             //сохраняем теги в БД
             $this->save_tags($this->input->post("data_tags"));
-            $data = array(
-                'id_data' => NULL,
-                'db_id' => strip_tags($this->input->post("bank_id")),
-                'author_id' => $this->dx_auth->get_user_id(),
-                'create_date' => time(),
-                'title' => strip_tags($this->input->post("data_title")),
-                'description' => strip_tags($this->input->post("data_description")),
-                'content' => $this->input->post("data_text")
-            );
+            if ($this->dx_auth->is_admin()) {
+                $data = array(
+                    'id_data' => NULL,
+                    'db_id' => strip_tags($this->input->post("bank_id")),
+                    'author_id' => strip_tags($this->input->post("data_author")),
+                    'create_date' => time(),
+                    'title' => strip_tags($this->input->post("data_title")),
+                    'description' => strip_tags($this->input->post("data_description")),
+                    'content' => $this->input->post("data_text")
+                );
+            }else{
+                $data = array(
+                    'id_data' => NULL,
+                    'db_id' => strip_tags($this->input->post("bank_id")),
+                    'author_id' => $this->dx_auth->get_user_id(),
+                    'create_date' => time(),
+                    'title' => strip_tags($this->input->post("data_title")),
+                    'description' => strip_tags($this->input->post("data_description")),
+                    'content' => $this->input->post("data_text")
+                );   
+            }
+
             //Сохраняем запись в БД.
             $this->db->insert('list_data', $this->security->xss_clean($data));
             $data_id = $this->db->insert_id();

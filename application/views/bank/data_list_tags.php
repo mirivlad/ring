@@ -2,8 +2,7 @@
 $this->load->view('templates/header');
 ?>
 <fieldset>
-    <legend><i class="icon-bookmark"></i> <?= $title ?>
-        <span style="float: right;"><i class="icon-edit"></i> <a href="/data/add_data/<?= $bank_id ?>">Добавить запись в банк</a></span></legend>
+    <legend><i class="icon-bookmark"></i> <?= $title ?></legend>
 
     <?php
     if (is_array($list_data)) {
