@@ -39,7 +39,8 @@ class Tags extends CI_Controller {
                     $this->pagination->initialize($p_config);
                     // Create pagination links
                     $data['pagination'] = $this->pagination->create_links();
-                    $data['title'] = "Данные по тегу: ".$this->bank_model->get_tag($this->tag_id)['name'];
+                    $tagname = $this->bank_model->get_tag($this->tag_id);
+                    $data['title'] = "Данные по тегу: ".$tagname['name'];
                     $this->load->view("bank/data_list_tags", $data);
                 }else{
                     $data['list_data'] = $this->bank_model->get_data_by_tag($this->tag_id, $offset, $row_count)->result();
